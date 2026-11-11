@@ -1,0 +1,31 @@
+// Grade tab: stills -> measured reference -> closed-loop fit -> apply. Also the safety behaviour of links and the AI estimate.
+import { chromium } from "playwright";
+import { R } from "./_ui";
+let pass = 0, fail = 0; const ok = (n: string, c: boolean, i = "") => { c ? pass++ : fail++; console.log(`${c ? "PASS" : "FAIL"}  ${n}${i ? "  [" + i + "]" : ""}`); };
+const BASE = process.env.BASE ?? "http://localhost:3100";
+(async () => {
+  const browser = await chromium.launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"] });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } }); const errs: string[] = []; page.on("pageerror", (e) => errs.push(e.message));
+  await page.goto(BASE + "/projects"); await page.evaluate(() => indexedDB.deleteDatabase("lumen")); await page.goto(BASE + "/projects");
+  await page.setInputFiles("input[type=file]", "tests/fixtures/horizon_clean.jpg"); await page.waitForSelector("a[href^='/editor']");
+  await page.click("a[href^='/editor']"); await R(page);
+  await page.click("[data-testid=right-grade]"); await page.waitForSelector("[data-testid=grade-panel]");
+  ok("Run is disabled until a frame exists", await page.locator("[data-testid=grade-run]").isDisabled());
+  await page.setInputFiles("[data-testid=grade-file]", ["tests/fixtures/ref_warm.jpg", "tests/fixtures/haze.png"]);
+  await page.waitForSelector("[data-testid=grade-frames]"); ok("two uploaded frames are listed and measured", (await page.locator("[data-testid=grade-frames] li").count()) === 2, await page.locator("[data-testid=grade-frames]").innerText().then((t) => t.replace(/\s+/g, " ").slice(0, 160)));
+  await page.fill("[data-testid=grade-link]", "https://www.instagram.com/someone/"); await page.click("text=Add >> nth=0").catch(() => {}); await page.locator("button", { hasText: /^Add$/ }).click();
+  await page.waitForSelector("[data-testid=grade-msg]"); ok("an Instagram page link is refused with an honest explanation", /scraping/i.test(await page.locator("[data-testid=grade-msg]").innerText()));
+  await page.fill("[data-testid=grade-link]", "https://localhost/x.jpg"); await page.locator("button", { hasText: /^Add$/ }).click(); await page.waitForTimeout(500);
+  ok("a private address link is refused", /private|local/i.test(await page.locator("[data-testid=grade-msg]").innerText()));
+  await page.fill("[data-testid=grade-name]", "Some Show"); await page.click("[data-testid=grade-ai]"); await page.waitForTimeout(1500);
+  const aiMsg = await page.locator("[data-testid=grade-msg], [data-testid=grade-ai-note]").first().innerText().catch(() => "");
+  ok("AI estimate either works (labelled as estimate) or says the key is missing, never silently fakes", /Settings|estimate|not measured|recognise|AI/i.test(aiMsg), aiMsg.slice(0, 100));
+  const before = await page.locator("canvas").first().screenshot();
+  await page.click("[data-testid=grade-run]"); await page.waitForSelector("[data-testid=grade-result]", { timeout: 60000 });
+  const b = parseFloat(await page.locator("[data-testid=grade-before]").innerText()), a = parseFloat(await page.locator("[data-testid=grade-after]").innerText());
+  ok("measured distance goes down after fitting", a < b, `${b} -> ${a}`);
+  await page.click("[data-testid=grade-apply]"); await page.waitForTimeout(600);
+  const after = await page.locator("canvas").first().screenshot(); ok("applying changes the rendered pixels", Buffer.compare(before, after) !== 0);
+  ok("no page errors", errs.length === 0, errs.join("|"));
+  console.log(`\n${pass} passed, ${fail} failed`); await browser.close(); process.exit(fail ? 1 : 0);
+})();

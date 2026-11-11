@@ -1,0 +1,140 @@
+// Builds data/registry.json from data/glossary.txt (the user's term list).
+// Default status is "unsupported": a technique is only upgraded when a rule below names real code.
+import { readFileSync, writeFileSync } from "fs";
+
+type Status = "implemented" | "partial" | "ai-assisted" | "experimental" | "planned" | "unsupported";
+// [regex on lowercase name, status, impl (a key in EditParams or a function name in lib), note]
+const RULES: [RegExp, Status, string | null, string][] = [
+  [/^exposure$|^exposure compensation/, "implemented", "param:exposure", "Linear-light EV gain. 8-bit source, so recovery is limited to existing data."],
+  [/^contrast$|^midtone contrast/, "implemented", "param:contrast", "Power curve about 0.18 linear grey."],
+  [/^whites$/, "implemented", "param:whites", ""], [/^blacks$/, "implemented", "param:blacks", ""],
+  [/^highlight roll-off|^highlights/, "implemented", "param:highlights", "Luma-weighted gain; cannot restore fully clipped pixels."],
+  [/^shadow recovery/, "implemented", "param:shadows", "Luma-weighted gain."],
+  [/^midtones$/, "partial", "param:contrast", "No dedicated midtone slider; handled via contrast and curve."],
+  [/^tone curve \(s-curve\)/, "implemented", "param:curve", "Monotone cubic master curve with a draggable point editor and presets."],
+  [/^rgb curves/, "partial", "param:curve", "Master curve only; per-channel curves not implemented."],
+  [/^luminance curve/, "partial", "param:curve", "Master curve applied to RGB, not Lab L."],
+  [/^black point \/ white point/, "implemented", "param:blacks", "Via blacks/whites sliders and recipe."],
+  [/^color temperature|^tint \(green/, "implemented", "param:temperature", "Per-channel gain approximation, not a true Kelvin model."],
+  [/^white balance \(wb\)/, "implemented", "param:temperature", "Auto estimate from neutral midtones plus manual sliders."],
+  [/^color cast$|^color cast neutralization/, "implemented", "fn:analyse", "Detected from neutral-region bias."],
+  [/^saturation$/, "implemented", "param:saturation", ""], [/^vibrance$/, "implemented", "param:vibrance", ""],
+  [/^hsl \/ hsv/, "implemented", "param:hslH", "8-band hue/sat/luminance."],
+  [/^selective color adjustment|^color separation/, "partial", "param:hslH", "Via HSL bands only."],
+  [/^unsharp mask|^sharpness \/ acutance/, "implemented", "param:sharpAmount", "Neighbourhood unsharp in shader."],
+  [/^radius \(sharpening\)/, "implemented", "param:sharpRadius", ""],
+  [/^clarity$/, "partial", "param:clarity", "Large-radius local contrast approximation, midtone weighted."],
+  [/^texture$/, "partial", "param:texture", "Small-radius detail approximation."],
+  [/^microcontrast$/, "partial", "param:texture", ""],
+  [/^noise reduction \(nr\)|^luminance noise$|^chrominance noise/, "partial", "param:nrLuma", "Light 8-tap edge-aware luma and chroma smoothing. Not a denoising model."],
+  [/^vignetting \(optical vs/, "partial", "param:vignette", "Creative vignette only. No lens-profile correction."],
+  [/^high-iso grain vs/, "partial", "param:grain", "Artificial grain only."],
+  [/^straighten/, "implemented", "param:straighten", "Auto-inscribed zoom hides rotated edges."],
+  [/^aspect ratio$|^canvas size vs/, "partial", "param:crop", "Crop rectangle; presets in UI."],
+  [/^rule of thirds overlay/, "implemented", "ui:thirds", "Overlay in editor."],
+  [/^histogram$/, "implemented", "fn:analyse", "256-bin luma and RGB."],
+  [/^clipping \(highlights/, "implemented", "fn:analyse", "Measured %, plus on-canvas warning overlay."],
+  [/^dynamic range$/, "partial", "fn:analyse", "Estimated from 8-bit percentiles, not sensor dynamic range."],
+  [/^zebra patterns/, "partial", "ui:clip", "Solid clip warning, not animated zebra."],
+  [/^non-destructive editing/, "implemented", "arch:params", "Original blob stored untouched; edits are parameters."],
+  [/^history state/, "implemented", "ui:history", ""],
+  [/^virtual copies \/ snapshots/, "implemented", "ui:snapshots", "Snapshots implemented. Virtual copies via duplicate project."],
+  [/^adjustment layers/, "partial", "arch:layers", "Two parametric layers (AI recipe and manual). Not arbitrary user layers."],
+  [/^global adjustments vs/, "partial", "arch:params", "Global only until masking phase."],
+  [/^catalog \/ session management/, "partial", "arch:idb", "Local browser storage; no cloud sync."],
+  [/^metadata \(exif/, "partial", "fn:exif", "EXIF read for display. Not preserved on export."],
+  [/^exif stripping/, "implemented", "arch:export", "Canvas export carries no EXIF."],
+  [/^jpeg \/ jpg$|^png$|^webp$/, "implemented", "arch:export", "Import and export through browser codecs."],
+  [/^heif \/ heic/, "partial", null, "Import only where the browser decodes it (Safari)."],
+  [/^bit depth \(8-bit/, "partial", null, "Pipeline is float in shader but 8-bit in and out."],
+  [/^color space stripping vs/, "partial", null, "Assumes sRGB; no ICC embedding."],
+  [/^laplacian filter|^sobel/, "partial", "fn:analyse", "Laplacian used internally for sharpness and noise."],
+  [/^subject detection \/ ai subject mask|^semantic segmentation masking/, "ai-assisted", "api:analyze", "Requires Gemini. Bounding box and labels only; pixel masks not built yet."],
+  [/^global adjustments vs/, "implemented", "mask:layers", "Global parameters plus up to 4 local adjustment layers."],
+  [/^radial filter/, "implemented", "mask:radial", "Elliptical mask with feather, invert, density. Draggable handles."],
+  [/^linear gradient mask/, "implemented", "mask:linear", "Two-point gradient mask with feather, invert, density."],
+  [/^luminosity masks/, "implemented", "mask:luminance", "Luminance range with soft edges, usable alone or intersected with another mask. No zone presets."],
+  [/^color range mask|^color range selection/, "implemented", "mask:color", "Hue range + minimum saturation. Usable alone or intersected."],
+  [/^brush tool/, "partial", "mask:brush", "Size, feather, flow, erase. No stroke smoothing, pressure or edge-aware snapping."],
+  [/^feathering|^edge feather/, "implemented", "mask:feather", "Feather control per mask. No post-hoc blur of arbitrary selections."],
+  [/^inverted mask/, "implemented", "mask:invert", ""],
+  [/^intersecting masks/, "partial", "mask:limiters", "Luminance and colour limiters intersect the base mask. No arbitrary add/subtract between separate layers."],
+  [/^layer masks/, "partial", "mask:layers", "Every local layer has its own mask; no pixel layers."],
+  [/^dodge and burn/, "partial", "mask:brush", "Achievable manually: brush mask + local exposure. No dedicated tool or automatic frequency separation."],
+  [/^background mask \/ invert subject/, "experimental", "mask:radial", "Inverted ellipse around a detected box. Not a segmentation."],
+  [/^sky detection/, "experimental", "mask:linear", "Top gradient limited to blue hues. Unreliable on grey, sunset and overcast skies."],
+  [/^dehaze$/, "partial", "param:dehaze", "Small-window dark-channel estimate, no guided-filter refinement. Can amplify noise and create halos at strong edges."],
+  [/^chromatic aberration \(fringing|^chromatic aberration: lateral/, "partial", "param:ca", "Manual lateral CA correction only (radial R/B scaling). No auto-detection, no purple fringe or axial CA."],
+  [/^lens distortion/, "partial", "param:distortion", "Single-coefficient radial model, manual. No lens profiles."],
+  [/^keystone correction|^perspective correction/, "partial", "param:perspV", "Manual vertical/horizontal keystone sliders. No auto-upright and no four-point homography."],
+  [/^halation emulation/, "partial", "param:halation", "Thresholded highlight glow tinted red-orange. Not a film-stock model."],
+  [/^bloom \/ diffusion glow/, "partial", "param:bloom", "24-tap thresholded highlight glow (3 rings, reach about 2.8% of the long edge)."],
+  [/^tiff$/, "partial", "arch:export", "Baseline TIFF: 8-bit RGB, uncompressed, single strip, 300 dpi tag. No 16-bit, no compression, no ICC profile."],
+  [/^watermarking$/, "partial", "arch:export", "Text watermark burned in at export (position, size, opacity). No logo/image watermarks, no invisible watermarking."],
+  [/^preset$/, "partial", "arch:presets", "Save/apply your manual layer as a named look (editor and batch). Geometry and lens optics are excluded. No preset sharing or import of other apps' presets."],
+  [/^batch processing/, "partial", "arch:batch", "Select photos on the dashboard: apply a preset, export all as one ZIP (format, long edge, text watermark). Sequential, in-browser; no per-photo sync of edits, no watch folders."],
+  [/^split toning/, "partial", "param:gradeShS", "Shadow and highlight tint (hue + amount) with a balance control. Chroma offsets with no net luminance change; no midtone wheel."],
+  [/^color grading$/, "partial", "param:gradeShS", "Split toning plus HSL, curve and temperature. No lift/gamma/gain wheels, no LUT import."],
+  [/^color grading wheels/, "partial", "param:gradeShS", "Two wheels only (shadows, highlights) with balance. No midtone wheel and no lift/gamma/gain maths."],
+  [/^prompt-based color grading/, "partial", "fn:interpretRequest", "Offline keyword/phrase table maps wording (warmer, moody, teal and orange...) to tone and grade parameters, with strength words. No CLIP, no free-form understanding offline; Gemini is optional for free-form wording."],
+  [/^neural style transfer/, "unsupported", null, "Not built. Reference matching in Lumen is statistical (tone, colour balance, saturation, contrast), not neural, and never transfers texture or content."],
+
+  [/^spot healing/, "implemented", "retouch:spot", "Click a blemish: Lumen searches nearby for the best-matching clean source ring, then blends it in with harmonic colour matching. Tested against ground truth. No texture synthesis for large areas."],
+  [/^clone stamp/, "implemented", "retouch:clone", "Set a source, then stamp with a soft edge and fixed offset. Exact copy. Single source (no source palette, no pressure, no rotate/scale)."],
+  [/^healing brush vs spot healing/, "implemented", "retouch:heal", "Both exist: Heal (manual source, colour and light matched) and Spot removal (automatic source)."],
+  [/^content-aware fill \/ move \/ patch/, "partial", "retouch:remove", "Fill only: exemplar-based inpainting from the same photo. No Move or Patch tools."],
+  [/^inpainting \/ generative fill/, "partial", "retouch:remove", "Classical exemplar inpainting only. No generative model, so it cannot invent new content."],
+  [/^blemish removal/, "partial", "retouch:spot", "Spot removal handles small blemishes. No skin-aware or frequency-separation retouching."],
+  [/^object removal/, "partial", "retouch:remove", "Paint over the object; it is filled with patches copied from the rest of the photo. Large masks are solved at reduced resolution and may look repetitive or soft."],
+  [/^synthetic bokeh/, "partial", "param:bokeh", "19-tap disc blur with highlight weighting outside an estimated subject ellipse. No depth map or true segmentation, so edges are approximate."],
+  [/^gaussian blur$/, "partial", "param:gaussBlur", "Gaussian-weighted taps over a mip pyramid. Approximates a true Gaussian; not exact at large radii."],
+  [/^box blur/, "partial", "param:boxBlur", "3x3 box of mip-pyramid samples. Approximates a square kernel."],
+  [/^motion blur$/, "implemented", "param:motionBlur", "13-tap horizontal streak. Direction is fixed to horizontal."],
+  [/^motion blur synthesis/, "partial", "param:motionBlur", "Horizontal only, uniform length. No angle, no per-subject or depth-aware blur."],
+  [/^tilt-shift miniature faking/, "implemented", "param:tiltShift", "Sharp horizontal band, graduated blur above and below, small saturation lift."],
+  [/^sepia toning/, "partial", "effect:sepia", "Effect preset: desaturate plus brown split tone. Not a chemical sepia model."],
+  [/^monochrome$/, "implemented", "param:bw", ""],
+  [/^resampling \/ interpolation/, "partial", "fn:lanczosResize", "Lanczos-3 for export resizing (up and down). No bicubic/bilinear choice."],
+  [/^resolution/, "partial", "arch:export", "Export ladder: original, 360p to 8K by long edge, or custom. Enlarging adds no new detail."],
+  [/^bleach bypass/, "partial", "effect:bleach-bypass", "Effects tab preset: low saturation, hard S-curve contrast, clarity. An approximation, not the film chemistry."],
+  [/^cross processing/, "partial", "effect:cross-processing", "Effects tab preset: teal shadows, yellow-green highlights, S curve. Lumen has one luminance curve, not per-channel curves."],
+  [/^tone mapping/, "partial", "effect:filmic-tone-map", "Filmic highlight shoulder and lifted toe for 8-bit photos. Not scene-referred HDR tone mapping."],
+  [/^gradient map/, "implemented", "fn:gradientMapLut", "Grade tab: gradient map presets applied through the GPU 3D LUT path, with an amount slider."],
+  [/^3d lut hardware upload/, "implemented", "arch:renderer-lut3d", "The LUT is uploaded once as a WebGL2 3D texture (texImage3D) and sampled by the GPU."],
+  [/^3d lut|^1d lut vs\. 3d lut|^1d lut vs 3d lut/, "implemented", "fn:parseCube", "Grade tab imports .cube files (1D or 3D, DOMAIN supported) and applies them in the shader with trilinear interpolation; included in exports."],
+  [/^vectorscope/, "implemented", "fn:vectorBuffer", "Editor scope tab: Cb/Cr vectorscope of the live preview with a skin-tone line."],
+  [/^waveform monitor/, "implemented", "fn:waveformBuffer", "Editor scope tab: waveform of the live preview (RGB overlaid)."],
+  [/^output sharpening|^sharpen for screen vs\. sharpen for print|^sharpen for screen/, "implemented", "fn:outputSharpen", "Export option: luminance unsharp mask after resizing, tuned for screen or print."],
+  [/^responsive web export/, "implemented", "arch:export-responsive", "Export panel: renders 480/768/1280/1920 px versions (never above the source size) with screen sharpening."],
+  [/^keystone perspective rectification|^upright \/ transform tools/, "partial", "param:perspV", "Manual vertical and horizontal perspective sliders and straighten. No automatic Upright (line detection)."],
+  [/^defringe/, "partial", "param:ca", "Lateral chromatic aberration slider only. No purple or green fringe colour removal along edges."],
+  [/^lens profile corrections/, "partial", "param:distortion", "Manual distortion, vignette and chromatic aberration sliders. No lens database or automatic profiles."],
+  [/^edge refinement \/ refine edge \/ select and mask/, "partial", "fn:maskFeather", "Masks have feather, invert and range limits. No AI edge detection or hair refinement."],
+  [/^outpainting/, "experimental", "route:generative-edit", "Retouch tab, AI edit (experimental): an AI image model extends the scene and returns a separate, smaller copy. Result quality is not guaranteed."],
+  [/^relighting/, "experimental", "route:generative-edit", "Retouch tab, AI edit (experimental): an AI image model relights the scene and returns a separate copy. Not physically based."],
+  [/^blending modes/, "unsupported", null, "Lumen edits parametrically and has no pixel layer stack, so there is nothing to blend."],
+  [/^raw/, "unsupported", null, "Browsers cannot decode RAW files and Lumen ships no RAW decoder. Export a TIFF or JPEG from your RAW converter first."],
+  [/^blooming suppression/, "unsupported", null, "Sensor-level artefact that needs the RAW data."],
+  [/^progressive jpeg vs baseline jpeg/, "unsupported", null, "The browser's JPEG encoder always writes baseline files and does not expose a progressive option."],
+  [/^focus stacking|^exposure bracketing|^de-ghosting/, "unsupported", null, "Needs several aligned frames merged together. Lumen edits one photo at a time."],
+  [/^diffusion denoising|^neural upscaling \/ super-resolution|^monocular depth estimation/, "unsupported", null, "Needs a dedicated on-device model that Lumen does not ship. Export upscaling uses Lanczos and enlarges without adding detail."],
+  [/^dehaze$|^bloom|^halation|^bleach bypass|^cross processing|^gradient map$|^tone mapping$|^3d lut|^1d lut|^lens profile|^lens distortion|^keystone|^perspective correction|^upright|^spot healing|^clone stamp|^content-aware fill|^dodge and burn|^luminosity masks|^radial filter|^linear gradient mask|^color range mask|^brush tool|^layer masks|^feathering|^edge refinement|^blending modes|^waveform|^vectorscope|^preset$|^batch processing|^watermarking|^focus stacking|^exposure bracketing|^de-ghosting|^neural upscaling|^diffusion denoising|^relighting|^inpainting|^outpainting|^color grading$|^split toning|^color grading wheels|^chromatic aberration \(fringing|^defringe|^tiff$|^raw \(dng|^sharpen for screen|^output sharpening|^responsive web export|^progressive jpeg/, "planned", null, "Feasible; scheduled for a later phase."],
+];
+
+const lines = readFileSync("data/glossary.txt", "utf8").split("\n");
+const terms: string[] = []; let buf = "";
+for (const l of lines) { const s = l.trim(); if (!s) continue; const t = s.replace(/^[*\s]+/, "");
+  if (buf) { buf += " " + t; if ((buf.match(/\(/g) || []).length <= (buf.match(/\)/g) || []).length) { terms.push(buf); buf = ""; } continue; }
+  if ((t.match(/\(/g) || []).length > (t.match(/\)/g) || []).length) { buf = t; continue; } terms.push(t); }
+
+const seen = new Set<string>(); const out: any[] = [];
+for (const full of terms) {
+  const name = full.split(/\s*[(:]/)[0].trim(); const key = full.toLowerCase();
+  if (seen.has(key)) continue; seen.add(key);
+  let status: Status = "unsupported", impl: string | null = null, note = "";
+  for (const [re, s, i, n] of RULES) if (re.test(key)) { status = s; impl = i; note = n; break; }
+  out.push({ id: out.length + 1, name, full, status, impl, note });
+}
+writeFileSync("data/registry.json", JSON.stringify(out, null, 1));
+const counts = out.reduce((a: any, e) => ((a[e.status] = (a[e.status] || 0) + 1), a), {});
+console.log("terms:", out.length, counts);

@@ -1,0 +1,17 @@
+import { checkImageUrl, isPrivateIp } from "../lib/safeurl";
+import { averageStats, pickFor, splitDayNight } from "../lib/gradesrc";
+import type { GradeStats } from "../lib/gradefit";
+let ok = 0, bad = 0; const t = (n: string, c: boolean) => { c ? ok++ : (bad++, console.log("FAIL", n)); };
+t("http rejected", !checkImageUrl("http://a.com/x.jpg").ok); t("localhost rejected", !checkImageUrl("https://localhost/x.jpg").ok);
+t("10.x rejected", !checkImageUrl("https://10.0.0.5/x.jpg").ok); t("metadata ip rejected", !checkImageUrl("https://169.254.169.254/x").ok);
+t("ipv6 loopback rejected", !checkImageUrl("https://[::1]/x.jpg").ok); t("creds rejected", !checkImageUrl("https://u:p@a.com/x.jpg").ok);
+const ig = checkImageUrl("https://www.instagram.com/someone/"); t("instagram rejected with explanation", !ig.ok && /scraping/.test(ig.error));
+t("odd port rejected", !checkImageUrl("https://a.com:8443/x.jpg").ok); t("normal https ok", checkImageUrl("https://example.com/a.jpg").ok);
+t("private ranges", isPrivateIp("192.168.1.1") && isPrivateIp("172.20.0.1") && isPrivateIp("::ffff:10.0.0.1") && !isPrivateIp("8.8.8.8"));
+const mk = (med: number, a = 0): GradeStats => ({ pct: [0.02, 0.1, med * 0.6, med, med * 1.3, 0.9, 0.98], zones: [0, 1, 2].map(() => ({ w: 0.33, a, b: 0, sat: 0.3 })), meanSat: 0.3, mono: false });
+const list = [mk(0.1), mk(0.15), mk(0.5), mk(0.6, 0.04)];
+const s = splitDayNight(list); t("split 2/2", s.day.length === 2 && s.night.length === 2);
+t("night photo uses night set", pickFor(list, 0.12).used === "night" && Math.abs(pickFor(list, 0.12).stats!.pct[3] - 0.125) < 1e-9);
+t("day photo uses day set", pickFor(list, 0.5).used === "day" && pickFor(list, 0.5).count === 2);
+t("fallback when no night frames", pickFor([mk(0.5)], 0.1).used === "all"); t("average", Math.abs(averageStats(list)!.zones[0].a - 0.01) < 1e-9);
+console.log(`${ok} passed, ${bad} failed`); process.exit(bad ? 1 : 0);

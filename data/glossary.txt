@@ -1,0 +1,897 @@
+Exposure
+Dynamic Range
+Histogram
+Clipping (Highlights / Shadows)
+Blown Highlights
+Crushed Shadows
+Contrast
+Brightness
+Whites
+Blacks
+Midtones
+Tone Curve (S-Curve)
+Zebra Patterns
+Fill Light
+Key Light Balance
+Color & White Balance
+Color Temperature (Kelvin)
+Tint (Green/Magenta axis)
+White Balance (WB)
+Saturation
+Vibrance
+HSL / HSV (Hue, Saturation, Luminance / Value)
+Color Grading
+Split Toning
+Color Cast
+Chromatic Aberration (Fringing / Purple Fringing)
+Defringe
+Color Space (sRGB, Adobe RGB, ProPhoto RGB, DCI-P3)
+Color Gamut
+Gamut Warning / Soft Proofing
+Color Profiles / ICC Profiles
+3D LUT (Lookup Table)
+White Balance Target / Gray Card Calibration
+Metamerism
+Detail, Sharpness & Optics
+Sharpness / Acutance
+Unsharp Mask (USM)
+Radius (Sharpening)
+Threshold (Sharpening)
+Masking (Sharpening)
+Clarity
+Texture
+Dehaze
+Microcontrast
+Luminance Noise
+Chrominance Noise (Color Noise)
+Noise Reduction (NR)
+High-ISO Grain vs. Artificial Grain
+Lens Distortion (Barrel, Pincushion, Mustache)
+Lens Profile Corrections
+Vignetting (Optical vs. Creative)
+Diffraction Compensation
+Moire Removal
+Focus Stacking
+Geometry, Composition & Crop
+Aspect Ratio
+Crop Factor
+Rule of Thirds Overlay
+Golden Ratio / Spiral
+Straighten / Leveling
+Keystone Correction
+Perspective Correction (Vertical / Horizontal)
+Upright / Transform Tools
+Canvas Size vs. Image Size
+Resolution (DPI / PPI)
+Resampling / Interpolation (Bicubic, Bilinear, Nearest Neighbor)
+Retouching & Pixel Manipulation
+Spot Healing
+Clone Stamp
+Content-Aware Fill / Move / Patch
+Inpainting / Generative Fill
+Frequency Separation (High Frequency / Low Frequency)
+Dodge and Burn (Local Contrast Sculpting)
+Skin Smoothing
+Blemish Removal
+Liquify (Forward Warp, Pucker, Bloat, Reconstruct)
+Compositing
+Cutout / Subject Isolation
+Object Removal
+Sky Replacement
+Eye Catchlight Enhancement
+Layers, Masks & Compositing Workflow
+Layers
+Background Layer
+Adjustment Layers
+Layer Masks
+Inverted Mask
+Clipping Mask
+Compound Mask
+Alpha Channel
+Luminosity Masks
+Color Range Mask
+Radial Filter / Radial Gradient Mask
+Linear Gradient Mask
+Depth Map / Depth Mask
+Brush Tool (Size, Hardness, Flow, Opacity, Smoothing)
+Feathering
+Edge Refinement / Refine Edge / Select and Mask
+Global Adjustments vs. Local Adjustments
+Blending Modes
+Normal / Dissolve
+Darken group (Multiply, Color Burn, Linear Burn, Darker Color)
+Lighten group (Screen, Color Dodge, Linear Dodge / Add, Lighter Color)
+Contrast group (Overlay, Soft Light, Hard Light, Vivid Light, Linear Light, Pin Light,
+Hard Mix)
+Inversion / Cancellation group (Difference, Exclusion)
+Component group (Hue, Saturation, Color, Luminosity)
+Blend If (Underlying Layer & Current Layer Sliders)
+Opacity vs. Fill
+File Types, Bit Depth & Data Management
+RAW (DNG, CR3, NEF, ARW, RAF)
+Lossless Compression vs. Lossy Compression
+TIFF
+PSD / PSB
+JPEG / JPG
+PNG
+HEIF / HEIC
+WebP
+Bit Depth (8-bit, 10-bit, 12-bit, 14-bit, 16-bit, 32-bit Float)
+Color Depth / Channels
+Linear RAW
+Metadata (EXIF, IPTC, XMP Sidecar)
+Dithering
+Banding (Color Banding / Posterization)
+Workflow, Export & Production
+Non-Destructive Editing
+Destructive Editing
+Smart Objects
+Virtual Copies / Snapshots
+History State / Undo Buffer
+Catalog / Session Management
+Batch Processing
+Tethered Capture / Live View Editing
+Preset
+Action / Macro
+Watermarking
+Sharpen for Screen vs. Sharpen for Print
+Rendering Intent (Perceptual, Relative Colorimetric, Saturation, Absolute
+Colorimetric)
+Print Proofing / CMYK Conversion
+Tone, Contrast & Curves
+Midtone Contrast
+Perceptual Contrast
+Black Point / White Point Setting
+Gamma Correction
+Luminance Curve (L-Curve)
+RGB Curves (Individual Red, Green, Blue channel curves)
+Exposure Compensation (Software EV Push/Pull)
+Highlight Roll-off (Highlight Recovery)
+Shadow Recovery
+Shoulder / Toe (Curve response characteristics)
+Solarization (Sabattier effect)
+Advanced Color Science & Calibration
+Color Balance
+Color Purity
+Color Cast Neutralization
+Color Appearance Model (CIECAM02 / CAM16)
+Color Difference (\Delta E / Delta E)
+Observer Angle (2^\circ vs 10^\circ Standard Observer)
+Primary Calibration (Camera Calibration sliders: Red, Green, Blue primary shifts)
+Color Separation
+Color Grading Wheels (Lift, Gamma, Gain / Shadows, Midtones, Highlights)
+Global Color Wheels / Master Wheel
+Target Hue / Source Hue
+Lab Color Mode (L^*a^*b^* — Lightness, a Green-Magenta, b Blue-Yellow)
+CMYK (Cyan, Magenta, Yellow, Key/Black)
+Color Management System (CMS)
+Device-Independent Color Space (CIE XYZ, CIE xyY)
+Monitor Profiling / Hardware Calibration (Spectrophotometer / Colorimeter)
+Ambient Light Matching / D50 vs D65 Illuminants
+Color Quantization
+Masking, Selections & Alpha Mattes
+Subject Detection / AI Subject Mask
+Sky Detection / AI Sky Mask
+Background Mask / Invert Subject
+Facial Hair / Teeth / Iris Masking (Parametric Portrait Selections)
+Object Selection Tool
+Color Range Selection
+Focus Area Selection
+Quick Mask Mode
+Magic Wand / Tolerance Setting
+Marching Ants (Active Selection Boundary)
+Intersecting Masks (Add, Subtract, Invert, Intersect)
+Alpha Matte / Matte Extraction
+Edge Choke / Expand (Dilate / Erode)
+Edge Feather / Blur
+Decontaminate Colors (Fringe Removal on Cutouts)
+Channel Operations (Calculations / Apply Image)
+Vector Masks (Pen Tool / Bézier Paths)
+Retouching, Restoration & Skin Work
+Micro Dodge & Burn (Pore-level texture sculpting)
+Macro Dodge & Burn (Form, volume, and contour sculpting)
+Texture vs Tone Separation (Dual-frequency / Multi-frequency separation)
+Median Filter / Gaussian Blur (Low-frequency smoothing methods)
+High Pass Filter (High-frequency extraction)
+Patch Tool
+Healing Brush vs Spot Healing
+Clone Source Palette (Angle, Offset, Scale)
+Content-Aware Scale (Seam Carving)
+Content-Aware Move Tool
+Perspective Warp
+Puppet Warp
+Dust & Scratches Filter
+Polar Inversion / Polar Coordinates (Spherical retouching)
+Split-Frequency Detail Blending
+Specular Highlight Retouching
+Catchlight Shaping / Realignment
+Sclera Brightening / Eyeball Whitening
+Stray Hair Cleanup
+Skin Tone Uniformity (Targeted Hue Correction)
+Optics, Blur & Spatial Filters
+Depth of Field (DoF) Simulation
+Synthetic Bokeh (Aperture shape, blade count, optical spherical aberration)
+Gaussian Blur
+Box Blur
+Motion Blur (Angle, Distance)
+Radial Blur (Spin, Zoom)
+Lens Blur (Depth-map driven optical blur)
+Surface Blur (Edge-preserving blur)
+Smart Blur
+Bilateral Filter
+Chromatic Aberration: Lateral (Transverse) vs Longitudinal (Axial / LoCA)
+Coma Aberration Correction
+Astigmatism Correction
+Field Curvature Compensation
+Diffraction Blur / Airy Disk Sharpening
+Point Spread Function (PSF) Deconvolution (Blind / Non-blind deconvolution)
+Layers, Channels & Non-Destructive Structuring
+Channel Mixer
+Separate RGB Channels (Red, Green, Blue individual planes)
+Stamp Visible (Merged Layer / Flattened Composite: Ctrl+Alt+Shift+E /
+Cmd+Opt+Shift+E)
+Pass Through (Layer Group blending mode)
+Linked Layers
+Layer Comps
+Smart Filters
+Filter Mask (Mask tied specifically to a Smart Filter)
+Clipping Hierarchy
+Gradient Map
+Solid Color Fill Layer
+Pattern Fill Layer
+Threshold Layer
+Invert Layer
+Selective Color Adjustment
+Sensor Artifacts & Correction Science
+Demosaicing (Bayer interpolation: AHD, AMaZE, VNG, DCB)
+X-Trans Demosaicing
+False Color Suppression
+Hot Pixels (Stuck pixel remapping)
+Dead Pixels
+Dark Frame Subtraction (Sensor thermal noise reduction)
+Flat Field Correction (Sensor dust spot & optical vignette profiling)
+Fixed Pattern Noise (FPN / Sensor banding)
+Read Noise vs Shot Noise vs Quantization Noise
+Blooming Suppression
+Purple Fringing (Sensor micro-lens flare vs axial CA)
+Compositing, Blending & Realism Matching
+Light Wrap (Edge bleeding for composited subjects)
+Ambient Occlusion Pass / Contact Shadows
+Cast Shadow (Directional, Penumbra, Umbra)
+Grain Matching (Synthesizing base capture grain onto composited elements)
+Depth Aerial Perspective (Atmospheric haze fading for distance)
+Perspective Matching (Vanishing points, horizon line calibration)
+Specular vs Diffuse Match
+Matte Painting
+Multi-Plate Stitching (Panoramic nodal alignment, nodal point / entrance pupil
+alignment)
+Parallax Error Correction
+Output, Print & Digital Delivery
+Output Sharpening (Screen vs Matte Paper vs Glossy Paper)
+Half-toning / Halftone Screens
+Dot Gain (Mechanical & Optical ink bleed compensation)
+Total Area Coverage (TAC) / Total Ink Limit (TIL)
+Rich Black vs Standard Black (100% K vs 4-color composite black)
+Under Color Removal (UCR)
+Gray Component Replacement (GCR)
+Soft Proofing with Paper Simulation & Ink Black Simulation
+Out-of-Gamut Warning / Color Clipping Overlay
+Bit Depth Truncation (Quantization error mitigation)
+Error Diffusion
+Downsampling vs Upsampling (Nearest Neighbor, Bilinear, Bicubic Smoother,
+Bicubic Sharper, AI Deep Learning Scale)
+Aspect Ratio Padding / Pillarboxing / Letterboxing
+Responsive Web Export (Retina @2x/@3x asset generation)
+Color Space Stripping vs Color Space Embedding
+Lossless WebP vs Lossy WebP Compression
+Progressive JPEG vs Baseline JPEG
+High Dynamic Range & Exposure Blending
+ * Tone Mapping
+ * Exposure Bracketing (AEB merge)
+ * De-ghosting (Moving subject artifact removal in multi-exposure merges)
+ * Local Tone Mapping vs Global Tone Mapping
+ * High-Dynamic-Range Radiance Maps (.exr, .hdr)
+ * Exposure Fusion (Mertens-Kautz-Van Reuter algorithm)
+ * Luminosity Blending (Manual exposure stitching without tone mapping)
+ * Highlight Cushioning
+Extended Color Calibration & Precision Color
+ * ColorChecker Target Extraction (X-Rite / Calibrite 24-patch profiling)
+ * Dual-Illuminant Profiles (Interpolated DNG profiles: Tungsten + Daylight)
+ * Metameric Failure
+ * MacAdam Ellipses (Color tolerance boundaries)
+ * CIELAB L^*C^*h^\circ (Lightness, Chroma, Hue angle)
+ * Correlated Color Temperature (CCT)
+ * Color Rendering Index (CRI) / Television Lighting Consistency Index (TLCI)
+ * Spectral Power Distribution (SPD) Matching
+ * False Color Exposure Scale
+ * Vectorscope (Hue and Saturation monitoring)
+ * Waveform Monitor (Luma, RGB Parade)
+* 1D LUT vs 3D LUT (1D calibration vs 3D color cube remapping)
+* Tetrahedral Interpolation vs Trilinear Interpolation (LUT processing)
+Photogrammetry, 3D & Advanced Stacking
+* Focus Breathing Compensation
+* Alignment Matrix (Affine, Homography, Rigid transforms)
+* Pixel Peeping
+* Super-Resolution Stacking (Sub-pixel shift reconstruction)
+* Median Stacking (Tourist/crowd removal & motion averaging)
+* Mean Stacking (Long-exposure simulation & signal-to-noise ratio optimization)
+* Light Painting Merge (Maximum value blending)
+* Star Trail Stacking (Comet mode, gap-filling algorithms)
+* Astrophotography Calibration Frames:
+  * Light Frames
+  * Dark Frames
+  * Flat Frames
+  * Bias / Offset Frames
+  * Dark Flat Frames
+* Plate Solving (Astrometric identification & distortion correction)
+High-End Commercial, Product & Architectural Post
+* Nodal Point Stitching (Parallax-free multi-row stitching)
+* Equirectangular Projection (360° VR spherical imaging)
+* Cylindrical / Rectilinear / Mercator / Stereographic / Little Planet Projections
+* Shift-Lens Keystoning Emulation
+* Falloff Correction (Cosine-fourth law compensation)
+* Flambient Blending (Flash + Ambient interior exposure blending)
+* Specular Highlight Polishing
+* Polarizer Glare Cancellation (Cross-polarization composite editing)
+* Focus Peaking Overlay
+* Clean Plate (Clean baseline plate for rig/wire removal)
+* Wire / Rig / C-Stand Removal
+* Invisible Man / Hollow Man Effect (Ghost mannequin apparel composites)
+* Symmetrical Mirroring & Alignment (High-end jewelry & watch retouching)
+* Bottle / Glass Edge Re-stroking (Simulated rim lighting)
+Non-Standard & Specialized Photographic Techniques
+* Infrared False-Color Processing (Channel swapping: Red-to-Blue, Blue-to-Red)
+* Aerochrome Emulation
+* Ultraviolet (UV-Induced Visible Fluorescence - UVIVF) Color Balancing
+* Split-Scan / Slit-Scan Compositing
+* Anamorphic De-squeeze (1.33x, 1.5x, 1.8x, 2.0x horizontal expansion)
+* Orthochromatic / Panchromatic Emulation
+* Halation Emulation (Red diffusion fringing on high-contrast edges)
+* Bloom / Diffusion Glow
+* Bleach Bypass (Silver retention look)
+* Cross Processing (C-41 in E-6 or E-6 in C-41 simulation)
+ * Platinum / Palladium / Cyanotype / Wet Plate Collodion Digital Toning
+ * D-Max / D-Min (Maximum and minimum optical density simulation)
+Raw Engine Demultiplexing & Computational Hardware
+ * Linear Light Editing (Operating in gamma 1.0 scene-referred space)
+ * Scene-Referred vs Display-Referred Workflow
+ * ACES (Academy Color Encoding System: ACEScc, ACEScct, ACEScg,
+ACESproxy)
+ * OpenColorIO (OCIO)
+ * Look Modification Transform (LMT)
+ * Output Device Transform (ODT)
+ * Input Device Transform (IDT)
+ * Black Level / White Level Raw Offsets
+ * Hardware Acceleration (CUDA, OpenCL, Metal, Apple Silicon Neural Engine)
+ * Tile-based Rendering
+ * Scratch Disk Management & Virtual Memory Paging
+ * Sidecar Data Management (.cos, .xmp, .dop files)
+ * Smart Previews / Lossy DNG Proxies (Offline catalog editing)
+Print Proofing, Screen Typography & Forensic Integrity
+ * Trapping (Choke and spread in pre-press print prep to avoid white gaps)
+ * Screen Ruling / LPI (Lines Per Inch)
+ * Plate Separation (CMYK + Spot Colors / Pantone PMS channels)
+ * Varnishing / Spot UV Mask Pass
+ * Emboss / Deboss Height Mapping
+ * Anti-Aliasing (Edge smoothing on raster graphics/overlays)
+ * True Black vs Registered Black
+ * JPEG Chroma Subsampling (4:4:4, 4:2:2, 4:2:0 compression artifacts)
+ * Block Artifacts / Ringing Artifacts
+ * Quantization Noise / Truncation Error
+ * Perceptual Hashing (pHash - Digital image fingerprinting)
+ * C2PA / Content Credentials (Cryptographic provenance & provenance metadata)
+ * Steganography / Digital Watermarking (Invisible copyright embedding)
+ * EXIF Stripping (Privacy/GDPR sanitization)
+ * GPS Geotagging & Coordinate Injection
+Analog Film Simulation & Chemical Emulation
+ * Characteristic Curve (H&D / Hurter & Driffield curve)
+ * Film Base + Fog (B+F density offset)
+ * Dye Clouds vs Silver Halide Crystals (Organic grain texture vs crystalline
+structure)
+ * Grain Roughness / Grain Clumping
+ * Emulsion Layer Scattering
+ * Spectral Sensitivity Curves (Blue, green, red layer sensitivities)
+ * Reciprocity Failure Compensation (Schwarzschild effect correction)
+ * Solarization (Sabattier effect curve inflection)
+ * Interimage Effects (Color coupling and masking dyes in C-41 / E-6)
+* Orange Mask Subtraction (Integral color masking in negative film)
+* Film Push / Pull Processing Emulation (Contrast and grain shift)
+* Split-Tone Staining (Pyro / Catechol developer simulation)
+* Tonal Inversion (Negative-to-Positive conversion profiles)
+* Anti-Halation Layer Failure Emulation
+* Color Coupler Bleaching
+Machine Learning, Neural & Generative Post-Processing
+* Diffusion Denoising
+* Neural Upscaling / Super-Resolution (ESRGAN, Real-ESRGAN, SwinIR)
+* Latent Space Inpainting
+* Outpainting (Generative expand / Canvas extension)
+* Prompt-Guided Inpainting
+* Neural Radiance Field (NeRF) Depth Extraction
+* Semantic Segmentation Masking
+* Facial Landmark Alignment (Mesh warping for micro-expressions)
+* Relighting (Synthetic directional normal map illumination)
+* Monocular Depth Estimation (MiDaS / DPT depth maps)
+* AI Dof / Aperture Synthesis
+* Text-to-Texture Synthesis
+* Neural Style Transfer
+* GAN Artifacts / Checkerboard Artifacts
+* Hallucination Artifacts (Unwanted generative detail generation)
+* Vector Embeddings for Image Retrieval
+* Prompt-based Color Grading (CLIP-guided color transfer)
+Forensic, Authentication & Archival Metadata
+* Error Level Analysis (ELA - Compression variance mapping)
+* Clone Detection (Copy-move block matching)
+* Noise Print Analysis (Sensor PRNU / Photo-Response Non-Uniformity matching)
+* Chromatic Aberration Inconsistency Detection
+* Shadow / Light Vector Consistency Verification
+* JPEGsnoop Marker Analysis
+* Quantization Table Inspection (DQT / DHT extraction)
+* ExifTool Scripting & Tag Injection
+* IPTC Core / IPTC Extension
+* PLUS (Picture Licensing Universal System) Codes
+* Rights Usage Terms / Creative Commons Machine-Readable Tags
+* Hash-based Integrity Checking (MD5, SHA-256 image checksums)
+* Ledger-based Asset Tracking (Blockchain-backed provenance metadata)
+* Camera Serial Number Injection / Match
+* Shutter Actuation Count Extraction
+* Lens Firmware Metadata Parsing
+Computational Photography & Multi-Frame Synthesis
+* Pixel Shift Resolution (Sensor-shift micro-stepping: 4-shot / 16-shot merges)
+* Bayer Pattern Drizzle Integration (Variable pixel-fraction stacking)
+* Rolling Shutter Skew Correction
+* Keystone Perspective Rectification (Four-point planar homography)
+* Motion Vector Estimation / Optical Flow Alignment
+* Handheld Exposure Merging (Gyroscope-assisted tile alignment)
+* Semantic Tone Mapping (Segment-specific adaptive exposure balancing)
+* High Dynamic Range Video / Still Integration (Single-exposure dual-ISO synthesis)
+* Flash / No-Flash Subtraction (Ambient light isolation via mathematical delta)
+* Dual-Pixel RAW Micro-Adjustment (Point-of-sharpness shift / Bokeh shift)
+* Focus Stacking Slabbing (Sub-stack grouping to manage depth artifacts)
+* Halo Suppression (Boundary artifact suppression in focus/HDR merges)
+* Pyramidal Blending (Multiresolution spline blending)
+High-End Commercial Rigging, Beauty & Micro-Retouching
+* Micro-Texture Grafting (Pore-matching transplant from donor areas)
+* Vein / Capillary Neutralization
+* Melanin / Hemoglobin Separation (Skin redness and pigmentation splitting)
+* Dental Bleaching / Enamel Desaturation & Shading
+* Lip Line Sharpening & Vermilion Border Definition
+* Eyebrow Hair Synthesis (Single-pixel custom brush mapping)
+* Flyaway Hair Weaving / Structural Hair Rebuilding
+* Fabric Wrinkle Softening (Texture-preserving frequency separation)
+* Seam Straightening & Hem Smoothing
+* Jewelry Prongs Retouching & Gem Refraction Cleanup
+* Specular Highlight Taming (Hotspot reduction using cross-polarization passes)
+* Perspective Distortion of Anatomical Proportions (Focal length correction on
+wide-angle portraits)
+* Catchlight Customization (Ring, softbox, umbrella reflection painting)
+Virtual Production, 3D Look Development & Render Integration
+* Depth Passes (Z-Depth channel processing)
+* Cryptomatte Extraction (Asset, material, and object ID matte isolation)
+* Normal Maps (Surface angle data integration for relighting)
+* Ambient Occlusion (AO) Pass Blending
+* Beauty Pass Decomposition (Diffuse, specular, transmission, emission, reflection
+passes)
+* OpenEXR Multi-Layer Management
+* Deep Compositing (Volumetric opacity and depth data handling)
+* Look Up Table Concatenation (Chaining creative, display, and grading LUTs)
+* Linear-to-sRGB / Linear-to-Gamma EOTF (Electro-Optical Transfer Function)
+* OETF (Opto-Electronic Transfer Function)
+* Display P3 / Rec.709 / Rec.2020 / Rec.2100 Transfer Standards
+* HDR10 / Dolby Vision Metadata Mastering (PQ / Perceptual Quantizer, HLG /
+Hybrid Log-Gamma)
+* Color Volume Mapping (CIE L^*u^*v^* and IPT color spaces)
+Pre-Press, Print Production & Industrial Output
+ * Dot Gain Curves (Compensation for mechanical spread on coated vs uncoated
+paper)
+ * Trapping: Spread (Lighter foreground expands into darker background)
+ * Trapping: Choke (Darker foreground contracts, background enters)
+ * Total Area Coverage Limit (e.g., 300% maximum ink limit in SWOP / FOGRA)
+ * Black Generation Profiles (Heavy, Medium, Light GCR)
+ * UCA (Under Color Addition)
+ * FM Screening (Stochastic screening) vs AM Screening (Conventional
+clustered-dot)
+ * Screen Angles (Cyan 15°, Magenta 75°, Yellow 0°, Black 45° moiré prevention)
+ * Rosette Pattern Calibration (Clear centered vs dot centered rosettes)
+ * Bleed & Slug Setup
+ * Trim Line / Crop Marks / Registration Marks
+ * Densitometer Target Strips
+ * Color Bar Proofing (FOGRA media wedge validation)
+ * Delta E Formulas (\Delta E^*_{ab}, \Delta E_{94}, \Delta E_{00} / CIEDE2000)
+ * OBA (Optical Brightening Agent) Compensation
+Historical Darkroom & Early Alternative Processes
+ * Zone System (Ansel Adams' Zones 0 through X)
+ * Pre-Visualization
+ * Test Strip Evaluation
+ * Contrast Grade (Grade 00 through Grade 5 multi-grade paper filtration)
+ * Variable Contrast (VC) Head Dialing
+ * Split-Grade Printing
+ * Flashing (Pre-exposure to lower contrast without raising fog)
+ * Dodging Tool (Wire and card) / Burning Tool (Hole card)
+ * Water Bath Development (Selective shadow expansion)
+ * Bleaching / Farmer’s Reducer (Local optical reduction via potassium ferricyanide)
+ * Sepia Toning (Sodium sulfide / thiourea bleaching and redevelopment)
+ * Selenium Toning (Archival deepening of maximum black / D-max)
+ * Gold Protective Toning (Archival image stabilization)
+ * Cyanotype Prussiate Wash
+ * Van Dyke Brown / Kallitype Clearance
+ * Gum Bichromate Multi-Coat Exposure
+ * Carbon Transfer Relief Mapping
+ * Bromoil Inking / Matrix Bleach
+ * Lith Printing (Infectious development process)
+ * Edge Burn (Natural darkroom enlarger falloff burn)
+ * Ferrotyping (Mirror-finish gloss plate pressing)
+Specialist Studio, Motion & High-Speed Post
+ * Flash Duration Sync (t.1 vs t.0.5 motion freeze correction)
+ * High-Speed Sync (HSS) Banding Cleanup
+ * Curtain Sync Artifacts (Front vs Rear curtain trail blending)
+ * Shutter Blade Shadow Removal
+ * Gelled Light Spill Neutralization
+ * Multi-Strobe Ghost Trail Stacking
+ * High-Speed Water Droplet / Splash Sculpting
+ * Focus Breathing Compensation Matrix
+ * Motion Blur Synthesis (Directional velocity vector blurring)
+ * Motion Blur Deconvolution (Richardson-Lucy algorithm)
+ * Rolling Shutter Wobble / Jello Removal
+Non-Standard Geometry & Lens Science
+ * Fisheye Defishing (Equidistant, stereographic, orthographic to rectilinear mapping)
+ * Scheimpflug Principle Alignment (Tilt-shift plane-of-focus emulation)
+ * Tilt-Shift Miniature Faking (Selective linear gradient defocus)
+ * Optical Center Calibration vs Geometric Center
+ * Lateral Color Dispersion Correction
+ * Anamorphic Mumps Correction (Variable horizontal stretch across focal distances)
+ * Perspective Convergence / Divergence Tuning
+ * Nodal Point Parallax Seam Healing
+ * Horizon Warp Correction (Wide-angle barrel distortion leveling)
+Specialized Digital Formats, Drivers & Standards
+ * Radiance HDR (.hdr)
+ * OpenEXR 32-bit Float Multichannel (.exr)
+ * Scalable Vector Graphics (SVG raster mask paths)
+ * High Efficiency Image File (.heic / .heif)
+ * AV1 Image File Format (.avif)
+ * JPEG XL (.jxl)
+ * JPEG XS (Low-latency mezzanine format)
+ * RawTherapee / Darktable Pipeline Equivalents (Filmic RGB, AgX, Tone Equalizer)
+ * WCON / TCON Calibration (Wide/Tele conversion lens digital profiles)
+ * TWAIN / WIA Scanner Driver Image Interface
+ * Phase One IIQ / Hasselblad 3FR Medium Format Raw Structures
+ * DNG Profile Editor (Custom dual-illuminant camera calibration)
+Industrial Reproduction, Archival & Gallery Output
+ * FOGRA / GRACoL Press Standards
+ * G7 Calibration (Neutral gray balance curve control)
+ * Metamerism Index (MI)
+ * Color Rendering Index (Ra / Re)
+ * Lightfastness Rating (Blue Wool Scale simulation)
+ * D-max Density Calibration (Reflection densitometry)
+ * Deckled Edge Simulation (Torn archival paper borders)
+ * Canvas Gallery Wrap Bleed (Mirrored, stretched, or solid color border calculation)
+ * Matte Shadow Dulling Compensation (Ink sinkage / absorbency calibration)
+ * Pigment vs Dye Ink Profiling
+ * Optical Brightening Agent (OBA) Fluorescence Compensation
+ * Bronzing (Differential gloss on heavy pigment inks)
+ * Differential Sheen (Gloss differential under raking light)
+* Acid-Free Rag Substrate Profiling
+Mathematical & Signal Processing Operations
+* Fast Fourier Transform (FFT / 2D FFT)
+* Spatial Frequency Filtering (High-pass, band-pass, low-pass)
+* Discrete Cosine Transform (DCT)
+* Convolution Kernel / Convolution Matrix
+* Sobel Filter (Edge detection operator)
+* Laplacian Filter / Laplacian of Gaussian (LoG)
+* Affine Transformation (Linear 2D coordinate mapping)
+* Projective Transformation (Homography / Planar perspective matrix)
+* Inverse Square Law Compensation (Falloff fall-back calibration)
+* Look-Up Table (LUT) Trilinear vs. Tetrahedral Interpolation
+* Gamma Compression (V_{out} = V_{in}^\gamma)
+* Perceptual Quantization Curve (SMPTE ST 2084)
+* Logarithmic Curves (LogC, S-Log3, V-Log, Canon Log raw grading)
+* Matrix Multiplication for Color Conversion (3x3 Matrix Profiling)
+* Sub-Pixel Rendering
+* Point Spread Function (PSF) Engineering
+Specialist Scientific, Astrophotography & Multispectral Processing
+* Bad Pixel Mapping (BPM)
+* Column Defect / Sensor Line Repair
+* Overscan Calibration
+* Bayer CFA (Color Filter Array) Decoupling
+* De-Bayering Algorithms:
+  * Variable Number of Gradients (VNG)
+  * Adaptive Homogeneity-Directed (AHD)
+  * Directional Cubic Bayer (DCB)
+  * Pixel Grouping (PPG)
+  * LMMSE (Linear Minimum Mean Square Error)
+* Narrowband Processing (SHO / Hubble Palette mapping: Sulfur II,
+Hydrogen-Alpha, Oxygen III)
+* HOO / Halpha-OIII Bi-Color Composition
+* Star Reduction (Morphological erosion filtering)
+* Star De-Emphasis / Starless Extraction (Starnet++ / StarXTerminator separation)
+* Background Extraction / Gradient Flattening (Dynamic / Automatic Background
+Extraction)
+* Chrominance Denoising via Wavelet Transform (À Trous Wavelets / Multiscale
+Linear Transform)
+* Plate-Solving WCS (World Coordinate System) Header Injection
+* Solar Continuum Balancing
+* Planetary Lucky Imaging (Frame selection, alignment, and ranking percentage)
+Scanning, Analog Digitization & Film Archival
+* Digital ICE (Infrared Clean Effects for dust/scratch mapping)
+* Infrared Defect Channel (Dust identification via IR sensor pass)
+* Film Grain De-Emphasis (Diffuse light scanning / wet-gate scanning)
+* Fluid Mounting / Wet-Mount Scanning
+* Film Density Range (D_{max} - D_{min} Dynamic Range Matching)
+* Linear RAW Inversion
+* Orange Mask Subtraction (Chemical dye base balancing)
+* D-Min Clear Base Calibration
+* Scanned Halftone Descreening (FFT-based screen artifact suppression)
+* Newton Rings Elimination (Anti-Newton ring glass profile)
+* Micro-Contrast Emulsion Extraction
+* Frame Registration / Sprocket Alignment
+Hardware Profiling, Calibration & Display Metrics
+* 3D LUT Hardware Upload (Internal monitor calibration)
+* White Point Drift Compensation
+* Uniformity Compensation (Direct Matrix Luminance/Color uniformity leveling)
+* Black Level Lift (Glow/IPS panel flare compensation)
+* Delta E Color Difference Metrics (\Delta E 2000, \Delta E 94, \Delta E 76)
+* Color Temp / Correlated Color Temperature Target (CCT: 5000K, 5500K, 6500K)
+* Ambient Light Sensor Sync (Smart ambient room profiling)
+* Backlight PWM Flicker Artifact Masking
+* Variable Refresh Rate / G-Sync Visual Ghosting Check
+* Wide Color Gamut (WCG) Clipping Verification
+* Bit Depth Pipeline Verification (True 10-bit output vs. 8-bit + FRC / Frame Rate
+Control)
+* High Bit-Rate DisplayPort / HDMI 2.1 Bandwidth Verification
+Specialized Studio, E-Commerce & Commercial Automation
+* Image Tiling (Deep zoom pyramidal tiles / DeepZoom / IIIF specs)
+* Barcode / QR Code Driven Session Sorting
+* Automated SKU Renaming & Metadata Tagging
+* Hot Folder Automation (Watched folder daemon processing)
+* Applescript / ExtendScript / UXP (Unified Extensibility Platform) Automation
+* Ghost Mannequin / Invisible Man Alignment
+* Apparel Symmetry Warping
+* Specular Highlighting (Edge strobe / rim accentuation)
+* Shadow Caster Generation (Synthetic directional shadow rendering)
+* Ground Shadow Separation (Drop, cast, contact, ambient blend)
+* White Backdrop Punching (RGB 255 pure white isolation without haloing)
+* Silhouette Mask Validation (Zero-tolerance edge clipping for commercial
+packaging)
+* Head-to-Toe Vertical Scaling (Standardized catalog framing constraints)
+Digital Forensics, Image Integrity & Sensor Diagnostics
+* Sensor Dust Map Subtraction (Camera-embedded dust coordinate mapping)
+* Photo-Response Non-Uniformity (PRNU Sensor Fingerprinting)
+* Fixed-Pattern Noise (FPN) Profiling
+* Dark Signal Non-Uniformity (DSNU)
+* Error Level Analysis (ELA) Compression Variance
+* Quantization Table Discrepancy Matching (DQT / DHT analysis)
+* Double Compression Detection
+* Copy-Move Forgery Detection (Block-based vs Keypoint-based)
+* Splicing Detection via Chromatic Aberration Vectors
+* Lighting Direction Discrepancy Verification (Illumination sphere reconstruction)
+* Hex Header Inspection (Magic bytes validation: FF D8 FF, 49 49 2A 00, etc.)
+* Lossless Metadata Re-Injection (Lossless JHO / Exif recovery)
+* Cryptographic Provenance Ledgering (C2PA Manifest Embedding)
+Archival Storage, Codecs & Delivery Protocols
+* Interlaced vs Progressive Rasterization
+* Lossless WebP vs Lossy WebP Encoding
+* Chroma Subsampling Matrix (4:4:4, 4:2:2, 4:2:0)
+* JPEG Baseline vs Progressive DCT Scanning
+* Deflate Compression (Zip-based TIFF compression)
+* LZW (Lempel-Ziv-Welch) Compression
+* PackBits Compression
+* Lossless JPEG / JPEG-LS
+* Sidecar Synchronization (.xmp, .dop, .cos)
+* Read-Only Asset Locking (Vault storage architectures)
+* Cloud Sync Manifest / Conflict Resolution Metadata
+* Long-Term Cold Storage Preservation (OAIS compliance formats / PDF/A,
+TIFF-EP)
+Deep Mathematical, Algorithmic & Computer Vision Transforms
+* Wavelet Transform / Discrete Wavelet Transform (DWT)
+* Fourier Transform (FFT / Fast Fourier Transform for frequency domain filtering)
+* Frequency Domain vs Spatial Domain
+* Discrete Cosine Transform (DCT — JPEG block quantization basis)
+* Convolution Kernel / Matrix Convolution
+* Sobel Operator (Gradient magnitude edge detection)
+* Laplacian Operator / Laplacian of Gaussian (LoG edge extraction)
+* Canny Edge Detection
+* Hough Transform (Line, circle, and perspective axis detection)
+* Guided Filter (Edge-preserving spatial smoothing)
+* Kuwahara Filter (Painterly smoothing preserving sharp boundaries)
+* Total Variation Denoising (TV Regularization)
+* Non-Local Means (NL-Means denoising algorithm)
+* Median Cut Algorithm (Color palette reduction)
+* Otsu’s Thresholding (Bimodal image thresholding)
+* Morphological Operations:
+  * Erosion
+  * Dilation
+  * Opening (Erosion followed by Dilation)
+  * Closing (Dilation followed by Erosion)
+  * Morphological Gradient
+  * Top Hat / Black Hat Transform
+* Structure Tensor (Local orientation and coherence estimation)
+* Scale-Invariant Feature Transform (SIFT)
+* Speeded-Up Robust Features (SURF)
+* RANSAC (Random Sample Consensus for plate alignment)
+* Poisson Image Editing (Gradient domain seamless cloning)
+Optical Physics, Wave Optics & Atmospheric Phenomena
+* Point Spread Function (PSF Engineering)
+* Modulation Transfer Function (MTF) / Spatial Frequency Response (SFR)
+* Optical Transfer Function (OTF)
+* Rayleigh Scattering (Atmospheric sky color / blue daylight falloff)
+* Mie Scattering (Fog, haze, and cloud moisture diffusion)
+* Tyndall Effect (Volumetric light beam manifestation)
+* Glare / Veiling Glare
+* Ghosting (Internal lens reflection artifacts)
+* Sunstar / Diffraction Spike Synthesis (Even vs odd aperture blade math)
+* Newton’s Rings (Interference fringe removal in film flatbed scanning)
+* Thin-Film Interference (Iridescence in oil/bubble/lens coatings)
+* Caustics Synthesis (Refractive light concentration patterns)
+* Brewster’s Angle Calibration (Cross-polarization flare nulling)
+* Optical Vignetting (Cat’s eye mechanical aperture pupil clipping)
+* Pixel Vignetting (Angle of incidence sensor micro-lens loss)
+* Color Shading / Lens Cast (CRA — Chief Ray Angle sensor mismatch)
+Low-Level Sensor Architecture & Raw Conversion Mechanics
+* Fill Factor (Microlens active photosite ratio)
+* Full Well Capacity (Charge saturation threshold)
+* Conversion Gain (Dual Gain / Dual Native ISO switching threshold)
+* Analog-to-Digital Converter (ADC) Quantization
+* Dark Current Noise (Thermal leakage charge)
+* Reset Noise (kTC Noise)
+* Correlated Double Sampling (CDS)
+* FPN (Fixed Pattern Noise: DSNU — Dark Signal Non-Uniformity / PRNU — Photo
+Response Non-Uniformity)
+* Green Split / Green Imbalance (Gr vs Gb channel sensitivity discrepancy)
+* Color Filter Array (CFA):
+  * Bayer CFA (RGGB, BGGR, GRBG, RGGB)
+  * Quad Bayer / Tetracell
+  * Nonacell (3x3 binning)
+  * Monochrome (Debayer-free sensor raw conversion)
+  * Foveon X3 (Full-color direct multi-layer silicon stack)
+* Black Level Calibration (BLC clamp offsets)
+* Linearization Table (Curve conversion before demosaicing)
+* White Balance Prescale Coefficients (R_{\text{gain}}, B_{\text{gain}})
+ * Color Matrix Transform (CFA spectral response to standard XYZ matrix)
+Colorimetric Theory & Advanced Chromatic Spaces
+ * CIE 1931 RGB / XYZ Color Matching Functions (\bar{x}(\lambda),
+\bar{y}(\lambda), \bar{z}(\lambda))
+ * CIE 1976 UCS (u', v' chromaticity diagram)
+ * Hunt Effect (Apparent saturation increase with luminance)
+ * Stevens Effect (Apparent contrast increase with luminance)
+ * Bezold–Brücke Shift (Apparent hue shift with changing brightness)
+ * Abney Effect (Hue shift as white light is added to monochromatic light)
+ * Helmholtz–Kohlrausch Effect (Perceived brightness increase caused by high
+saturation)
+ * Purkinje Shift (Scotopic low-light sensitivity shift toward blue/cyan)
+ * Mesopic / Photopic / Scotopic Vision Adaptation
+ * Chromatic Adaptation Transforms (CAT02, CAT16, von Kries, Bradford transform)
+ * White Point Chromaticity Coordinates:
+   * Standard Illuminant A (Tungsten 2856K)
+   * Standard Illuminant D50 (Horizon daylight 5003K)
+   * Standard Illuminant D55 (Mid-morning daylight 5500K)
+   * Standard Illuminant D65 (Noon daylight 6504K)
+   * Standard Illuminant D75 (Overcast sky 7500K)
+   * Standard Illuminant E (Equal-energy radiator)
+   * Standard Illuminant F series (Fluorescent lamp spectral spikes)
+ * Gamut Cusp / Gamut Boundary Descriptor (GBD)
+ * Gamut Compression (Reversible perceptual rolloff into destination gamut)
+ * Gamut Clipping (Destructive boundary truncation)
+Graphic Design, Vector & Typography Integration in Photography
+ * Kerning
+ * Tracking (Letter-spacing)
+ * Leading (Line-spacing)
+ * Baseline Shift
+ * Ligatures / Stylistic Alternates
+ * Vector Paths (Bézier curves, anchor points, control handles)
+ * Rasterization (Converting vector typography/shapes to raster pixels)
+ * Non-Destructive Live Type
+ * Text Along Path (Text wrapped along curved contours)
+ * Glyph Mapping
+ * Paragraph Styles / Character Styles
+ * Clipping Path (Vector silhouetting for editorial product dropouts)
+ * Compound Paths
+ * Raster Anti-Aliasing Engines (Subpixel, Crisp, Strong, Smooth)
+ * Smart Typography (Curly quotes vs straight quotes, en-dash, em-dash)
+Enterprise Digital Asset Management (DAM) & High-Volume Operations
+ * Ingest / Offloading
+ * Checksum Verification on Ingest (XXHash, SHA-1, MD5 verified transfer)
+* Metadata Taxonomy (Hierarchical controlled vocabularies)
+* Controlled Vocabulary (CV) Keyword Indexing
+* Sidecar Synchronization (.xmp writeback vs internal database storage)
+* Non-Destructive Parametric Recipe (.cos, .drx, .pp3 metadata instructions)
+* Keywording: Descriptive, Thematic, Structural
+* Star Ratings (1–5) vs Color Labels (Red, Yellow, Green, Blue, Purple)
+* Cull / Flagging (Pick, Reject, Unflagged)
+* Duplicate Detection (Perceptual hash collision identification)
+* Contact Sheet Generation
+* PDF Proofing Sheet / Client Web Gallery Generation
+* Watermark Scaling: Proportional vs Fixed Pixel Dimension
+* Asset Relinking / Missing File Reconnection
+* Proxy Editing Workflow (Low-res offline workflow for NAS/SAN servers)
+* Hot Folder Automation (Watched folder auto-processing)
+* CLI Batch Processing (ImageMagick, GraphicsMagick, ExifTool automation)
+Scientific, Medical & Multispectral Post-Processing
+* Focus Stacking Scale Normalization (Compensating optical magnification drift)
+* Extended Depth of Field (EDOF computation)
+* Multi-Spectral Composite (Ultraviolet + Visible + Near-Infrared layers)
+* Photometric Stereo (3D surface normal recovery from multi-light captures)
+* Reflectance Transformation Imaging (RTI — interactive surface raking light)
+* False Color Elevation Mapping
+* Radiometric Calibration (Absolute pixel-to-luminance energy mapping)
+* Background Subtraction (Flat baseline reference removal)
+* Ratio Imaging (Dividing one spectral band by another)
+* Pixel Binning (Hardware or software 2\times2, 3\times3, 4\times4 SNR
+aggregation)
+* High-Content Analysis Thresholding
+* Deconvolution Microscopy Sharpening
+* Pseudocolor / Heatmap LUT Mapping (Thermal, turbo, viridis, magma palettes)
+* Flat-Bed Scanner Calibration (IT8.7/2 reflective & IT8.7/1 transmissive targets)
+* Optical Density (OD = \log_{10}(1/T) transmission calibration)
+Modern Display Standards, HDR Mastering & Brightness Encodings
+* Maximum Content Light Level (MaxCLL)
+* Maximum Frame-Average Light Level (MaxFALL)
+* Ultra HDR Image Format (.jpg with embedded ISO 21496-1 gain map)
+* Apple ProRAW Local Tone Map (LTM) Gain Map
+* Target Display Peak Brightness (Nits / \text{cd/m}^2)
+* Extended Dynamic Range (EDR Headroom / EDR Factor)
+* BT.1886 Reference Gamma Curve
+* Perceptual Quantizer (SMPTE ST 2084 / PQ EOTF)
+* Hybrid Log-Gamma (ARIB STD-B67 / HLG OETF)
+* Reference Viewing Environment (e.g., 5-nit dark room vs 100-nit office)
+ * Ambient Light Sensor Compensation (Apple True Tone / Auto-calibrated white
+point)
+ * Sub-pixel Rendering Layout (RGB Stripe, BGR, Pentile OLED, QD-OLED
+triangular layout)
+ * Spatial Uniformity Correction (Panel luminance/chrominance grid compensation)
+ * Pulse-Width Modulation (PWM) Flicker vs DC Dimming Display Artifacts
+Machine Learning Training, Latents & Diffusion Architecture
+ * Latent Space Inversion (DDIM / Null-text inversion for editing)
+ * ControlNet Conditioning Passes:
+   * Canny Edge Guidance
+   * M-LSD Line Segment Detection
+   * HED / SoftEdge Boundary Detection
+   * OpenPose Skeleton Extraction
+   * MiDaS / ZoeDepth Depth Conditioning
+   * NormalBae Surface Normal Conditioning
+   * Lineart / Anime Line Guidance
+   * Content Shuffle / T2I-Adapter
+ * IP-Adapter (Image Prompt Style & Identity Injection)
+ * LoRA (Low-Rank Adaptation weights for custom style or subject fidelity)
+ * Denoising Strength / Img2Img Variance Control
+ * Classifier-Free Guidance (CFG Scale)
+ * Latent Upscaling / Hi-Res Fix
+ * Cross-Attention Map Editing (Prompt-to-prompt feature manipulation)
+ * VAE (Variational Autoencoder) Encoding / Decoding Artifacts
+ * Clip Skip / Text Encoder Layer Truncation
+Low-Level Image Compression & Codec Artifacts
+ * Discrete Wavelet Sub-bands (LL, LH, HL, HH bands in JPEG 2000)
+ * Macroblock / Coding Tree Unit (CTU) Boundary Mismatch
+ * Gibbs Phenomenon (Ringing artifacts along sharp contrast boundaries)
+ * Color Bleeding (High-frequency chroma detail loss due to subsampling)
+ * Staircasing Artifacts (Aliasing along non-horizontal/vertical contrast edges)
+ * Inter-frame Prediction Artifacts (P-frame / B-frame bleed in burst extraction)
+ * Lossless Run-Length Encoding (RLE in mask channels)
+ * LZW Compression (TIFF / GIF dictionary compression)
+ * Deflate / zlib Compression (PNG raster encoding)
+ * Floyd–Steinberg Dithering
+ * Ordered Dithering (Bayer matrix dithering)
+ * Blue Noise Dithering vs White Noise Dithering
+Archival Preservation, Conservation & Film Scanning
+ * Digital ICE (Infrared Clean Effects for dust/scratch hardware detection)
+ * Wet-Mount Scanning (Fluid mounting with optical immersion oil)
+ * Newton Ring Suppression (Anti-Newton Glass / AN-Glass)
+ * Density Dynamic Range (D_{\text{max}} - D_{\text{min}} / Optical Density Scope)
+ * Multi-Exposure Scanning (Hardware dual-pass scanner dynamic range expansion)
+* Color Fading Restoration (Dye density curve reconstitution)
+* Vinegar Syndrome Detection (Cellulose acetate film degradation profiling)
+* Silver Mirroring Neutralization
+* Emulsion Reticulation (Micro-cracking due to sudden thermal shock)
+* Sprocket Hole Bleed Removal (Overscanned 35mm / 120 film border handling)
+* Base Fog Density Offsetting
+Advanced Hardware Interface & Studio Automation
+* Capture One AppleScript / JavaScript API Automation
+* Adobe ExtendScript / UXP (Unified Extensibility Platform) Scripts
+* Hot-Folder Auto-Ingest
+* Live Tethered Session Token Parsing
+* LUT Box Calibration (Hardware EEPROM 3D LUT injection)
+* SDI / HDMI Raw Feed Metadata Parsing
+* Colorimeter Integration:
+  * ColorMunki / i1Display Calibration
+  * Spectroradiometer Target Validation (e.g., Konica Minolta / Photo Research)
+* CalMAN / DisplayCAL Calibration Report Verification
+* Target Illuminance Matching (Lux reading at print viewing station)
+

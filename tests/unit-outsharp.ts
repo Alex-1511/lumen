@@ -1,0 +1,12 @@
+import { outputSharpen } from "../lib/outsharp";
+let ok = 0, bad = 0; const t = (n: string, c: boolean, i = "") => { c ? ok++ : (bad++, console.log("FAIL", n, i)); };
+const W = 120, H = 60; const mk = () => { const p = new Uint8ClampedArray(W * H * 4); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const v = x < 60 ? 80 : 170, o = (y * W + x) * 4; p[o] = p[o + 1] = p[o + 2] = v; p[o + 3] = 255; } return p; };
+const flat = new Uint8ClampedArray(W * H * 4).fill(120); const f0 = flat.slice(); outputSharpen(flat, W, H, "print"); t("flat areas are untouched (threshold)", flat.every((v, i) => v === f0[i]));
+const s = mk(), pr = mk(), off = mk(); outputSharpen(s, W, H, "screen"); outputSharpen(pr, W, H, "print"); outputSharpen(off, W, H, "off");
+const row = (p: Uint8ClampedArray, x: number) => p[(30 * W + x) * 4];
+t("off does nothing", off.every((v, i) => v === mk()[i]));
+t("screen creates overshoot at a step edge (halo of real sharpening)", row(s, 61) > 170 || row(s, 58) < 80, `${row(s, 58)} ${row(s, 61)}`);
+t("print is stronger than screen", Math.abs(row(pr, 61) - 170) + Math.abs(row(pr, 58) - 80) > Math.abs(row(s, 61) - 170) + Math.abs(row(s, 58) - 80));
+t("far from the edge nothing changes", row(pr, 5) === 80 && row(pr, 115) === 170);
+t("alpha untouched", pr[3] === 255);
+console.log(`${ok} passed, ${bad} failed`); process.exit(bad ? 1 : 0);

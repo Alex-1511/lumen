@@ -1,0 +1,6978 @@
+[
+ {
+  "id": 1,
+  "name": "Exposure",
+  "full": "Exposure",
+  "status": "implemented",
+  "impl": "param:exposure",
+  "note": "Linear-light EV gain. 8-bit source, so recovery is limited to existing data."
+ },
+ {
+  "id": 2,
+  "name": "Dynamic Range",
+  "full": "Dynamic Range",
+  "status": "partial",
+  "impl": "fn:analyse",
+  "note": "Estimated from 8-bit percentiles, not sensor dynamic range."
+ },
+ {
+  "id": 3,
+  "name": "Histogram",
+  "full": "Histogram",
+  "status": "implemented",
+  "impl": "fn:analyse",
+  "note": "256-bin luma and RGB."
+ },
+ {
+  "id": 4,
+  "name": "Clipping",
+  "full": "Clipping (Highlights / Shadows)",
+  "status": "implemented",
+  "impl": "fn:analyse",
+  "note": "Measured %, plus on-canvas warning overlay."
+ },
+ {
+  "id": 5,
+  "name": "Blown Highlights",
+  "full": "Blown Highlights",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 6,
+  "name": "Crushed Shadows",
+  "full": "Crushed Shadows",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 7,
+  "name": "Contrast",
+  "full": "Contrast",
+  "status": "implemented",
+  "impl": "param:contrast",
+  "note": "Power curve about 0.18 linear grey."
+ },
+ {
+  "id": 8,
+  "name": "Brightness",
+  "full": "Brightness",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 9,
+  "name": "Whites",
+  "full": "Whites",
+  "status": "implemented",
+  "impl": "param:whites",
+  "note": ""
+ },
+ {
+  "id": 10,
+  "name": "Blacks",
+  "full": "Blacks",
+  "status": "implemented",
+  "impl": "param:blacks",
+  "note": ""
+ },
+ {
+  "id": 11,
+  "name": "Midtones",
+  "full": "Midtones",
+  "status": "partial",
+  "impl": "param:contrast",
+  "note": "No dedicated midtone slider; handled via contrast and curve."
+ },
+ {
+  "id": 12,
+  "name": "Tone Curve",
+  "full": "Tone Curve (S-Curve)",
+  "status": "implemented",
+  "impl": "param:curve",
+  "note": "Monotone cubic master curve with a draggable point editor and presets."
+ },
+ {
+  "id": 13,
+  "name": "Zebra Patterns",
+  "full": "Zebra Patterns",
+  "status": "partial",
+  "impl": "ui:clip",
+  "note": "Solid clip warning, not animated zebra."
+ },
+ {
+  "id": 14,
+  "name": "Fill Light",
+  "full": "Fill Light",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 15,
+  "name": "Key Light Balance",
+  "full": "Key Light Balance",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 16,
+  "name": "Color & White Balance",
+  "full": "Color & White Balance",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 17,
+  "name": "Color Temperature",
+  "full": "Color Temperature (Kelvin)",
+  "status": "implemented",
+  "impl": "param:temperature",
+  "note": "Per-channel gain approximation, not a true Kelvin model."
+ },
+ {
+  "id": 18,
+  "name": "Tint",
+  "full": "Tint (Green/Magenta axis)",
+  "status": "implemented",
+  "impl": "param:temperature",
+  "note": "Per-channel gain approximation, not a true Kelvin model."
+ },
+ {
+  "id": 19,
+  "name": "White Balance",
+  "full": "White Balance (WB)",
+  "status": "implemented",
+  "impl": "param:temperature",
+  "note": "Auto estimate from neutral midtones plus manual sliders."
+ },
+ {
+  "id": 20,
+  "name": "Saturation",
+  "full": "Saturation",
+  "status": "implemented",
+  "impl": "param:saturation",
+  "note": ""
+ },
+ {
+  "id": 21,
+  "name": "Vibrance",
+  "full": "Vibrance",
+  "status": "implemented",
+  "impl": "param:vibrance",
+  "note": ""
+ },
+ {
+  "id": 22,
+  "name": "HSL / HSV",
+  "full": "HSL / HSV (Hue, Saturation, Luminance / Value)",
+  "status": "implemented",
+  "impl": "param:hslH",
+  "note": "8-band hue/sat/luminance."
+ },
+ {
+  "id": 23,
+  "name": "Color Grading",
+  "full": "Color Grading",
+  "status": "partial",
+  "impl": "param:gradeShS",
+  "note": "Split toning plus HSL, curve and temperature. No lift/gamma/gain wheels, no LUT import."
+ },
+ {
+  "id": 24,
+  "name": "Split Toning",
+  "full": "Split Toning",
+  "status": "partial",
+  "impl": "param:gradeShS",
+  "note": "Shadow and highlight tint (hue + amount) with a balance control. Chroma offsets with no net luminance change; no midtone wheel."
+ },
+ {
+  "id": 25,
+  "name": "Color Cast",
+  "full": "Color Cast",
+  "status": "implemented",
+  "impl": "fn:analyse",
+  "note": "Detected from neutral-region bias."
+ },
+ {
+  "id": 26,
+  "name": "Chromatic Aberration",
+  "full": "Chromatic Aberration (Fringing / Purple Fringing)",
+  "status": "partial",
+  "impl": "param:ca",
+  "note": "Manual lateral CA correction only (radial R/B scaling). No auto-detection, no purple fringe or axial CA."
+ },
+ {
+  "id": 27,
+  "name": "Defringe",
+  "full": "Defringe",
+  "status": "partial",
+  "impl": "param:ca",
+  "note": "Lateral chromatic aberration slider only. No purple or green fringe colour removal along edges."
+ },
+ {
+  "id": 28,
+  "name": "Color Space",
+  "full": "Color Space (sRGB, Adobe RGB, ProPhoto RGB, DCI-P3)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 29,
+  "name": "Color Gamut",
+  "full": "Color Gamut",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 30,
+  "name": "Gamut Warning / Soft Proofing",
+  "full": "Gamut Warning / Soft Proofing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 31,
+  "name": "Color Profiles / ICC Profiles",
+  "full": "Color Profiles / ICC Profiles",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 32,
+  "name": "3D LUT",
+  "full": "3D LUT (Lookup Table)",
+  "status": "implemented",
+  "impl": "fn:parseCube",
+  "note": "Grade tab imports .cube files (1D or 3D, DOMAIN supported) and applies them in the shader with trilinear interpolation; included in exports."
+ },
+ {
+  "id": 33,
+  "name": "White Balance Target / Gray Card Calibration",
+  "full": "White Balance Target / Gray Card Calibration",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 34,
+  "name": "Metamerism",
+  "full": "Metamerism",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 35,
+  "name": "Detail, Sharpness & Optics",
+  "full": "Detail, Sharpness & Optics",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 36,
+  "name": "Sharpness / Acutance",
+  "full": "Sharpness / Acutance",
+  "status": "implemented",
+  "impl": "param:sharpAmount",
+  "note": "Neighbourhood unsharp in shader."
+ },
+ {
+  "id": 37,
+  "name": "Unsharp Mask",
+  "full": "Unsharp Mask (USM)",
+  "status": "implemented",
+  "impl": "param:sharpAmount",
+  "note": "Neighbourhood unsharp in shader."
+ },
+ {
+  "id": 38,
+  "name": "Radius",
+  "full": "Radius (Sharpening)",
+  "status": "implemented",
+  "impl": "param:sharpRadius",
+  "note": ""
+ },
+ {
+  "id": 39,
+  "name": "Threshold",
+  "full": "Threshold (Sharpening)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 40,
+  "name": "Masking",
+  "full": "Masking (Sharpening)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 41,
+  "name": "Clarity",
+  "full": "Clarity",
+  "status": "partial",
+  "impl": "param:clarity",
+  "note": "Large-radius local contrast approximation, midtone weighted."
+ },
+ {
+  "id": 42,
+  "name": "Texture",
+  "full": "Texture",
+  "status": "partial",
+  "impl": "param:texture",
+  "note": "Small-radius detail approximation."
+ },
+ {
+  "id": 43,
+  "name": "Dehaze",
+  "full": "Dehaze",
+  "status": "partial",
+  "impl": "param:dehaze",
+  "note": "Small-window dark-channel estimate, no guided-filter refinement. Can amplify noise and create halos at strong edges."
+ },
+ {
+  "id": 44,
+  "name": "Microcontrast",
+  "full": "Microcontrast",
+  "status": "partial",
+  "impl": "param:texture",
+  "note": ""
+ },
+ {
+  "id": 45,
+  "name": "Luminance Noise",
+  "full": "Luminance Noise",
+  "status": "partial",
+  "impl": "param:nrLuma",
+  "note": "Light 8-tap edge-aware luma and chroma smoothing. Not a denoising model."
+ },
+ {
+  "id": 46,
+  "name": "Chrominance Noise",
+  "full": "Chrominance Noise (Color Noise)",
+  "status": "partial",
+  "impl": "param:nrLuma",
+  "note": "Light 8-tap edge-aware luma and chroma smoothing. Not a denoising model."
+ },
+ {
+  "id": 47,
+  "name": "Noise Reduction",
+  "full": "Noise Reduction (NR)",
+  "status": "partial",
+  "impl": "param:nrLuma",
+  "note": "Light 8-tap edge-aware luma and chroma smoothing. Not a denoising model."
+ },
+ {
+  "id": 48,
+  "name": "High-ISO Grain vs. Artificial Grain",
+  "full": "High-ISO Grain vs. Artificial Grain",
+  "status": "partial",
+  "impl": "param:grain",
+  "note": "Artificial grain only."
+ },
+ {
+  "id": 49,
+  "name": "Lens Distortion",
+  "full": "Lens Distortion (Barrel, Pincushion, Mustache)",
+  "status": "partial",
+  "impl": "param:distortion",
+  "note": "Single-coefficient radial model, manual. No lens profiles."
+ },
+ {
+  "id": 50,
+  "name": "Lens Profile Corrections",
+  "full": "Lens Profile Corrections",
+  "status": "partial",
+  "impl": "param:distortion",
+  "note": "Manual distortion, vignette and chromatic aberration sliders. No lens database or automatic profiles."
+ },
+ {
+  "id": 51,
+  "name": "Vignetting",
+  "full": "Vignetting (Optical vs. Creative)",
+  "status": "partial",
+  "impl": "param:vignette",
+  "note": "Creative vignette only. No lens-profile correction."
+ },
+ {
+  "id": 52,
+  "name": "Diffraction Compensation",
+  "full": "Diffraction Compensation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 53,
+  "name": "Moire Removal",
+  "full": "Moire Removal",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 54,
+  "name": "Focus Stacking",
+  "full": "Focus Stacking",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs several aligned frames merged together. Lumen edits one photo at a time."
+ },
+ {
+  "id": 55,
+  "name": "Geometry, Composition & Crop",
+  "full": "Geometry, Composition & Crop",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 56,
+  "name": "Aspect Ratio",
+  "full": "Aspect Ratio",
+  "status": "partial",
+  "impl": "param:crop",
+  "note": "Crop rectangle; presets in UI."
+ },
+ {
+  "id": 57,
+  "name": "Crop Factor",
+  "full": "Crop Factor",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 58,
+  "name": "Rule of Thirds Overlay",
+  "full": "Rule of Thirds Overlay",
+  "status": "implemented",
+  "impl": "ui:thirds",
+  "note": "Overlay in editor."
+ },
+ {
+  "id": 59,
+  "name": "Golden Ratio / Spiral",
+  "full": "Golden Ratio / Spiral",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 60,
+  "name": "Straighten / Leveling",
+  "full": "Straighten / Leveling",
+  "status": "implemented",
+  "impl": "param:straighten",
+  "note": "Auto-inscribed zoom hides rotated edges."
+ },
+ {
+  "id": 61,
+  "name": "Keystone Correction",
+  "full": "Keystone Correction",
+  "status": "partial",
+  "impl": "param:perspV",
+  "note": "Manual vertical/horizontal keystone sliders. No auto-upright and no four-point homography."
+ },
+ {
+  "id": 62,
+  "name": "Perspective Correction",
+  "full": "Perspective Correction (Vertical / Horizontal)",
+  "status": "partial",
+  "impl": "param:perspV",
+  "note": "Manual vertical/horizontal keystone sliders. No auto-upright and no four-point homography."
+ },
+ {
+  "id": 63,
+  "name": "Upright / Transform Tools",
+  "full": "Upright / Transform Tools",
+  "status": "partial",
+  "impl": "param:perspV",
+  "note": "Manual vertical and horizontal perspective sliders and straighten. No automatic Upright (line detection)."
+ },
+ {
+  "id": 64,
+  "name": "Canvas Size vs. Image Size",
+  "full": "Canvas Size vs. Image Size",
+  "status": "partial",
+  "impl": "param:crop",
+  "note": "Crop rectangle; presets in UI."
+ },
+ {
+  "id": 65,
+  "name": "Resolution",
+  "full": "Resolution (DPI / PPI)",
+  "status": "partial",
+  "impl": "arch:export",
+  "note": "Export ladder: original, 360p to 8K by long edge, or custom. Enlarging adds no new detail."
+ },
+ {
+  "id": 66,
+  "name": "Resampling / Interpolation",
+  "full": "Resampling / Interpolation (Bicubic, Bilinear, Nearest Neighbor)",
+  "status": "partial",
+  "impl": "fn:lanczosResize",
+  "note": "Lanczos-3 for export resizing (up and down). No bicubic/bilinear choice."
+ },
+ {
+  "id": 67,
+  "name": "Retouching & Pixel Manipulation",
+  "full": "Retouching & Pixel Manipulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 68,
+  "name": "Spot Healing",
+  "full": "Spot Healing",
+  "status": "implemented",
+  "impl": "retouch:spot",
+  "note": "Click a blemish: Lumen searches nearby for the best-matching clean source ring, then blends it in with harmonic colour matching. Tested against ground truth. No texture synthesis for large areas."
+ },
+ {
+  "id": 69,
+  "name": "Clone Stamp",
+  "full": "Clone Stamp",
+  "status": "implemented",
+  "impl": "retouch:clone",
+  "note": "Set a source, then stamp with a soft edge and fixed offset. Exact copy. Single source (no source palette, no pressure, no rotate/scale)."
+ },
+ {
+  "id": 70,
+  "name": "Content-Aware Fill / Move / Patch",
+  "full": "Content-Aware Fill / Move / Patch",
+  "status": "partial",
+  "impl": "retouch:remove",
+  "note": "Fill only: exemplar-based inpainting from the same photo. No Move or Patch tools."
+ },
+ {
+  "id": 71,
+  "name": "Inpainting / Generative Fill",
+  "full": "Inpainting / Generative Fill",
+  "status": "partial",
+  "impl": "retouch:remove",
+  "note": "Classical exemplar inpainting only. No generative model, so it cannot invent new content."
+ },
+ {
+  "id": 72,
+  "name": "Frequency Separation",
+  "full": "Frequency Separation (High Frequency / Low Frequency)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 73,
+  "name": "Dodge and Burn",
+  "full": "Dodge and Burn (Local Contrast Sculpting)",
+  "status": "partial",
+  "impl": "mask:brush",
+  "note": "Achievable manually: brush mask + local exposure. No dedicated tool or automatic frequency separation."
+ },
+ {
+  "id": 74,
+  "name": "Skin Smoothing",
+  "full": "Skin Smoothing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 75,
+  "name": "Blemish Removal",
+  "full": "Blemish Removal",
+  "status": "partial",
+  "impl": "retouch:spot",
+  "note": "Spot removal handles small blemishes. No skin-aware or frequency-separation retouching."
+ },
+ {
+  "id": 76,
+  "name": "Liquify",
+  "full": "Liquify (Forward Warp, Pucker, Bloat, Reconstruct)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 77,
+  "name": "Compositing",
+  "full": "Compositing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 78,
+  "name": "Cutout / Subject Isolation",
+  "full": "Cutout / Subject Isolation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 79,
+  "name": "Object Removal",
+  "full": "Object Removal",
+  "status": "partial",
+  "impl": "retouch:remove",
+  "note": "Paint over the object; it is filled with patches copied from the rest of the photo. Large masks are solved at reduced resolution and may look repetitive or soft."
+ },
+ {
+  "id": 80,
+  "name": "Sky Replacement",
+  "full": "Sky Replacement",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 81,
+  "name": "Eye Catchlight Enhancement",
+  "full": "Eye Catchlight Enhancement",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 82,
+  "name": "Layers, Masks & Compositing Workflow",
+  "full": "Layers, Masks & Compositing Workflow",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 83,
+  "name": "Layers",
+  "full": "Layers",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 84,
+  "name": "Background Layer",
+  "full": "Background Layer",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 85,
+  "name": "Adjustment Layers",
+  "full": "Adjustment Layers",
+  "status": "partial",
+  "impl": "arch:layers",
+  "note": "Two parametric layers (AI recipe and manual). Not arbitrary user layers."
+ },
+ {
+  "id": 86,
+  "name": "Layer Masks",
+  "full": "Layer Masks",
+  "status": "partial",
+  "impl": "mask:layers",
+  "note": "Every local layer has its own mask; no pixel layers."
+ },
+ {
+  "id": 87,
+  "name": "Inverted Mask",
+  "full": "Inverted Mask",
+  "status": "implemented",
+  "impl": "mask:invert",
+  "note": ""
+ },
+ {
+  "id": 88,
+  "name": "Clipping Mask",
+  "full": "Clipping Mask",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 89,
+  "name": "Compound Mask",
+  "full": "Compound Mask",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 90,
+  "name": "Alpha Channel",
+  "full": "Alpha Channel",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 91,
+  "name": "Luminosity Masks",
+  "full": "Luminosity Masks",
+  "status": "implemented",
+  "impl": "mask:luminance",
+  "note": "Luminance range with soft edges, usable alone or intersected with another mask. No zone presets."
+ },
+ {
+  "id": 92,
+  "name": "Color Range Mask",
+  "full": "Color Range Mask",
+  "status": "implemented",
+  "impl": "mask:color",
+  "note": "Hue range + minimum saturation. Usable alone or intersected."
+ },
+ {
+  "id": 93,
+  "name": "Radial Filter / Radial Gradient Mask",
+  "full": "Radial Filter / Radial Gradient Mask",
+  "status": "implemented",
+  "impl": "mask:radial",
+  "note": "Elliptical mask with feather, invert, density. Draggable handles."
+ },
+ {
+  "id": 94,
+  "name": "Linear Gradient Mask",
+  "full": "Linear Gradient Mask",
+  "status": "implemented",
+  "impl": "mask:linear",
+  "note": "Two-point gradient mask with feather, invert, density."
+ },
+ {
+  "id": 95,
+  "name": "Depth Map / Depth Mask",
+  "full": "Depth Map / Depth Mask",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 96,
+  "name": "Brush Tool",
+  "full": "Brush Tool (Size, Hardness, Flow, Opacity, Smoothing)",
+  "status": "partial",
+  "impl": "mask:brush",
+  "note": "Size, feather, flow, erase. No stroke smoothing, pressure or edge-aware snapping."
+ },
+ {
+  "id": 97,
+  "name": "Feathering",
+  "full": "Feathering",
+  "status": "implemented",
+  "impl": "mask:feather",
+  "note": "Feather control per mask. No post-hoc blur of arbitrary selections."
+ },
+ {
+  "id": 98,
+  "name": "Edge Refinement / Refine Edge / Select and Mask",
+  "full": "Edge Refinement / Refine Edge / Select and Mask",
+  "status": "partial",
+  "impl": "fn:maskFeather",
+  "note": "Masks have feather, invert and range limits. No AI edge detection or hair refinement."
+ },
+ {
+  "id": 99,
+  "name": "Global Adjustments vs. Local Adjustments",
+  "full": "Global Adjustments vs. Local Adjustments",
+  "status": "partial",
+  "impl": "arch:params",
+  "note": "Global only until masking phase."
+ },
+ {
+  "id": 100,
+  "name": "Blending Modes",
+  "full": "Blending Modes",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Lumen edits parametrically and has no pixel layer stack, so there is nothing to blend."
+ },
+ {
+  "id": 101,
+  "name": "Normal / Dissolve",
+  "full": "Normal / Dissolve",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 102,
+  "name": "Darken group",
+  "full": "Darken group (Multiply, Color Burn, Linear Burn, Darker Color)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 103,
+  "name": "Lighten group",
+  "full": "Lighten group (Screen, Color Dodge, Linear Dodge / Add, Lighter Color)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 104,
+  "name": "Contrast group",
+  "full": "Contrast group (Overlay, Soft Light, Hard Light, Vivid Light, Linear Light, Pin Light, Hard Mix)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 105,
+  "name": "Inversion / Cancellation group",
+  "full": "Inversion / Cancellation group (Difference, Exclusion)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 106,
+  "name": "Component group",
+  "full": "Component group (Hue, Saturation, Color, Luminosity)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 107,
+  "name": "Blend If",
+  "full": "Blend If (Underlying Layer & Current Layer Sliders)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 108,
+  "name": "Opacity vs. Fill",
+  "full": "Opacity vs. Fill",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 109,
+  "name": "File Types, Bit Depth & Data Management",
+  "full": "File Types, Bit Depth & Data Management",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 110,
+  "name": "RAW",
+  "full": "RAW (DNG, CR3, NEF, ARW, RAF)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Browsers cannot decode RAW files and Lumen ships no RAW decoder. Export a TIFF or JPEG from your RAW converter first."
+ },
+ {
+  "id": 111,
+  "name": "Lossless Compression vs. Lossy Compression",
+  "full": "Lossless Compression vs. Lossy Compression",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 112,
+  "name": "TIFF",
+  "full": "TIFF",
+  "status": "partial",
+  "impl": "arch:export",
+  "note": "Baseline TIFF: 8-bit RGB, uncompressed, single strip, 300 dpi tag. No 16-bit, no compression, no ICC profile."
+ },
+ {
+  "id": 113,
+  "name": "PSD / PSB",
+  "full": "PSD / PSB",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 114,
+  "name": "JPEG / JPG",
+  "full": "JPEG / JPG",
+  "status": "implemented",
+  "impl": "arch:export",
+  "note": "Import and export through browser codecs."
+ },
+ {
+  "id": 115,
+  "name": "PNG",
+  "full": "PNG",
+  "status": "implemented",
+  "impl": "arch:export",
+  "note": "Import and export through browser codecs."
+ },
+ {
+  "id": 116,
+  "name": "HEIF / HEIC",
+  "full": "HEIF / HEIC",
+  "status": "partial",
+  "impl": null,
+  "note": "Import only where the browser decodes it (Safari)."
+ },
+ {
+  "id": 117,
+  "name": "WebP",
+  "full": "WebP",
+  "status": "implemented",
+  "impl": "arch:export",
+  "note": "Import and export through browser codecs."
+ },
+ {
+  "id": 118,
+  "name": "Bit Depth",
+  "full": "Bit Depth (8-bit, 10-bit, 12-bit, 14-bit, 16-bit, 32-bit Float)",
+  "status": "partial",
+  "impl": null,
+  "note": "Pipeline is float in shader but 8-bit in and out."
+ },
+ {
+  "id": 119,
+  "name": "Color Depth / Channels",
+  "full": "Color Depth / Channels",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 120,
+  "name": "Linear RAW",
+  "full": "Linear RAW",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 121,
+  "name": "Metadata",
+  "full": "Metadata (EXIF, IPTC, XMP Sidecar)",
+  "status": "partial",
+  "impl": "fn:exif",
+  "note": "EXIF read for display. Not preserved on export."
+ },
+ {
+  "id": 122,
+  "name": "Dithering",
+  "full": "Dithering",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 123,
+  "name": "Banding",
+  "full": "Banding (Color Banding / Posterization)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 124,
+  "name": "Workflow, Export & Production",
+  "full": "Workflow, Export & Production",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 125,
+  "name": "Non-Destructive Editing",
+  "full": "Non-Destructive Editing",
+  "status": "implemented",
+  "impl": "arch:params",
+  "note": "Original blob stored untouched; edits are parameters."
+ },
+ {
+  "id": 126,
+  "name": "Destructive Editing",
+  "full": "Destructive Editing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 127,
+  "name": "Smart Objects",
+  "full": "Smart Objects",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 128,
+  "name": "Virtual Copies / Snapshots",
+  "full": "Virtual Copies / Snapshots",
+  "status": "implemented",
+  "impl": "ui:snapshots",
+  "note": "Snapshots implemented. Virtual copies via duplicate project."
+ },
+ {
+  "id": 129,
+  "name": "History State / Undo Buffer",
+  "full": "History State / Undo Buffer",
+  "status": "implemented",
+  "impl": "ui:history",
+  "note": ""
+ },
+ {
+  "id": 130,
+  "name": "Catalog / Session Management",
+  "full": "Catalog / Session Management",
+  "status": "partial",
+  "impl": "arch:idb",
+  "note": "Local browser storage; no cloud sync."
+ },
+ {
+  "id": 131,
+  "name": "Batch Processing",
+  "full": "Batch Processing",
+  "status": "partial",
+  "impl": "arch:batch",
+  "note": "Select photos on the dashboard: apply a preset, export all as one ZIP (format, long edge, text watermark). Sequential, in-browser; no per-photo sync of edits, no watch folders."
+ },
+ {
+  "id": 132,
+  "name": "Tethered Capture / Live View Editing",
+  "full": "Tethered Capture / Live View Editing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 133,
+  "name": "Preset",
+  "full": "Preset",
+  "status": "partial",
+  "impl": "arch:presets",
+  "note": "Save/apply your manual layer as a named look (editor and batch). Geometry and lens optics are excluded. No preset sharing or import of other apps' presets."
+ },
+ {
+  "id": 134,
+  "name": "Action / Macro",
+  "full": "Action / Macro",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 135,
+  "name": "Watermarking",
+  "full": "Watermarking",
+  "status": "partial",
+  "impl": "arch:export",
+  "note": "Text watermark burned in at export (position, size, opacity). No logo/image watermarks, no invisible watermarking."
+ },
+ {
+  "id": 136,
+  "name": "Sharpen for Screen vs. Sharpen for Print",
+  "full": "Sharpen for Screen vs. Sharpen for Print",
+  "status": "implemented",
+  "impl": "fn:outputSharpen",
+  "note": "Export option: luminance unsharp mask after resizing, tuned for screen or print."
+ },
+ {
+  "id": 137,
+  "name": "Rendering Intent",
+  "full": "Rendering Intent (Perceptual, Relative Colorimetric, Saturation, Absolute Colorimetric)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 138,
+  "name": "Print Proofing / CMYK Conversion",
+  "full": "Print Proofing / CMYK Conversion",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 139,
+  "name": "Tone, Contrast & Curves",
+  "full": "Tone, Contrast & Curves",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 140,
+  "name": "Midtone Contrast",
+  "full": "Midtone Contrast",
+  "status": "implemented",
+  "impl": "param:contrast",
+  "note": "Power curve about 0.18 linear grey."
+ },
+ {
+  "id": 141,
+  "name": "Perceptual Contrast",
+  "full": "Perceptual Contrast",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 142,
+  "name": "Black Point / White Point Setting",
+  "full": "Black Point / White Point Setting",
+  "status": "implemented",
+  "impl": "param:blacks",
+  "note": "Via blacks/whites sliders and recipe."
+ },
+ {
+  "id": 143,
+  "name": "Gamma Correction",
+  "full": "Gamma Correction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 144,
+  "name": "Luminance Curve",
+  "full": "Luminance Curve (L-Curve)",
+  "status": "partial",
+  "impl": "param:curve",
+  "note": "Master curve applied to RGB, not Lab L."
+ },
+ {
+  "id": 145,
+  "name": "RGB Curves",
+  "full": "RGB Curves (Individual Red, Green, Blue channel curves)",
+  "status": "partial",
+  "impl": "param:curve",
+  "note": "Master curve only; per-channel curves not implemented."
+ },
+ {
+  "id": 146,
+  "name": "Exposure Compensation",
+  "full": "Exposure Compensation (Software EV Push/Pull)",
+  "status": "implemented",
+  "impl": "param:exposure",
+  "note": "Linear-light EV gain. 8-bit source, so recovery is limited to existing data."
+ },
+ {
+  "id": 147,
+  "name": "Highlight Roll-off",
+  "full": "Highlight Roll-off (Highlight Recovery)",
+  "status": "implemented",
+  "impl": "param:highlights",
+  "note": "Luma-weighted gain; cannot restore fully clipped pixels."
+ },
+ {
+  "id": 148,
+  "name": "Shadow Recovery",
+  "full": "Shadow Recovery",
+  "status": "implemented",
+  "impl": "param:shadows",
+  "note": "Luma-weighted gain."
+ },
+ {
+  "id": 149,
+  "name": "Shoulder / Toe",
+  "full": "Shoulder / Toe (Curve response characteristics)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 150,
+  "name": "Solarization",
+  "full": "Solarization (Sabattier effect)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 151,
+  "name": "Advanced Color Science & Calibration",
+  "full": "Advanced Color Science & Calibration",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 152,
+  "name": "Color Balance",
+  "full": "Color Balance",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 153,
+  "name": "Color Purity",
+  "full": "Color Purity",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 154,
+  "name": "Color Cast Neutralization",
+  "full": "Color Cast Neutralization",
+  "status": "implemented",
+  "impl": "fn:analyse",
+  "note": "Detected from neutral-region bias."
+ },
+ {
+  "id": 155,
+  "name": "Color Appearance Model",
+  "full": "Color Appearance Model (CIECAM02 / CAM16)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 156,
+  "name": "Color Difference",
+  "full": "Color Difference (\\Delta E / Delta E)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 157,
+  "name": "Observer Angle",
+  "full": "Observer Angle (2^\\circ vs 10^\\circ Standard Observer)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 158,
+  "name": "Primary Calibration",
+  "full": "Primary Calibration (Camera Calibration sliders: Red, Green, Blue primary shifts)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 159,
+  "name": "Color Separation",
+  "full": "Color Separation",
+  "status": "partial",
+  "impl": "param:hslH",
+  "note": "Via HSL bands only."
+ },
+ {
+  "id": 160,
+  "name": "Color Grading Wheels",
+  "full": "Color Grading Wheels (Lift, Gamma, Gain / Shadows, Midtones, Highlights)",
+  "status": "partial",
+  "impl": "param:gradeShS",
+  "note": "Two wheels only (shadows, highlights) with balance. No midtone wheel and no lift/gamma/gain maths."
+ },
+ {
+  "id": 161,
+  "name": "Global Color Wheels / Master Wheel",
+  "full": "Global Color Wheels / Master Wheel",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 162,
+  "name": "Target Hue / Source Hue",
+  "full": "Target Hue / Source Hue",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 163,
+  "name": "Lab Color Mode",
+  "full": "Lab Color Mode (L^*a^*b^* — Lightness, a Green-Magenta, b Blue-Yellow)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 164,
+  "name": "CMYK",
+  "full": "CMYK (Cyan, Magenta, Yellow, Key/Black)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 165,
+  "name": "Color Management System",
+  "full": "Color Management System (CMS)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 166,
+  "name": "Device-Independent Color Space",
+  "full": "Device-Independent Color Space (CIE XYZ, CIE xyY)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 167,
+  "name": "Monitor Profiling / Hardware Calibration",
+  "full": "Monitor Profiling / Hardware Calibration (Spectrophotometer / Colorimeter)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 168,
+  "name": "Ambient Light Matching / D50 vs D65 Illuminants",
+  "full": "Ambient Light Matching / D50 vs D65 Illuminants",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 169,
+  "name": "Color Quantization",
+  "full": "Color Quantization",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 170,
+  "name": "Masking, Selections & Alpha Mattes",
+  "full": "Masking, Selections & Alpha Mattes",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 171,
+  "name": "Subject Detection / AI Subject Mask",
+  "full": "Subject Detection / AI Subject Mask",
+  "status": "ai-assisted",
+  "impl": "api:analyze",
+  "note": "Requires Gemini. Bounding box and labels only; pixel masks not built yet."
+ },
+ {
+  "id": 172,
+  "name": "Sky Detection / AI Sky Mask",
+  "full": "Sky Detection / AI Sky Mask",
+  "status": "experimental",
+  "impl": "mask:linear",
+  "note": "Top gradient limited to blue hues. Unreliable on grey, sunset and overcast skies."
+ },
+ {
+  "id": 173,
+  "name": "Background Mask / Invert Subject",
+  "full": "Background Mask / Invert Subject",
+  "status": "experimental",
+  "impl": "mask:radial",
+  "note": "Inverted ellipse around a detected box. Not a segmentation."
+ },
+ {
+  "id": 174,
+  "name": "Facial Hair / Teeth / Iris Masking",
+  "full": "Facial Hair / Teeth / Iris Masking (Parametric Portrait Selections)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 175,
+  "name": "Object Selection Tool",
+  "full": "Object Selection Tool",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 176,
+  "name": "Color Range Selection",
+  "full": "Color Range Selection",
+  "status": "implemented",
+  "impl": "mask:color",
+  "note": "Hue range + minimum saturation. Usable alone or intersected."
+ },
+ {
+  "id": 177,
+  "name": "Focus Area Selection",
+  "full": "Focus Area Selection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 178,
+  "name": "Quick Mask Mode",
+  "full": "Quick Mask Mode",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 179,
+  "name": "Magic Wand / Tolerance Setting",
+  "full": "Magic Wand / Tolerance Setting",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 180,
+  "name": "Marching Ants",
+  "full": "Marching Ants (Active Selection Boundary)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 181,
+  "name": "Intersecting Masks",
+  "full": "Intersecting Masks (Add, Subtract, Invert, Intersect)",
+  "status": "partial",
+  "impl": "mask:limiters",
+  "note": "Luminance and colour limiters intersect the base mask. No arbitrary add/subtract between separate layers."
+ },
+ {
+  "id": 182,
+  "name": "Alpha Matte / Matte Extraction",
+  "full": "Alpha Matte / Matte Extraction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 183,
+  "name": "Edge Choke / Expand",
+  "full": "Edge Choke / Expand (Dilate / Erode)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 184,
+  "name": "Edge Feather / Blur",
+  "full": "Edge Feather / Blur",
+  "status": "implemented",
+  "impl": "mask:feather",
+  "note": "Feather control per mask. No post-hoc blur of arbitrary selections."
+ },
+ {
+  "id": 185,
+  "name": "Decontaminate Colors",
+  "full": "Decontaminate Colors (Fringe Removal on Cutouts)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 186,
+  "name": "Channel Operations",
+  "full": "Channel Operations (Calculations / Apply Image)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 187,
+  "name": "Vector Masks",
+  "full": "Vector Masks (Pen Tool / Bézier Paths)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 188,
+  "name": "Retouching, Restoration & Skin Work",
+  "full": "Retouching, Restoration & Skin Work",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 189,
+  "name": "Micro Dodge & Burn",
+  "full": "Micro Dodge & Burn (Pore-level texture sculpting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 190,
+  "name": "Macro Dodge & Burn",
+  "full": "Macro Dodge & Burn (Form, volume, and contour sculpting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 191,
+  "name": "Texture vs Tone Separation",
+  "full": "Texture vs Tone Separation (Dual-frequency / Multi-frequency separation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 192,
+  "name": "Median Filter / Gaussian Blur",
+  "full": "Median Filter / Gaussian Blur (Low-frequency smoothing methods)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 193,
+  "name": "High Pass Filter",
+  "full": "High Pass Filter (High-frequency extraction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 194,
+  "name": "Patch Tool",
+  "full": "Patch Tool",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 195,
+  "name": "Healing Brush vs Spot Healing",
+  "full": "Healing Brush vs Spot Healing",
+  "status": "implemented",
+  "impl": "retouch:heal",
+  "note": "Both exist: Heal (manual source, colour and light matched) and Spot removal (automatic source)."
+ },
+ {
+  "id": 196,
+  "name": "Clone Source Palette",
+  "full": "Clone Source Palette (Angle, Offset, Scale)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 197,
+  "name": "Content-Aware Scale",
+  "full": "Content-Aware Scale (Seam Carving)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 198,
+  "name": "Content-Aware Move Tool",
+  "full": "Content-Aware Move Tool",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 199,
+  "name": "Perspective Warp",
+  "full": "Perspective Warp",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 200,
+  "name": "Puppet Warp",
+  "full": "Puppet Warp",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 201,
+  "name": "Dust & Scratches Filter",
+  "full": "Dust & Scratches Filter",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 202,
+  "name": "Polar Inversion / Polar Coordinates",
+  "full": "Polar Inversion / Polar Coordinates (Spherical retouching)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 203,
+  "name": "Split-Frequency Detail Blending",
+  "full": "Split-Frequency Detail Blending",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 204,
+  "name": "Specular Highlight Retouching",
+  "full": "Specular Highlight Retouching",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 205,
+  "name": "Catchlight Shaping / Realignment",
+  "full": "Catchlight Shaping / Realignment",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 206,
+  "name": "Sclera Brightening / Eyeball Whitening",
+  "full": "Sclera Brightening / Eyeball Whitening",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 207,
+  "name": "Stray Hair Cleanup",
+  "full": "Stray Hair Cleanup",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 208,
+  "name": "Skin Tone Uniformity",
+  "full": "Skin Tone Uniformity (Targeted Hue Correction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 209,
+  "name": "Optics, Blur & Spatial Filters",
+  "full": "Optics, Blur & Spatial Filters",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 210,
+  "name": "Depth of Field",
+  "full": "Depth of Field (DoF) Simulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 211,
+  "name": "Synthetic Bokeh",
+  "full": "Synthetic Bokeh (Aperture shape, blade count, optical spherical aberration)",
+  "status": "partial",
+  "impl": "param:bokeh",
+  "note": "19-tap disc blur with highlight weighting outside an estimated subject ellipse. No depth map or true segmentation, so edges are approximate."
+ },
+ {
+  "id": 212,
+  "name": "Gaussian Blur",
+  "full": "Gaussian Blur",
+  "status": "partial",
+  "impl": "param:gaussBlur",
+  "note": "Gaussian-weighted taps over a mip pyramid. Approximates a true Gaussian; not exact at large radii."
+ },
+ {
+  "id": 213,
+  "name": "Box Blur",
+  "full": "Box Blur",
+  "status": "partial",
+  "impl": "param:boxBlur",
+  "note": "3x3 box of mip-pyramid samples. Approximates a square kernel."
+ },
+ {
+  "id": 214,
+  "name": "Motion Blur",
+  "full": "Motion Blur (Angle, Distance)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 215,
+  "name": "Radial Blur",
+  "full": "Radial Blur (Spin, Zoom)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 216,
+  "name": "Lens Blur",
+  "full": "Lens Blur (Depth-map driven optical blur)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 217,
+  "name": "Surface Blur",
+  "full": "Surface Blur (Edge-preserving blur)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 218,
+  "name": "Smart Blur",
+  "full": "Smart Blur",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 219,
+  "name": "Bilateral Filter",
+  "full": "Bilateral Filter",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 220,
+  "name": "Chromatic Aberration",
+  "full": "Chromatic Aberration: Lateral (Transverse) vs Longitudinal (Axial / LoCA)",
+  "status": "partial",
+  "impl": "param:ca",
+  "note": "Manual lateral CA correction only (radial R/B scaling). No auto-detection, no purple fringe or axial CA."
+ },
+ {
+  "id": 221,
+  "name": "Coma Aberration Correction",
+  "full": "Coma Aberration Correction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 222,
+  "name": "Astigmatism Correction",
+  "full": "Astigmatism Correction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 223,
+  "name": "Field Curvature Compensation",
+  "full": "Field Curvature Compensation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 224,
+  "name": "Diffraction Blur / Airy Disk Sharpening",
+  "full": "Diffraction Blur / Airy Disk Sharpening",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 225,
+  "name": "Point Spread Function",
+  "full": "Point Spread Function (PSF) Deconvolution (Blind / Non-blind deconvolution)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 226,
+  "name": "Layers, Channels & Non-Destructive Structuring",
+  "full": "Layers, Channels & Non-Destructive Structuring",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 227,
+  "name": "Channel Mixer",
+  "full": "Channel Mixer",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 228,
+  "name": "Separate RGB Channels",
+  "full": "Separate RGB Channels (Red, Green, Blue individual planes)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 229,
+  "name": "Stamp Visible",
+  "full": "Stamp Visible (Merged Layer / Flattened Composite: Ctrl+Alt+Shift+E / Cmd+Opt+Shift+E)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 230,
+  "name": "Pass Through",
+  "full": "Pass Through (Layer Group blending mode)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 231,
+  "name": "Linked Layers",
+  "full": "Linked Layers",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 232,
+  "name": "Layer Comps",
+  "full": "Layer Comps",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 233,
+  "name": "Smart Filters",
+  "full": "Smart Filters",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 234,
+  "name": "Filter Mask",
+  "full": "Filter Mask (Mask tied specifically to a Smart Filter)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 235,
+  "name": "Clipping Hierarchy",
+  "full": "Clipping Hierarchy",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 236,
+  "name": "Gradient Map",
+  "full": "Gradient Map",
+  "status": "implemented",
+  "impl": "fn:gradientMapLut",
+  "note": "Grade tab: gradient map presets applied through the GPU 3D LUT path, with an amount slider."
+ },
+ {
+  "id": 237,
+  "name": "Solid Color Fill Layer",
+  "full": "Solid Color Fill Layer",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 238,
+  "name": "Pattern Fill Layer",
+  "full": "Pattern Fill Layer",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 239,
+  "name": "Threshold Layer",
+  "full": "Threshold Layer",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 240,
+  "name": "Invert Layer",
+  "full": "Invert Layer",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 241,
+  "name": "Selective Color Adjustment",
+  "full": "Selective Color Adjustment",
+  "status": "partial",
+  "impl": "param:hslH",
+  "note": "Via HSL bands only."
+ },
+ {
+  "id": 242,
+  "name": "Sensor Artifacts & Correction Science",
+  "full": "Sensor Artifacts & Correction Science",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 243,
+  "name": "Demosaicing",
+  "full": "Demosaicing (Bayer interpolation: AHD, AMaZE, VNG, DCB)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 244,
+  "name": "X-Trans Demosaicing",
+  "full": "X-Trans Demosaicing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 245,
+  "name": "False Color Suppression",
+  "full": "False Color Suppression",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 246,
+  "name": "Hot Pixels",
+  "full": "Hot Pixels (Stuck pixel remapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 247,
+  "name": "Dead Pixels",
+  "full": "Dead Pixels",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 248,
+  "name": "Dark Frame Subtraction",
+  "full": "Dark Frame Subtraction (Sensor thermal noise reduction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 249,
+  "name": "Flat Field Correction",
+  "full": "Flat Field Correction (Sensor dust spot & optical vignette profiling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 250,
+  "name": "Fixed Pattern Noise",
+  "full": "Fixed Pattern Noise (FPN / Sensor banding)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 251,
+  "name": "Read Noise vs Shot Noise vs Quantization Noise",
+  "full": "Read Noise vs Shot Noise vs Quantization Noise",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 252,
+  "name": "Blooming Suppression",
+  "full": "Blooming Suppression",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Sensor-level artefact that needs the RAW data."
+ },
+ {
+  "id": 253,
+  "name": "Purple Fringing",
+  "full": "Purple Fringing (Sensor micro-lens flare vs axial CA)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 254,
+  "name": "Compositing, Blending & Realism Matching",
+  "full": "Compositing, Blending & Realism Matching",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 255,
+  "name": "Light Wrap",
+  "full": "Light Wrap (Edge bleeding for composited subjects)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 256,
+  "name": "Ambient Occlusion Pass / Contact Shadows",
+  "full": "Ambient Occlusion Pass / Contact Shadows",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 257,
+  "name": "Cast Shadow",
+  "full": "Cast Shadow (Directional, Penumbra, Umbra)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 258,
+  "name": "Grain Matching",
+  "full": "Grain Matching (Synthesizing base capture grain onto composited elements)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 259,
+  "name": "Depth Aerial Perspective",
+  "full": "Depth Aerial Perspective (Atmospheric haze fading for distance)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 260,
+  "name": "Perspective Matching",
+  "full": "Perspective Matching (Vanishing points, horizon line calibration)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 261,
+  "name": "Specular vs Diffuse Match",
+  "full": "Specular vs Diffuse Match",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 262,
+  "name": "Matte Painting",
+  "full": "Matte Painting",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 263,
+  "name": "Multi-Plate Stitching",
+  "full": "Multi-Plate Stitching (Panoramic nodal alignment, nodal point / entrance pupil alignment)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 264,
+  "name": "Parallax Error Correction",
+  "full": "Parallax Error Correction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 265,
+  "name": "Output, Print & Digital Delivery",
+  "full": "Output, Print & Digital Delivery",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 266,
+  "name": "Output Sharpening",
+  "full": "Output Sharpening (Screen vs Matte Paper vs Glossy Paper)",
+  "status": "implemented",
+  "impl": "fn:outputSharpen",
+  "note": "Export option: luminance unsharp mask after resizing, tuned for screen or print."
+ },
+ {
+  "id": 267,
+  "name": "Half-toning / Halftone Screens",
+  "full": "Half-toning / Halftone Screens",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 268,
+  "name": "Dot Gain",
+  "full": "Dot Gain (Mechanical & Optical ink bleed compensation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 269,
+  "name": "Total Area Coverage",
+  "full": "Total Area Coverage (TAC) / Total Ink Limit (TIL)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 270,
+  "name": "Rich Black vs Standard Black",
+  "full": "Rich Black vs Standard Black (100% K vs 4-color composite black)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 271,
+  "name": "Under Color Removal",
+  "full": "Under Color Removal (UCR)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 272,
+  "name": "Gray Component Replacement",
+  "full": "Gray Component Replacement (GCR)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 273,
+  "name": "Soft Proofing with Paper Simulation & Ink Black Simulation",
+  "full": "Soft Proofing with Paper Simulation & Ink Black Simulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 274,
+  "name": "Out-of-Gamut Warning / Color Clipping Overlay",
+  "full": "Out-of-Gamut Warning / Color Clipping Overlay",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 275,
+  "name": "Bit Depth Truncation",
+  "full": "Bit Depth Truncation (Quantization error mitigation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 276,
+  "name": "Error Diffusion",
+  "full": "Error Diffusion",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 277,
+  "name": "Downsampling vs Upsampling",
+  "full": "Downsampling vs Upsampling (Nearest Neighbor, Bilinear, Bicubic Smoother, Bicubic Sharper, AI Deep Learning Scale)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 278,
+  "name": "Aspect Ratio Padding / Pillarboxing / Letterboxing",
+  "full": "Aspect Ratio Padding / Pillarboxing / Letterboxing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 279,
+  "name": "Responsive Web Export",
+  "full": "Responsive Web Export (Retina @2x/@3x asset generation)",
+  "status": "implemented",
+  "impl": "arch:export-responsive",
+  "note": "Export panel: renders 480/768/1280/1920 px versions (never above the source size) with screen sharpening."
+ },
+ {
+  "id": 280,
+  "name": "Color Space Stripping vs Color Space Embedding",
+  "full": "Color Space Stripping vs Color Space Embedding",
+  "status": "partial",
+  "impl": null,
+  "note": "Assumes sRGB; no ICC embedding."
+ },
+ {
+  "id": 281,
+  "name": "Lossless WebP vs Lossy WebP Compression",
+  "full": "Lossless WebP vs Lossy WebP Compression",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 282,
+  "name": "Progressive JPEG vs Baseline JPEG",
+  "full": "Progressive JPEG vs Baseline JPEG",
+  "status": "unsupported",
+  "impl": null,
+  "note": "The browser's JPEG encoder always writes baseline files and does not expose a progressive option."
+ },
+ {
+  "id": 283,
+  "name": "High Dynamic Range & Exposure Blending",
+  "full": "High Dynamic Range & Exposure Blending",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 284,
+  "name": "Tone Mapping",
+  "full": "Tone Mapping",
+  "status": "partial",
+  "impl": "effect:filmic-tone-map",
+  "note": "Filmic highlight shoulder and lifted toe for 8-bit photos. Not scene-referred HDR tone mapping."
+ },
+ {
+  "id": 285,
+  "name": "Exposure Bracketing",
+  "full": "Exposure Bracketing (AEB merge)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs several aligned frames merged together. Lumen edits one photo at a time."
+ },
+ {
+  "id": 286,
+  "name": "De-ghosting",
+  "full": "De-ghosting (Moving subject artifact removal in multi-exposure merges)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs several aligned frames merged together. Lumen edits one photo at a time."
+ },
+ {
+  "id": 287,
+  "name": "Local Tone Mapping vs Global Tone Mapping",
+  "full": "Local Tone Mapping vs Global Tone Mapping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 288,
+  "name": "High-Dynamic-Range Radiance Maps",
+  "full": "High-Dynamic-Range Radiance Maps (.exr, .hdr)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 289,
+  "name": "Exposure Fusion",
+  "full": "Exposure Fusion (Mertens-Kautz-Van Reuter algorithm)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 290,
+  "name": "Luminosity Blending",
+  "full": "Luminosity Blending (Manual exposure stitching without tone mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 291,
+  "name": "Highlight Cushioning",
+  "full": "Highlight Cushioning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 292,
+  "name": "Extended Color Calibration & Precision Color",
+  "full": "Extended Color Calibration & Precision Color",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 293,
+  "name": "ColorChecker Target Extraction",
+  "full": "ColorChecker Target Extraction (X-Rite / Calibrite 24-patch profiling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 294,
+  "name": "Dual-Illuminant Profiles",
+  "full": "Dual-Illuminant Profiles (Interpolated DNG profiles: Tungsten + Daylight)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 295,
+  "name": "Metameric Failure",
+  "full": "Metameric Failure",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 296,
+  "name": "MacAdam Ellipses",
+  "full": "MacAdam Ellipses (Color tolerance boundaries)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 297,
+  "name": "CIELAB L^*C^*h^\\circ",
+  "full": "CIELAB L^*C^*h^\\circ (Lightness, Chroma, Hue angle)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 298,
+  "name": "Correlated Color Temperature",
+  "full": "Correlated Color Temperature (CCT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 299,
+  "name": "Color Rendering Index",
+  "full": "Color Rendering Index (CRI) / Television Lighting Consistency Index (TLCI)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 300,
+  "name": "Spectral Power Distribution",
+  "full": "Spectral Power Distribution (SPD) Matching",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 301,
+  "name": "False Color Exposure Scale",
+  "full": "False Color Exposure Scale",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 302,
+  "name": "Vectorscope",
+  "full": "Vectorscope (Hue and Saturation monitoring)",
+  "status": "implemented",
+  "impl": "fn:vectorBuffer",
+  "note": "Editor scope tab: Cb/Cr vectorscope of the live preview with a skin-tone line."
+ },
+ {
+  "id": 303,
+  "name": "Waveform Monitor",
+  "full": "Waveform Monitor (Luma, RGB Parade)",
+  "status": "implemented",
+  "impl": "fn:waveformBuffer",
+  "note": "Editor scope tab: waveform of the live preview (RGB overlaid)."
+ },
+ {
+  "id": 304,
+  "name": "1D LUT vs 3D LUT",
+  "full": "1D LUT vs 3D LUT (1D calibration vs 3D color cube remapping)",
+  "status": "implemented",
+  "impl": "fn:parseCube",
+  "note": "Grade tab imports .cube files (1D or 3D, DOMAIN supported) and applies them in the shader with trilinear interpolation; included in exports."
+ },
+ {
+  "id": 305,
+  "name": "Tetrahedral Interpolation vs Trilinear Interpolation",
+  "full": "Tetrahedral Interpolation vs Trilinear Interpolation (LUT processing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 306,
+  "name": "Photogrammetry, 3D & Advanced Stacking",
+  "full": "Photogrammetry, 3D & Advanced Stacking",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 307,
+  "name": "Focus Breathing Compensation",
+  "full": "Focus Breathing Compensation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 308,
+  "name": "Alignment Matrix",
+  "full": "Alignment Matrix (Affine, Homography, Rigid transforms)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 309,
+  "name": "Pixel Peeping",
+  "full": "Pixel Peeping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 310,
+  "name": "Super-Resolution Stacking",
+  "full": "Super-Resolution Stacking (Sub-pixel shift reconstruction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 311,
+  "name": "Median Stacking",
+  "full": "Median Stacking (Tourist/crowd removal & motion averaging)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 312,
+  "name": "Mean Stacking",
+  "full": "Mean Stacking (Long-exposure simulation & signal-to-noise ratio optimization)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 313,
+  "name": "Light Painting Merge",
+  "full": "Light Painting Merge (Maximum value blending)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 314,
+  "name": "Star Trail Stacking",
+  "full": "Star Trail Stacking (Comet mode, gap-filling algorithms)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 315,
+  "name": "Astrophotography Calibration Frames",
+  "full": "Astrophotography Calibration Frames:",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 316,
+  "name": "Light Frames",
+  "full": "Light Frames",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 317,
+  "name": "Dark Frames",
+  "full": "Dark Frames",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 318,
+  "name": "Flat Frames",
+  "full": "Flat Frames",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 319,
+  "name": "Bias / Offset Frames",
+  "full": "Bias / Offset Frames",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 320,
+  "name": "Dark Flat Frames",
+  "full": "Dark Flat Frames",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 321,
+  "name": "Plate Solving",
+  "full": "Plate Solving (Astrometric identification & distortion correction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 322,
+  "name": "High-End Commercial, Product & Architectural Post",
+  "full": "High-End Commercial, Product & Architectural Post",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 323,
+  "name": "Nodal Point Stitching",
+  "full": "Nodal Point Stitching (Parallax-free multi-row stitching)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 324,
+  "name": "Equirectangular Projection",
+  "full": "Equirectangular Projection (360° VR spherical imaging)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 325,
+  "name": "Cylindrical / Rectilinear / Mercator / Stereographic / Little Planet Projections",
+  "full": "Cylindrical / Rectilinear / Mercator / Stereographic / Little Planet Projections",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 326,
+  "name": "Shift-Lens Keystoning Emulation",
+  "full": "Shift-Lens Keystoning Emulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 327,
+  "name": "Falloff Correction",
+  "full": "Falloff Correction (Cosine-fourth law compensation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 328,
+  "name": "Flambient Blending",
+  "full": "Flambient Blending (Flash + Ambient interior exposure blending)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 329,
+  "name": "Specular Highlight Polishing",
+  "full": "Specular Highlight Polishing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 330,
+  "name": "Polarizer Glare Cancellation",
+  "full": "Polarizer Glare Cancellation (Cross-polarization composite editing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 331,
+  "name": "Focus Peaking Overlay",
+  "full": "Focus Peaking Overlay",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 332,
+  "name": "Clean Plate",
+  "full": "Clean Plate (Clean baseline plate for rig/wire removal)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 333,
+  "name": "Wire / Rig / C-Stand Removal",
+  "full": "Wire / Rig / C-Stand Removal",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 334,
+  "name": "Invisible Man / Hollow Man Effect",
+  "full": "Invisible Man / Hollow Man Effect (Ghost mannequin apparel composites)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 335,
+  "name": "Symmetrical Mirroring & Alignment",
+  "full": "Symmetrical Mirroring & Alignment (High-end jewelry & watch retouching)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 336,
+  "name": "Bottle / Glass Edge Re-stroking",
+  "full": "Bottle / Glass Edge Re-stroking (Simulated rim lighting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 337,
+  "name": "Non-Standard & Specialized Photographic Techniques",
+  "full": "Non-Standard & Specialized Photographic Techniques",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 338,
+  "name": "Infrared False-Color Processing",
+  "full": "Infrared False-Color Processing (Channel swapping: Red-to-Blue, Blue-to-Red)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 339,
+  "name": "Aerochrome Emulation",
+  "full": "Aerochrome Emulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 340,
+  "name": "Ultraviolet",
+  "full": "Ultraviolet (UV-Induced Visible Fluorescence - UVIVF) Color Balancing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 341,
+  "name": "Split-Scan / Slit-Scan Compositing",
+  "full": "Split-Scan / Slit-Scan Compositing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 342,
+  "name": "Anamorphic De-squeeze",
+  "full": "Anamorphic De-squeeze (1.33x, 1.5x, 1.8x, 2.0x horizontal expansion)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 343,
+  "name": "Orthochromatic / Panchromatic Emulation",
+  "full": "Orthochromatic / Panchromatic Emulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 344,
+  "name": "Halation Emulation",
+  "full": "Halation Emulation (Red diffusion fringing on high-contrast edges)",
+  "status": "partial",
+  "impl": "param:halation",
+  "note": "Thresholded highlight glow tinted red-orange. Not a film-stock model."
+ },
+ {
+  "id": 345,
+  "name": "Bloom / Diffusion Glow",
+  "full": "Bloom / Diffusion Glow",
+  "status": "partial",
+  "impl": "param:bloom",
+  "note": "24-tap thresholded highlight glow (3 rings, reach about 2.8% of the long edge)."
+ },
+ {
+  "id": 346,
+  "name": "Bleach Bypass",
+  "full": "Bleach Bypass (Silver retention look)",
+  "status": "partial",
+  "impl": "effect:bleach-bypass",
+  "note": "Effects tab preset: low saturation, hard S-curve contrast, clarity. An approximation, not the film chemistry."
+ },
+ {
+  "id": 347,
+  "name": "Cross Processing",
+  "full": "Cross Processing (C-41 in E-6 or E-6 in C-41 simulation)",
+  "status": "partial",
+  "impl": "effect:cross-processing",
+  "note": "Effects tab preset: teal shadows, yellow-green highlights, S curve. Lumen has one luminance curve, not per-channel curves."
+ },
+ {
+  "id": 348,
+  "name": "Platinum / Palladium / Cyanotype / Wet Plate Collodion Digital Toning",
+  "full": "Platinum / Palladium / Cyanotype / Wet Plate Collodion Digital Toning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 349,
+  "name": "D-Max / D-Min",
+  "full": "D-Max / D-Min (Maximum and minimum optical density simulation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 350,
+  "name": "Raw Engine Demultiplexing & Computational Hardware",
+  "full": "Raw Engine Demultiplexing & Computational Hardware",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Browsers cannot decode RAW files and Lumen ships no RAW decoder. Export a TIFF or JPEG from your RAW converter first."
+ },
+ {
+  "id": 351,
+  "name": "Linear Light Editing",
+  "full": "Linear Light Editing (Operating in gamma 1.0 scene-referred space)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 352,
+  "name": "Scene-Referred vs Display-Referred Workflow",
+  "full": "Scene-Referred vs Display-Referred Workflow",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 353,
+  "name": "ACES",
+  "full": "ACES (Academy Color Encoding System: ACEScc, ACEScct, ACEScg, ACESproxy)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 354,
+  "name": "OpenColorIO",
+  "full": "OpenColorIO (OCIO)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 355,
+  "name": "Look Modification Transform",
+  "full": "Look Modification Transform (LMT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 356,
+  "name": "Output Device Transform",
+  "full": "Output Device Transform (ODT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 357,
+  "name": "Input Device Transform",
+  "full": "Input Device Transform (IDT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 358,
+  "name": "Black Level / White Level Raw Offsets",
+  "full": "Black Level / White Level Raw Offsets",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 359,
+  "name": "Hardware Acceleration",
+  "full": "Hardware Acceleration (CUDA, OpenCL, Metal, Apple Silicon Neural Engine)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 360,
+  "name": "Tile-based Rendering",
+  "full": "Tile-based Rendering",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 361,
+  "name": "Scratch Disk Management & Virtual Memory Paging",
+  "full": "Scratch Disk Management & Virtual Memory Paging",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 362,
+  "name": "Sidecar Data Management",
+  "full": "Sidecar Data Management (.cos, .xmp, .dop files)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 363,
+  "name": "Smart Previews / Lossy DNG Proxies",
+  "full": "Smart Previews / Lossy DNG Proxies (Offline catalog editing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 364,
+  "name": "Print Proofing, Screen Typography & Forensic Integrity",
+  "full": "Print Proofing, Screen Typography & Forensic Integrity",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 365,
+  "name": "Trapping",
+  "full": "Trapping (Choke and spread in pre-press print prep to avoid white gaps)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 366,
+  "name": "Screen Ruling / LPI",
+  "full": "Screen Ruling / LPI (Lines Per Inch)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 367,
+  "name": "Plate Separation",
+  "full": "Plate Separation (CMYK + Spot Colors / Pantone PMS channels)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 368,
+  "name": "Varnishing / Spot UV Mask Pass",
+  "full": "Varnishing / Spot UV Mask Pass",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 369,
+  "name": "Emboss / Deboss Height Mapping",
+  "full": "Emboss / Deboss Height Mapping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 370,
+  "name": "Anti-Aliasing",
+  "full": "Anti-Aliasing (Edge smoothing on raster graphics/overlays)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 371,
+  "name": "True Black vs Registered Black",
+  "full": "True Black vs Registered Black",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 372,
+  "name": "JPEG Chroma Subsampling",
+  "full": "JPEG Chroma Subsampling (4:4:4, 4:2:2, 4:2:0 compression artifacts)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 373,
+  "name": "Block Artifacts / Ringing Artifacts",
+  "full": "Block Artifacts / Ringing Artifacts",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 374,
+  "name": "Quantization Noise / Truncation Error",
+  "full": "Quantization Noise / Truncation Error",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 375,
+  "name": "Perceptual Hashing",
+  "full": "Perceptual Hashing (pHash - Digital image fingerprinting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 376,
+  "name": "C2PA / Content Credentials",
+  "full": "C2PA / Content Credentials (Cryptographic provenance & provenance metadata)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 377,
+  "name": "Steganography / Digital Watermarking",
+  "full": "Steganography / Digital Watermarking (Invisible copyright embedding)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 378,
+  "name": "EXIF Stripping",
+  "full": "EXIF Stripping (Privacy/GDPR sanitization)",
+  "status": "implemented",
+  "impl": "arch:export",
+  "note": "Canvas export carries no EXIF."
+ },
+ {
+  "id": 379,
+  "name": "GPS Geotagging & Coordinate Injection",
+  "full": "GPS Geotagging & Coordinate Injection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 380,
+  "name": "Analog Film Simulation & Chemical Emulation",
+  "full": "Analog Film Simulation & Chemical Emulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 381,
+  "name": "Characteristic Curve",
+  "full": "Characteristic Curve (H&D / Hurter & Driffield curve)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 382,
+  "name": "Film Base + Fog",
+  "full": "Film Base + Fog (B+F density offset)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 383,
+  "name": "Dye Clouds vs Silver Halide Crystals",
+  "full": "Dye Clouds vs Silver Halide Crystals (Organic grain texture vs crystalline structure)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 384,
+  "name": "Grain Roughness / Grain Clumping",
+  "full": "Grain Roughness / Grain Clumping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 385,
+  "name": "Emulsion Layer Scattering",
+  "full": "Emulsion Layer Scattering",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 386,
+  "name": "Spectral Sensitivity Curves",
+  "full": "Spectral Sensitivity Curves (Blue, green, red layer sensitivities)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 387,
+  "name": "Reciprocity Failure Compensation",
+  "full": "Reciprocity Failure Compensation (Schwarzschild effect correction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 388,
+  "name": "Solarization",
+  "full": "Solarization (Sabattier effect curve inflection)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 389,
+  "name": "Interimage Effects",
+  "full": "Interimage Effects (Color coupling and masking dyes in C-41 / E-6)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 390,
+  "name": "Orange Mask Subtraction",
+  "full": "Orange Mask Subtraction (Integral color masking in negative film)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 391,
+  "name": "Film Push / Pull Processing Emulation",
+  "full": "Film Push / Pull Processing Emulation (Contrast and grain shift)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 392,
+  "name": "Split-Tone Staining",
+  "full": "Split-Tone Staining (Pyro / Catechol developer simulation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 393,
+  "name": "Tonal Inversion",
+  "full": "Tonal Inversion (Negative-to-Positive conversion profiles)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 394,
+  "name": "Anti-Halation Layer Failure Emulation",
+  "full": "Anti-Halation Layer Failure Emulation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 395,
+  "name": "Color Coupler Bleaching",
+  "full": "Color Coupler Bleaching",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 396,
+  "name": "Machine Learning, Neural & Generative Post-Processing",
+  "full": "Machine Learning, Neural & Generative Post-Processing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 397,
+  "name": "Diffusion Denoising",
+  "full": "Diffusion Denoising",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs a dedicated on-device model that Lumen does not ship. Export upscaling uses Lanczos and enlarges without adding detail."
+ },
+ {
+  "id": 398,
+  "name": "Neural Upscaling / Super-Resolution",
+  "full": "Neural Upscaling / Super-Resolution (ESRGAN, Real-ESRGAN, SwinIR)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs a dedicated on-device model that Lumen does not ship. Export upscaling uses Lanczos and enlarges without adding detail."
+ },
+ {
+  "id": 399,
+  "name": "Latent Space Inpainting",
+  "full": "Latent Space Inpainting",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 400,
+  "name": "Outpainting",
+  "full": "Outpainting (Generative expand / Canvas extension)",
+  "status": "experimental",
+  "impl": "route:generative-edit",
+  "note": "Retouch tab, AI edit (experimental): an AI image model extends the scene and returns a separate, smaller copy. Result quality is not guaranteed."
+ },
+ {
+  "id": 401,
+  "name": "Prompt-Guided Inpainting",
+  "full": "Prompt-Guided Inpainting",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 402,
+  "name": "Neural Radiance Field",
+  "full": "Neural Radiance Field (NeRF) Depth Extraction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 403,
+  "name": "Semantic Segmentation Masking",
+  "full": "Semantic Segmentation Masking",
+  "status": "ai-assisted",
+  "impl": "api:analyze",
+  "note": "Requires Gemini. Bounding box and labels only; pixel masks not built yet."
+ },
+ {
+  "id": 404,
+  "name": "Facial Landmark Alignment",
+  "full": "Facial Landmark Alignment (Mesh warping for micro-expressions)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 405,
+  "name": "Relighting",
+  "full": "Relighting (Synthetic directional normal map illumination)",
+  "status": "experimental",
+  "impl": "route:generative-edit",
+  "note": "Retouch tab, AI edit (experimental): an AI image model relights the scene and returns a separate copy. Not physically based."
+ },
+ {
+  "id": 406,
+  "name": "Monocular Depth Estimation",
+  "full": "Monocular Depth Estimation (MiDaS / DPT depth maps)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs a dedicated on-device model that Lumen does not ship. Export upscaling uses Lanczos and enlarges without adding detail."
+ },
+ {
+  "id": 407,
+  "name": "AI Dof / Aperture Synthesis",
+  "full": "AI Dof / Aperture Synthesis",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 408,
+  "name": "Text-to-Texture Synthesis",
+  "full": "Text-to-Texture Synthesis",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 409,
+  "name": "Neural Style Transfer",
+  "full": "Neural Style Transfer",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Not built. Reference matching in Lumen is statistical (tone, colour balance, saturation, contrast), not neural, and never transfers texture or content."
+ },
+ {
+  "id": 410,
+  "name": "GAN Artifacts / Checkerboard Artifacts",
+  "full": "GAN Artifacts / Checkerboard Artifacts",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 411,
+  "name": "Hallucination Artifacts",
+  "full": "Hallucination Artifacts (Unwanted generative detail generation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 412,
+  "name": "Vector Embeddings for Image Retrieval",
+  "full": "Vector Embeddings for Image Retrieval",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 413,
+  "name": "Prompt-based Color Grading",
+  "full": "Prompt-based Color Grading (CLIP-guided color transfer)",
+  "status": "partial",
+  "impl": "fn:interpretRequest",
+  "note": "Offline keyword/phrase table maps wording (warmer, moody, teal and orange...) to tone and grade parameters, with strength words. No CLIP, no free-form understanding offline; Gemini is optional for free-form wording."
+ },
+ {
+  "id": 414,
+  "name": "Forensic, Authentication & Archival Metadata",
+  "full": "Forensic, Authentication & Archival Metadata",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 415,
+  "name": "Error Level Analysis",
+  "full": "Error Level Analysis (ELA - Compression variance mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 416,
+  "name": "Clone Detection",
+  "full": "Clone Detection (Copy-move block matching)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 417,
+  "name": "Noise Print Analysis",
+  "full": "Noise Print Analysis (Sensor PRNU / Photo-Response Non-Uniformity matching)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 418,
+  "name": "Chromatic Aberration Inconsistency Detection",
+  "full": "Chromatic Aberration Inconsistency Detection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 419,
+  "name": "Shadow / Light Vector Consistency Verification",
+  "full": "Shadow / Light Vector Consistency Verification",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 420,
+  "name": "JPEGsnoop Marker Analysis",
+  "full": "JPEGsnoop Marker Analysis",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 421,
+  "name": "Quantization Table Inspection",
+  "full": "Quantization Table Inspection (DQT / DHT extraction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 422,
+  "name": "ExifTool Scripting & Tag Injection",
+  "full": "ExifTool Scripting & Tag Injection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 423,
+  "name": "IPTC Core / IPTC Extension",
+  "full": "IPTC Core / IPTC Extension",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 424,
+  "name": "PLUS",
+  "full": "PLUS (Picture Licensing Universal System) Codes",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 425,
+  "name": "Rights Usage Terms / Creative Commons Machine-Readable Tags",
+  "full": "Rights Usage Terms / Creative Commons Machine-Readable Tags",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 426,
+  "name": "Hash-based Integrity Checking",
+  "full": "Hash-based Integrity Checking (MD5, SHA-256 image checksums)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 427,
+  "name": "Ledger-based Asset Tracking",
+  "full": "Ledger-based Asset Tracking (Blockchain-backed provenance metadata)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 428,
+  "name": "Camera Serial Number Injection / Match",
+  "full": "Camera Serial Number Injection / Match",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 429,
+  "name": "Shutter Actuation Count Extraction",
+  "full": "Shutter Actuation Count Extraction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 430,
+  "name": "Lens Firmware Metadata Parsing",
+  "full": "Lens Firmware Metadata Parsing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 431,
+  "name": "Computational Photography & Multi-Frame Synthesis",
+  "full": "Computational Photography & Multi-Frame Synthesis",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 432,
+  "name": "Pixel Shift Resolution",
+  "full": "Pixel Shift Resolution (Sensor-shift micro-stepping: 4-shot / 16-shot merges)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 433,
+  "name": "Bayer Pattern Drizzle Integration",
+  "full": "Bayer Pattern Drizzle Integration (Variable pixel-fraction stacking)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 434,
+  "name": "Rolling Shutter Skew Correction",
+  "full": "Rolling Shutter Skew Correction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 435,
+  "name": "Keystone Perspective Rectification",
+  "full": "Keystone Perspective Rectification (Four-point planar homography)",
+  "status": "partial",
+  "impl": "param:perspV",
+  "note": "Manual vertical and horizontal perspective sliders and straighten. No automatic Upright (line detection)."
+ },
+ {
+  "id": 436,
+  "name": "Motion Vector Estimation / Optical Flow Alignment",
+  "full": "Motion Vector Estimation / Optical Flow Alignment",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 437,
+  "name": "Handheld Exposure Merging",
+  "full": "Handheld Exposure Merging (Gyroscope-assisted tile alignment)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 438,
+  "name": "Semantic Tone Mapping",
+  "full": "Semantic Tone Mapping (Segment-specific adaptive exposure balancing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 439,
+  "name": "High Dynamic Range Video / Still Integration",
+  "full": "High Dynamic Range Video / Still Integration (Single-exposure dual-ISO synthesis)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 440,
+  "name": "Flash / No-Flash Subtraction",
+  "full": "Flash / No-Flash Subtraction (Ambient light isolation via mathematical delta)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 441,
+  "name": "Dual-Pixel RAW Micro-Adjustment",
+  "full": "Dual-Pixel RAW Micro-Adjustment (Point-of-sharpness shift / Bokeh shift)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 442,
+  "name": "Focus Stacking Slabbing",
+  "full": "Focus Stacking Slabbing (Sub-stack grouping to manage depth artifacts)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs several aligned frames merged together. Lumen edits one photo at a time."
+ },
+ {
+  "id": 443,
+  "name": "Halo Suppression",
+  "full": "Halo Suppression (Boundary artifact suppression in focus/HDR merges)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 444,
+  "name": "Pyramidal Blending",
+  "full": "Pyramidal Blending (Multiresolution spline blending)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 445,
+  "name": "High-End Commercial Rigging, Beauty & Micro-Retouching",
+  "full": "High-End Commercial Rigging, Beauty & Micro-Retouching",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 446,
+  "name": "Micro-Texture Grafting",
+  "full": "Micro-Texture Grafting (Pore-matching transplant from donor areas)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 447,
+  "name": "Vein / Capillary Neutralization",
+  "full": "Vein / Capillary Neutralization",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 448,
+  "name": "Melanin / Hemoglobin Separation",
+  "full": "Melanin / Hemoglobin Separation (Skin redness and pigmentation splitting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 449,
+  "name": "Dental Bleaching / Enamel Desaturation & Shading",
+  "full": "Dental Bleaching / Enamel Desaturation & Shading",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 450,
+  "name": "Lip Line Sharpening & Vermilion Border Definition",
+  "full": "Lip Line Sharpening & Vermilion Border Definition",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 451,
+  "name": "Eyebrow Hair Synthesis",
+  "full": "Eyebrow Hair Synthesis (Single-pixel custom brush mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 452,
+  "name": "Flyaway Hair Weaving / Structural Hair Rebuilding",
+  "full": "Flyaway Hair Weaving / Structural Hair Rebuilding",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 453,
+  "name": "Fabric Wrinkle Softening",
+  "full": "Fabric Wrinkle Softening (Texture-preserving frequency separation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 454,
+  "name": "Seam Straightening & Hem Smoothing",
+  "full": "Seam Straightening & Hem Smoothing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 455,
+  "name": "Jewelry Prongs Retouching & Gem Refraction Cleanup",
+  "full": "Jewelry Prongs Retouching & Gem Refraction Cleanup",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 456,
+  "name": "Specular Highlight Taming",
+  "full": "Specular Highlight Taming (Hotspot reduction using cross-polarization passes)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 457,
+  "name": "Perspective Distortion of Anatomical Proportions",
+  "full": "Perspective Distortion of Anatomical Proportions (Focal length correction on wide-angle portraits)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 458,
+  "name": "Catchlight Customization",
+  "full": "Catchlight Customization (Ring, softbox, umbrella reflection painting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 459,
+  "name": "Virtual Production, 3D Look Development & Render Integration",
+  "full": "Virtual Production, 3D Look Development & Render Integration",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 460,
+  "name": "Depth Passes",
+  "full": "Depth Passes (Z-Depth channel processing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 461,
+  "name": "Cryptomatte Extraction",
+  "full": "Cryptomatte Extraction (Asset, material, and object ID matte isolation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 462,
+  "name": "Normal Maps",
+  "full": "Normal Maps (Surface angle data integration for relighting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 463,
+  "name": "Ambient Occlusion",
+  "full": "Ambient Occlusion (AO) Pass Blending",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 464,
+  "name": "Beauty Pass Decomposition",
+  "full": "Beauty Pass Decomposition (Diffuse, specular, transmission, emission, reflection passes)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 465,
+  "name": "OpenEXR Multi-Layer Management",
+  "full": "OpenEXR Multi-Layer Management",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 466,
+  "name": "Deep Compositing",
+  "full": "Deep Compositing (Volumetric opacity and depth data handling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 467,
+  "name": "Look Up Table Concatenation",
+  "full": "Look Up Table Concatenation (Chaining creative, display, and grading LUTs)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 468,
+  "name": "Linear-to-sRGB / Linear-to-Gamma EOTF",
+  "full": "Linear-to-sRGB / Linear-to-Gamma EOTF (Electro-Optical Transfer Function)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 469,
+  "name": "OETF",
+  "full": "OETF (Opto-Electronic Transfer Function)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 470,
+  "name": "Display P3 / Rec.709 / Rec.2020 / Rec.2100 Transfer Standards",
+  "full": "Display P3 / Rec.709 / Rec.2020 / Rec.2100 Transfer Standards",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 471,
+  "name": "HDR10 / Dolby Vision Metadata Mastering",
+  "full": "HDR10 / Dolby Vision Metadata Mastering (PQ / Perceptual Quantizer, HLG / Hybrid Log-Gamma)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 472,
+  "name": "Color Volume Mapping",
+  "full": "Color Volume Mapping (CIE L^*u^*v^* and IPT color spaces)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 473,
+  "name": "Pre-Press, Print Production & Industrial Output",
+  "full": "Pre-Press, Print Production & Industrial Output",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 474,
+  "name": "Dot Gain Curves",
+  "full": "Dot Gain Curves (Compensation for mechanical spread on coated vs uncoated paper)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 475,
+  "name": "Trapping",
+  "full": "Trapping: Spread (Lighter foreground expands into darker background)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 476,
+  "name": "Trapping",
+  "full": "Trapping: Choke (Darker foreground contracts, background enters)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 477,
+  "name": "Total Area Coverage Limit",
+  "full": "Total Area Coverage Limit (e.g., 300% maximum ink limit in SWOP / FOGRA)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 478,
+  "name": "Black Generation Profiles",
+  "full": "Black Generation Profiles (Heavy, Medium, Light GCR)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 479,
+  "name": "UCA",
+  "full": "UCA (Under Color Addition)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 480,
+  "name": "FM Screening",
+  "full": "FM Screening (Stochastic screening) vs AM Screening (Conventional clustered-dot)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 481,
+  "name": "Screen Angles",
+  "full": "Screen Angles (Cyan 15°, Magenta 75°, Yellow 0°, Black 45° moiré prevention)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 482,
+  "name": "Rosette Pattern Calibration",
+  "full": "Rosette Pattern Calibration (Clear centered vs dot centered rosettes)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 483,
+  "name": "Bleed & Slug Setup",
+  "full": "Bleed & Slug Setup",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 484,
+  "name": "Trim Line / Crop Marks / Registration Marks",
+  "full": "Trim Line / Crop Marks / Registration Marks",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 485,
+  "name": "Densitometer Target Strips",
+  "full": "Densitometer Target Strips",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 486,
+  "name": "Color Bar Proofing",
+  "full": "Color Bar Proofing (FOGRA media wedge validation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 487,
+  "name": "Delta E Formulas",
+  "full": "Delta E Formulas (\\Delta E^*_{ab}, \\Delta E_{94}, \\Delta E_{00} / CIEDE2000)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 488,
+  "name": "OBA",
+  "full": "OBA (Optical Brightening Agent) Compensation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 489,
+  "name": "Historical Darkroom & Early Alternative Processes",
+  "full": "Historical Darkroom & Early Alternative Processes",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 490,
+  "name": "Zone System",
+  "full": "Zone System (Ansel Adams' Zones 0 through X)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 491,
+  "name": "Pre-Visualization",
+  "full": "Pre-Visualization",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 492,
+  "name": "Test Strip Evaluation",
+  "full": "Test Strip Evaluation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 493,
+  "name": "Contrast Grade",
+  "full": "Contrast Grade (Grade 00 through Grade 5 multi-grade paper filtration)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 494,
+  "name": "Variable Contrast",
+  "full": "Variable Contrast (VC) Head Dialing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 495,
+  "name": "Split-Grade Printing",
+  "full": "Split-Grade Printing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 496,
+  "name": "Flashing",
+  "full": "Flashing (Pre-exposure to lower contrast without raising fog)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 497,
+  "name": "Dodging Tool",
+  "full": "Dodging Tool (Wire and card) / Burning Tool (Hole card)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 498,
+  "name": "Water Bath Development",
+  "full": "Water Bath Development (Selective shadow expansion)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 499,
+  "name": "Bleaching / Farmer’s Reducer",
+  "full": "Bleaching / Farmer’s Reducer (Local optical reduction via potassium ferricyanide)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 500,
+  "name": "Sepia Toning",
+  "full": "Sepia Toning (Sodium sulfide / thiourea bleaching and redevelopment)",
+  "status": "partial",
+  "impl": "effect:sepia",
+  "note": "Effect preset: desaturate plus brown split tone. Not a chemical sepia model."
+ },
+ {
+  "id": 501,
+  "name": "Selenium Toning",
+  "full": "Selenium Toning (Archival deepening of maximum black / D-max)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 502,
+  "name": "Gold Protective Toning",
+  "full": "Gold Protective Toning (Archival image stabilization)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 503,
+  "name": "Cyanotype Prussiate Wash",
+  "full": "Cyanotype Prussiate Wash",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 504,
+  "name": "Van Dyke Brown / Kallitype Clearance",
+  "full": "Van Dyke Brown / Kallitype Clearance",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 505,
+  "name": "Gum Bichromate Multi-Coat Exposure",
+  "full": "Gum Bichromate Multi-Coat Exposure",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 506,
+  "name": "Carbon Transfer Relief Mapping",
+  "full": "Carbon Transfer Relief Mapping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 507,
+  "name": "Bromoil Inking / Matrix Bleach",
+  "full": "Bromoil Inking / Matrix Bleach",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 508,
+  "name": "Lith Printing",
+  "full": "Lith Printing (Infectious development process)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 509,
+  "name": "Edge Burn",
+  "full": "Edge Burn (Natural darkroom enlarger falloff burn)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 510,
+  "name": "Ferrotyping",
+  "full": "Ferrotyping (Mirror-finish gloss plate pressing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 511,
+  "name": "Specialist Studio, Motion & High-Speed Post",
+  "full": "Specialist Studio, Motion & High-Speed Post",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 512,
+  "name": "Flash Duration Sync",
+  "full": "Flash Duration Sync (t.1 vs t.0.5 motion freeze correction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 513,
+  "name": "High-Speed Sync",
+  "full": "High-Speed Sync (HSS) Banding Cleanup",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 514,
+  "name": "Curtain Sync Artifacts",
+  "full": "Curtain Sync Artifacts (Front vs Rear curtain trail blending)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 515,
+  "name": "Shutter Blade Shadow Removal",
+  "full": "Shutter Blade Shadow Removal",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 516,
+  "name": "Gelled Light Spill Neutralization",
+  "full": "Gelled Light Spill Neutralization",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 517,
+  "name": "Multi-Strobe Ghost Trail Stacking",
+  "full": "Multi-Strobe Ghost Trail Stacking",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 518,
+  "name": "High-Speed Water Droplet / Splash Sculpting",
+  "full": "High-Speed Water Droplet / Splash Sculpting",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 519,
+  "name": "Focus Breathing Compensation Matrix",
+  "full": "Focus Breathing Compensation Matrix",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 520,
+  "name": "Motion Blur Synthesis",
+  "full": "Motion Blur Synthesis (Directional velocity vector blurring)",
+  "status": "partial",
+  "impl": "param:motionBlur",
+  "note": "Horizontal only, uniform length. No angle, no per-subject or depth-aware blur."
+ },
+ {
+  "id": 521,
+  "name": "Motion Blur Deconvolution",
+  "full": "Motion Blur Deconvolution (Richardson-Lucy algorithm)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 522,
+  "name": "Rolling Shutter Wobble / Jello Removal",
+  "full": "Rolling Shutter Wobble / Jello Removal",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 523,
+  "name": "Non-Standard Geometry & Lens Science",
+  "full": "Non-Standard Geometry & Lens Science",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 524,
+  "name": "Fisheye Defishing",
+  "full": "Fisheye Defishing (Equidistant, stereographic, orthographic to rectilinear mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 525,
+  "name": "Scheimpflug Principle Alignment",
+  "full": "Scheimpflug Principle Alignment (Tilt-shift plane-of-focus emulation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 526,
+  "name": "Tilt-Shift Miniature Faking",
+  "full": "Tilt-Shift Miniature Faking (Selective linear gradient defocus)",
+  "status": "implemented",
+  "impl": "param:tiltShift",
+  "note": "Sharp horizontal band, graduated blur above and below, small saturation lift."
+ },
+ {
+  "id": 527,
+  "name": "Optical Center Calibration vs Geometric Center",
+  "full": "Optical Center Calibration vs Geometric Center",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 528,
+  "name": "Lateral Color Dispersion Correction",
+  "full": "Lateral Color Dispersion Correction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 529,
+  "name": "Anamorphic Mumps Correction",
+  "full": "Anamorphic Mumps Correction (Variable horizontal stretch across focal distances)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 530,
+  "name": "Perspective Convergence / Divergence Tuning",
+  "full": "Perspective Convergence / Divergence Tuning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 531,
+  "name": "Nodal Point Parallax Seam Healing",
+  "full": "Nodal Point Parallax Seam Healing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 532,
+  "name": "Horizon Warp Correction",
+  "full": "Horizon Warp Correction (Wide-angle barrel distortion leveling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 533,
+  "name": "Specialized Digital Formats, Drivers & Standards",
+  "full": "Specialized Digital Formats, Drivers & Standards",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 534,
+  "name": "Radiance HDR",
+  "full": "Radiance HDR (.hdr)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 535,
+  "name": "OpenEXR 32-bit Float Multichannel",
+  "full": "OpenEXR 32-bit Float Multichannel (.exr)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 536,
+  "name": "Scalable Vector Graphics",
+  "full": "Scalable Vector Graphics (SVG raster mask paths)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 537,
+  "name": "High Efficiency Image File",
+  "full": "High Efficiency Image File (.heic / .heif)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 538,
+  "name": "AV1 Image File Format",
+  "full": "AV1 Image File Format (.avif)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 539,
+  "name": "JPEG XL",
+  "full": "JPEG XL (.jxl)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 540,
+  "name": "JPEG XS",
+  "full": "JPEG XS (Low-latency mezzanine format)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 541,
+  "name": "RawTherapee / Darktable Pipeline Equivalents",
+  "full": "RawTherapee / Darktable Pipeline Equivalents (Filmic RGB, AgX, Tone Equalizer)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Browsers cannot decode RAW files and Lumen ships no RAW decoder. Export a TIFF or JPEG from your RAW converter first."
+ },
+ {
+  "id": 542,
+  "name": "WCON / TCON Calibration",
+  "full": "WCON / TCON Calibration (Wide/Tele conversion lens digital profiles)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 543,
+  "name": "TWAIN / WIA Scanner Driver Image Interface",
+  "full": "TWAIN / WIA Scanner Driver Image Interface",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 544,
+  "name": "Phase One IIQ / Hasselblad 3FR Medium Format Raw Structures",
+  "full": "Phase One IIQ / Hasselblad 3FR Medium Format Raw Structures",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 545,
+  "name": "DNG Profile Editor",
+  "full": "DNG Profile Editor (Custom dual-illuminant camera calibration)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 546,
+  "name": "Industrial Reproduction, Archival & Gallery Output",
+  "full": "Industrial Reproduction, Archival & Gallery Output",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 547,
+  "name": "FOGRA / GRACoL Press Standards",
+  "full": "FOGRA / GRACoL Press Standards",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 548,
+  "name": "G7 Calibration",
+  "full": "G7 Calibration (Neutral gray balance curve control)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 549,
+  "name": "Metamerism Index",
+  "full": "Metamerism Index (MI)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 550,
+  "name": "Color Rendering Index",
+  "full": "Color Rendering Index (Ra / Re)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 551,
+  "name": "Lightfastness Rating",
+  "full": "Lightfastness Rating (Blue Wool Scale simulation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 552,
+  "name": "D-max Density Calibration",
+  "full": "D-max Density Calibration (Reflection densitometry)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 553,
+  "name": "Deckled Edge Simulation",
+  "full": "Deckled Edge Simulation (Torn archival paper borders)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 554,
+  "name": "Canvas Gallery Wrap Bleed",
+  "full": "Canvas Gallery Wrap Bleed (Mirrored, stretched, or solid color border calculation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 555,
+  "name": "Matte Shadow Dulling Compensation",
+  "full": "Matte Shadow Dulling Compensation (Ink sinkage / absorbency calibration)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 556,
+  "name": "Pigment vs Dye Ink Profiling",
+  "full": "Pigment vs Dye Ink Profiling",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 557,
+  "name": "Optical Brightening Agent",
+  "full": "Optical Brightening Agent (OBA) Fluorescence Compensation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 558,
+  "name": "Bronzing",
+  "full": "Bronzing (Differential gloss on heavy pigment inks)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 559,
+  "name": "Differential Sheen",
+  "full": "Differential Sheen (Gloss differential under raking light)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 560,
+  "name": "Acid-Free Rag Substrate Profiling",
+  "full": "Acid-Free Rag Substrate Profiling",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 561,
+  "name": "Mathematical & Signal Processing Operations",
+  "full": "Mathematical & Signal Processing Operations",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 562,
+  "name": "Fast Fourier Transform",
+  "full": "Fast Fourier Transform (FFT / 2D FFT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 563,
+  "name": "Spatial Frequency Filtering",
+  "full": "Spatial Frequency Filtering (High-pass, band-pass, low-pass)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 564,
+  "name": "Discrete Cosine Transform",
+  "full": "Discrete Cosine Transform (DCT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 565,
+  "name": "Convolution Kernel / Convolution Matrix",
+  "full": "Convolution Kernel / Convolution Matrix",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 566,
+  "name": "Sobel Filter",
+  "full": "Sobel Filter (Edge detection operator)",
+  "status": "partial",
+  "impl": "fn:analyse",
+  "note": "Laplacian used internally for sharpness and noise."
+ },
+ {
+  "id": 567,
+  "name": "Laplacian Filter / Laplacian of Gaussian",
+  "full": "Laplacian Filter / Laplacian of Gaussian (LoG)",
+  "status": "partial",
+  "impl": "fn:analyse",
+  "note": "Laplacian used internally for sharpness and noise."
+ },
+ {
+  "id": 568,
+  "name": "Affine Transformation",
+  "full": "Affine Transformation (Linear 2D coordinate mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 569,
+  "name": "Projective Transformation",
+  "full": "Projective Transformation (Homography / Planar perspective matrix)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 570,
+  "name": "Inverse Square Law Compensation",
+  "full": "Inverse Square Law Compensation (Falloff fall-back calibration)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 571,
+  "name": "Look-Up Table",
+  "full": "Look-Up Table (LUT) Trilinear vs. Tetrahedral Interpolation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 572,
+  "name": "Gamma Compression",
+  "full": "Gamma Compression (V_{out} = V_{in}^\\gamma)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 573,
+  "name": "Perceptual Quantization Curve",
+  "full": "Perceptual Quantization Curve (SMPTE ST 2084)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 574,
+  "name": "Logarithmic Curves",
+  "full": "Logarithmic Curves (LogC, S-Log3, V-Log, Canon Log raw grading)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 575,
+  "name": "Matrix Multiplication for Color Conversion",
+  "full": "Matrix Multiplication for Color Conversion (3x3 Matrix Profiling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 576,
+  "name": "Sub-Pixel Rendering",
+  "full": "Sub-Pixel Rendering",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 577,
+  "name": "Point Spread Function",
+  "full": "Point Spread Function (PSF) Engineering",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 578,
+  "name": "Specialist Scientific, Astrophotography & Multispectral Processing",
+  "full": "Specialist Scientific, Astrophotography & Multispectral Processing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 579,
+  "name": "Bad Pixel Mapping",
+  "full": "Bad Pixel Mapping (BPM)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 580,
+  "name": "Column Defect / Sensor Line Repair",
+  "full": "Column Defect / Sensor Line Repair",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 581,
+  "name": "Overscan Calibration",
+  "full": "Overscan Calibration",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 582,
+  "name": "Bayer CFA",
+  "full": "Bayer CFA (Color Filter Array) Decoupling",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 583,
+  "name": "De-Bayering Algorithms",
+  "full": "De-Bayering Algorithms:",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 584,
+  "name": "Variable Number of Gradients",
+  "full": "Variable Number of Gradients (VNG)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 585,
+  "name": "Adaptive Homogeneity-Directed",
+  "full": "Adaptive Homogeneity-Directed (AHD)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 586,
+  "name": "Directional Cubic Bayer",
+  "full": "Directional Cubic Bayer (DCB)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 587,
+  "name": "Pixel Grouping",
+  "full": "Pixel Grouping (PPG)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 588,
+  "name": "LMMSE",
+  "full": "LMMSE (Linear Minimum Mean Square Error)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 589,
+  "name": "Narrowband Processing",
+  "full": "Narrowband Processing (SHO / Hubble Palette mapping: Sulfur II, Hydrogen-Alpha, Oxygen III)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 590,
+  "name": "HOO / Halpha-OIII Bi-Color Composition",
+  "full": "HOO / Halpha-OIII Bi-Color Composition",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 591,
+  "name": "Star Reduction",
+  "full": "Star Reduction (Morphological erosion filtering)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 592,
+  "name": "Star De-Emphasis / Starless Extraction",
+  "full": "Star De-Emphasis / Starless Extraction (Starnet++ / StarXTerminator separation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 593,
+  "name": "Background Extraction / Gradient Flattening",
+  "full": "Background Extraction / Gradient Flattening (Dynamic / Automatic Background Extraction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 594,
+  "name": "Chrominance Denoising via Wavelet Transform",
+  "full": "Chrominance Denoising via Wavelet Transform (À Trous Wavelets / Multiscale Linear Transform)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 595,
+  "name": "Plate-Solving WCS",
+  "full": "Plate-Solving WCS (World Coordinate System) Header Injection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 596,
+  "name": "Solar Continuum Balancing",
+  "full": "Solar Continuum Balancing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 597,
+  "name": "Planetary Lucky Imaging",
+  "full": "Planetary Lucky Imaging (Frame selection, alignment, and ranking percentage)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 598,
+  "name": "Scanning, Analog Digitization & Film Archival",
+  "full": "Scanning, Analog Digitization & Film Archival",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 599,
+  "name": "Digital ICE",
+  "full": "Digital ICE (Infrared Clean Effects for dust/scratch mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 600,
+  "name": "Infrared Defect Channel",
+  "full": "Infrared Defect Channel (Dust identification via IR sensor pass)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 601,
+  "name": "Film Grain De-Emphasis",
+  "full": "Film Grain De-Emphasis (Diffuse light scanning / wet-gate scanning)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 602,
+  "name": "Fluid Mounting / Wet-Mount Scanning",
+  "full": "Fluid Mounting / Wet-Mount Scanning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 603,
+  "name": "Film Density Range",
+  "full": "Film Density Range (D_{max} - D_{min} Dynamic Range Matching)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 604,
+  "name": "Linear RAW Inversion",
+  "full": "Linear RAW Inversion",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 605,
+  "name": "Orange Mask Subtraction",
+  "full": "Orange Mask Subtraction (Chemical dye base balancing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 606,
+  "name": "D-Min Clear Base Calibration",
+  "full": "D-Min Clear Base Calibration",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 607,
+  "name": "Scanned Halftone Descreening",
+  "full": "Scanned Halftone Descreening (FFT-based screen artifact suppression)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 608,
+  "name": "Newton Rings Elimination",
+  "full": "Newton Rings Elimination (Anti-Newton ring glass profile)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 609,
+  "name": "Micro-Contrast Emulsion Extraction",
+  "full": "Micro-Contrast Emulsion Extraction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 610,
+  "name": "Frame Registration / Sprocket Alignment",
+  "full": "Frame Registration / Sprocket Alignment",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 611,
+  "name": "Hardware Profiling, Calibration & Display Metrics",
+  "full": "Hardware Profiling, Calibration & Display Metrics",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 612,
+  "name": "3D LUT Hardware Upload",
+  "full": "3D LUT Hardware Upload (Internal monitor calibration)",
+  "status": "implemented",
+  "impl": "arch:renderer-lut3d",
+  "note": "The LUT is uploaded once as a WebGL2 3D texture (texImage3D) and sampled by the GPU."
+ },
+ {
+  "id": 613,
+  "name": "White Point Drift Compensation",
+  "full": "White Point Drift Compensation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 614,
+  "name": "Uniformity Compensation",
+  "full": "Uniformity Compensation (Direct Matrix Luminance/Color uniformity leveling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 615,
+  "name": "Black Level Lift",
+  "full": "Black Level Lift (Glow/IPS panel flare compensation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 616,
+  "name": "Delta E Color Difference Metrics",
+  "full": "Delta E Color Difference Metrics (\\Delta E 2000, \\Delta E 94, \\Delta E 76)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 617,
+  "name": "Color Temp / Correlated Color Temperature Target",
+  "full": "Color Temp / Correlated Color Temperature Target (CCT: 5000K, 5500K, 6500K)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 618,
+  "name": "Ambient Light Sensor Sync",
+  "full": "Ambient Light Sensor Sync (Smart ambient room profiling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 619,
+  "name": "Backlight PWM Flicker Artifact Masking",
+  "full": "Backlight PWM Flicker Artifact Masking",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 620,
+  "name": "Variable Refresh Rate / G-Sync Visual Ghosting Check",
+  "full": "Variable Refresh Rate / G-Sync Visual Ghosting Check",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 621,
+  "name": "Wide Color Gamut",
+  "full": "Wide Color Gamut (WCG) Clipping Verification",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 622,
+  "name": "Bit Depth Pipeline Verification",
+  "full": "Bit Depth Pipeline Verification (True 10-bit output vs. 8-bit + FRC / Frame Rate Control)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 623,
+  "name": "High Bit-Rate DisplayPort / HDMI 2.1 Bandwidth Verification",
+  "full": "High Bit-Rate DisplayPort / HDMI 2.1 Bandwidth Verification",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 624,
+  "name": "Specialized Studio, E-Commerce & Commercial Automation",
+  "full": "Specialized Studio, E-Commerce & Commercial Automation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 625,
+  "name": "Image Tiling",
+  "full": "Image Tiling (Deep zoom pyramidal tiles / DeepZoom / IIIF specs)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 626,
+  "name": "Barcode / QR Code Driven Session Sorting",
+  "full": "Barcode / QR Code Driven Session Sorting",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 627,
+  "name": "Automated SKU Renaming & Metadata Tagging",
+  "full": "Automated SKU Renaming & Metadata Tagging",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 628,
+  "name": "Hot Folder Automation",
+  "full": "Hot Folder Automation (Watched folder daemon processing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 629,
+  "name": "Applescript / ExtendScript / UXP",
+  "full": "Applescript / ExtendScript / UXP (Unified Extensibility Platform) Automation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 630,
+  "name": "Ghost Mannequin / Invisible Man Alignment",
+  "full": "Ghost Mannequin / Invisible Man Alignment",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 631,
+  "name": "Apparel Symmetry Warping",
+  "full": "Apparel Symmetry Warping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 632,
+  "name": "Specular Highlighting",
+  "full": "Specular Highlighting (Edge strobe / rim accentuation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 633,
+  "name": "Shadow Caster Generation",
+  "full": "Shadow Caster Generation (Synthetic directional shadow rendering)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 634,
+  "name": "Ground Shadow Separation",
+  "full": "Ground Shadow Separation (Drop, cast, contact, ambient blend)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 635,
+  "name": "White Backdrop Punching",
+  "full": "White Backdrop Punching (RGB 255 pure white isolation without haloing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 636,
+  "name": "Silhouette Mask Validation",
+  "full": "Silhouette Mask Validation (Zero-tolerance edge clipping for commercial packaging)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 637,
+  "name": "Head-to-Toe Vertical Scaling",
+  "full": "Head-to-Toe Vertical Scaling (Standardized catalog framing constraints)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 638,
+  "name": "Digital Forensics, Image Integrity & Sensor Diagnostics",
+  "full": "Digital Forensics, Image Integrity & Sensor Diagnostics",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 639,
+  "name": "Sensor Dust Map Subtraction",
+  "full": "Sensor Dust Map Subtraction (Camera-embedded dust coordinate mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 640,
+  "name": "Photo-Response Non-Uniformity",
+  "full": "Photo-Response Non-Uniformity (PRNU Sensor Fingerprinting)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 641,
+  "name": "Fixed-Pattern Noise",
+  "full": "Fixed-Pattern Noise (FPN) Profiling",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 642,
+  "name": "Dark Signal Non-Uniformity",
+  "full": "Dark Signal Non-Uniformity (DSNU)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 643,
+  "name": "Error Level Analysis",
+  "full": "Error Level Analysis (ELA) Compression Variance",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 644,
+  "name": "Quantization Table Discrepancy Matching",
+  "full": "Quantization Table Discrepancy Matching (DQT / DHT analysis)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 645,
+  "name": "Double Compression Detection",
+  "full": "Double Compression Detection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 646,
+  "name": "Copy-Move Forgery Detection",
+  "full": "Copy-Move Forgery Detection (Block-based vs Keypoint-based)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 647,
+  "name": "Splicing Detection via Chromatic Aberration Vectors",
+  "full": "Splicing Detection via Chromatic Aberration Vectors",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 648,
+  "name": "Lighting Direction Discrepancy Verification",
+  "full": "Lighting Direction Discrepancy Verification (Illumination sphere reconstruction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 649,
+  "name": "Hex Header Inspection",
+  "full": "Hex Header Inspection (Magic bytes validation: FF D8 FF, 49 49 2A 00, etc.)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 650,
+  "name": "Lossless Metadata Re-Injection",
+  "full": "Lossless Metadata Re-Injection (Lossless JHO / Exif recovery)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 651,
+  "name": "Cryptographic Provenance Ledgering",
+  "full": "Cryptographic Provenance Ledgering (C2PA Manifest Embedding)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 652,
+  "name": "Archival Storage, Codecs & Delivery Protocols",
+  "full": "Archival Storage, Codecs & Delivery Protocols",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 653,
+  "name": "Interlaced vs Progressive Rasterization",
+  "full": "Interlaced vs Progressive Rasterization",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 654,
+  "name": "Lossless WebP vs Lossy WebP Encoding",
+  "full": "Lossless WebP vs Lossy WebP Encoding",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 655,
+  "name": "Chroma Subsampling Matrix",
+  "full": "Chroma Subsampling Matrix (4:4:4, 4:2:2, 4:2:0)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 656,
+  "name": "JPEG Baseline vs Progressive DCT Scanning",
+  "full": "JPEG Baseline vs Progressive DCT Scanning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 657,
+  "name": "Deflate Compression",
+  "full": "Deflate Compression (Zip-based TIFF compression)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 658,
+  "name": "LZW",
+  "full": "LZW (Lempel-Ziv-Welch) Compression",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 659,
+  "name": "PackBits Compression",
+  "full": "PackBits Compression",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 660,
+  "name": "Lossless JPEG / JPEG-LS",
+  "full": "Lossless JPEG / JPEG-LS",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 661,
+  "name": "Sidecar Synchronization",
+  "full": "Sidecar Synchronization (.xmp, .dop, .cos)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 662,
+  "name": "Read-Only Asset Locking",
+  "full": "Read-Only Asset Locking (Vault storage architectures)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 663,
+  "name": "Cloud Sync Manifest / Conflict Resolution Metadata",
+  "full": "Cloud Sync Manifest / Conflict Resolution Metadata",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 664,
+  "name": "Long-Term Cold Storage Preservation",
+  "full": "Long-Term Cold Storage Preservation (OAIS compliance formats / PDF/A, TIFF-EP)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 665,
+  "name": "Deep Mathematical, Algorithmic & Computer Vision Transforms",
+  "full": "Deep Mathematical, Algorithmic & Computer Vision Transforms",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 666,
+  "name": "Wavelet Transform / Discrete Wavelet Transform",
+  "full": "Wavelet Transform / Discrete Wavelet Transform (DWT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 667,
+  "name": "Fourier Transform",
+  "full": "Fourier Transform (FFT / Fast Fourier Transform for frequency domain filtering)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 668,
+  "name": "Frequency Domain vs Spatial Domain",
+  "full": "Frequency Domain vs Spatial Domain",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 669,
+  "name": "Discrete Cosine Transform",
+  "full": "Discrete Cosine Transform (DCT — JPEG block quantization basis)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 670,
+  "name": "Convolution Kernel / Matrix Convolution",
+  "full": "Convolution Kernel / Matrix Convolution",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 671,
+  "name": "Sobel Operator",
+  "full": "Sobel Operator (Gradient magnitude edge detection)",
+  "status": "partial",
+  "impl": "fn:analyse",
+  "note": "Laplacian used internally for sharpness and noise."
+ },
+ {
+  "id": 672,
+  "name": "Laplacian Operator / Laplacian of Gaussian",
+  "full": "Laplacian Operator / Laplacian of Gaussian (LoG edge extraction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 673,
+  "name": "Canny Edge Detection",
+  "full": "Canny Edge Detection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 674,
+  "name": "Hough Transform",
+  "full": "Hough Transform (Line, circle, and perspective axis detection)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 675,
+  "name": "Guided Filter",
+  "full": "Guided Filter (Edge-preserving spatial smoothing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 676,
+  "name": "Kuwahara Filter",
+  "full": "Kuwahara Filter (Painterly smoothing preserving sharp boundaries)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 677,
+  "name": "Total Variation Denoising",
+  "full": "Total Variation Denoising (TV Regularization)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 678,
+  "name": "Non-Local Means",
+  "full": "Non-Local Means (NL-Means denoising algorithm)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 679,
+  "name": "Median Cut Algorithm",
+  "full": "Median Cut Algorithm (Color palette reduction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 680,
+  "name": "Otsu’s Thresholding",
+  "full": "Otsu’s Thresholding (Bimodal image thresholding)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 681,
+  "name": "Morphological Operations",
+  "full": "Morphological Operations:",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 682,
+  "name": "Erosion",
+  "full": "Erosion",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 683,
+  "name": "Dilation",
+  "full": "Dilation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 684,
+  "name": "Opening",
+  "full": "Opening (Erosion followed by Dilation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 685,
+  "name": "Closing",
+  "full": "Closing (Dilation followed by Erosion)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 686,
+  "name": "Morphological Gradient",
+  "full": "Morphological Gradient",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 687,
+  "name": "Top Hat / Black Hat Transform",
+  "full": "Top Hat / Black Hat Transform",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 688,
+  "name": "Structure Tensor",
+  "full": "Structure Tensor (Local orientation and coherence estimation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 689,
+  "name": "Scale-Invariant Feature Transform",
+  "full": "Scale-Invariant Feature Transform (SIFT)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 690,
+  "name": "Speeded-Up Robust Features",
+  "full": "Speeded-Up Robust Features (SURF)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 691,
+  "name": "RANSAC",
+  "full": "RANSAC (Random Sample Consensus for plate alignment)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 692,
+  "name": "Poisson Image Editing",
+  "full": "Poisson Image Editing (Gradient domain seamless cloning)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 693,
+  "name": "Optical Physics, Wave Optics & Atmospheric Phenomena",
+  "full": "Optical Physics, Wave Optics & Atmospheric Phenomena",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 694,
+  "name": "Point Spread Function",
+  "full": "Point Spread Function (PSF Engineering)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 695,
+  "name": "Modulation Transfer Function",
+  "full": "Modulation Transfer Function (MTF) / Spatial Frequency Response (SFR)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 696,
+  "name": "Optical Transfer Function",
+  "full": "Optical Transfer Function (OTF)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 697,
+  "name": "Rayleigh Scattering",
+  "full": "Rayleigh Scattering (Atmospheric sky color / blue daylight falloff)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 698,
+  "name": "Mie Scattering",
+  "full": "Mie Scattering (Fog, haze, and cloud moisture diffusion)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 699,
+  "name": "Tyndall Effect",
+  "full": "Tyndall Effect (Volumetric light beam manifestation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 700,
+  "name": "Glare / Veiling Glare",
+  "full": "Glare / Veiling Glare",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 701,
+  "name": "Ghosting",
+  "full": "Ghosting (Internal lens reflection artifacts)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 702,
+  "name": "Sunstar / Diffraction Spike Synthesis",
+  "full": "Sunstar / Diffraction Spike Synthesis (Even vs odd aperture blade math)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 703,
+  "name": "Newton’s Rings",
+  "full": "Newton’s Rings (Interference fringe removal in film flatbed scanning)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 704,
+  "name": "Thin-Film Interference",
+  "full": "Thin-Film Interference (Iridescence in oil/bubble/lens coatings)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 705,
+  "name": "Caustics Synthesis",
+  "full": "Caustics Synthesis (Refractive light concentration patterns)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 706,
+  "name": "Brewster’s Angle Calibration",
+  "full": "Brewster’s Angle Calibration (Cross-polarization flare nulling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 707,
+  "name": "Optical Vignetting",
+  "full": "Optical Vignetting (Cat’s eye mechanical aperture pupil clipping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 708,
+  "name": "Pixel Vignetting",
+  "full": "Pixel Vignetting (Angle of incidence sensor micro-lens loss)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 709,
+  "name": "Color Shading / Lens Cast",
+  "full": "Color Shading / Lens Cast (CRA — Chief Ray Angle sensor mismatch)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 710,
+  "name": "Low-Level Sensor Architecture & Raw Conversion Mechanics",
+  "full": "Low-Level Sensor Architecture & Raw Conversion Mechanics",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 711,
+  "name": "Fill Factor",
+  "full": "Fill Factor (Microlens active photosite ratio)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 712,
+  "name": "Full Well Capacity",
+  "full": "Full Well Capacity (Charge saturation threshold)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 713,
+  "name": "Conversion Gain",
+  "full": "Conversion Gain (Dual Gain / Dual Native ISO switching threshold)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 714,
+  "name": "Analog-to-Digital Converter",
+  "full": "Analog-to-Digital Converter (ADC) Quantization",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 715,
+  "name": "Dark Current Noise",
+  "full": "Dark Current Noise (Thermal leakage charge)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 716,
+  "name": "Reset Noise",
+  "full": "Reset Noise (kTC Noise)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 717,
+  "name": "Correlated Double Sampling",
+  "full": "Correlated Double Sampling (CDS)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 718,
+  "name": "FPN",
+  "full": "FPN (Fixed Pattern Noise: DSNU — Dark Signal Non-Uniformity / PRNU — Photo Response Non-Uniformity)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 719,
+  "name": "Green Split / Green Imbalance",
+  "full": "Green Split / Green Imbalance (Gr vs Gb channel sensitivity discrepancy)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 720,
+  "name": "Color Filter Array",
+  "full": "Color Filter Array (CFA):",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 721,
+  "name": "Bayer CFA",
+  "full": "Bayer CFA (RGGB, BGGR, GRBG, RGGB)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 722,
+  "name": "Quad Bayer / Tetracell",
+  "full": "Quad Bayer / Tetracell",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 723,
+  "name": "Nonacell",
+  "full": "Nonacell (3x3 binning)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 724,
+  "name": "Monochrome",
+  "full": "Monochrome (Debayer-free sensor raw conversion)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 725,
+  "name": "Foveon X3",
+  "full": "Foveon X3 (Full-color direct multi-layer silicon stack)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 726,
+  "name": "Black Level Calibration",
+  "full": "Black Level Calibration (BLC clamp offsets)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 727,
+  "name": "Linearization Table",
+  "full": "Linearization Table (Curve conversion before demosaicing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 728,
+  "name": "White Balance Prescale Coefficients",
+  "full": "White Balance Prescale Coefficients (R_{\\text{gain}}, B_{\\text{gain}})",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 729,
+  "name": "Color Matrix Transform",
+  "full": "Color Matrix Transform (CFA spectral response to standard XYZ matrix)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 730,
+  "name": "Colorimetric Theory & Advanced Chromatic Spaces",
+  "full": "Colorimetric Theory & Advanced Chromatic Spaces",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 731,
+  "name": "CIE 1931 RGB / XYZ Color Matching Functions",
+  "full": "CIE 1931 RGB / XYZ Color Matching Functions (\\bar{x}(\\lambda), \\bar{y}(\\lambda), \\bar{z}(\\lambda))",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 732,
+  "name": "CIE 1976 UCS",
+  "full": "CIE 1976 UCS (u', v' chromaticity diagram)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 733,
+  "name": "Hunt Effect",
+  "full": "Hunt Effect (Apparent saturation increase with luminance)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 734,
+  "name": "Stevens Effect",
+  "full": "Stevens Effect (Apparent contrast increase with luminance)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 735,
+  "name": "Bezold–Brücke Shift",
+  "full": "Bezold–Brücke Shift (Apparent hue shift with changing brightness)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 736,
+  "name": "Abney Effect",
+  "full": "Abney Effect (Hue shift as white light is added to monochromatic light)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 737,
+  "name": "Helmholtz–Kohlrausch Effect",
+  "full": "Helmholtz–Kohlrausch Effect (Perceived brightness increase caused by high saturation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 738,
+  "name": "Purkinje Shift",
+  "full": "Purkinje Shift (Scotopic low-light sensitivity shift toward blue/cyan)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 739,
+  "name": "Mesopic / Photopic / Scotopic Vision Adaptation",
+  "full": "Mesopic / Photopic / Scotopic Vision Adaptation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 740,
+  "name": "Chromatic Adaptation Transforms",
+  "full": "Chromatic Adaptation Transforms (CAT02, CAT16, von Kries, Bradford transform)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 741,
+  "name": "White Point Chromaticity Coordinates",
+  "full": "White Point Chromaticity Coordinates:",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 742,
+  "name": "Standard Illuminant A",
+  "full": "Standard Illuminant A (Tungsten 2856K)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 743,
+  "name": "Standard Illuminant D50",
+  "full": "Standard Illuminant D50 (Horizon daylight 5003K)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 744,
+  "name": "Standard Illuminant D55",
+  "full": "Standard Illuminant D55 (Mid-morning daylight 5500K)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 745,
+  "name": "Standard Illuminant D65",
+  "full": "Standard Illuminant D65 (Noon daylight 6504K)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 746,
+  "name": "Standard Illuminant D75",
+  "full": "Standard Illuminant D75 (Overcast sky 7500K)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 747,
+  "name": "Standard Illuminant E",
+  "full": "Standard Illuminant E (Equal-energy radiator)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 748,
+  "name": "Standard Illuminant F series",
+  "full": "Standard Illuminant F series (Fluorescent lamp spectral spikes)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 749,
+  "name": "Gamut Cusp / Gamut Boundary Descriptor",
+  "full": "Gamut Cusp / Gamut Boundary Descriptor (GBD)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 750,
+  "name": "Gamut Compression",
+  "full": "Gamut Compression (Reversible perceptual rolloff into destination gamut)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 751,
+  "name": "Gamut Clipping",
+  "full": "Gamut Clipping (Destructive boundary truncation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 752,
+  "name": "Graphic Design, Vector & Typography Integration in Photography",
+  "full": "Graphic Design, Vector & Typography Integration in Photography",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 753,
+  "name": "Kerning",
+  "full": "Kerning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 754,
+  "name": "Tracking",
+  "full": "Tracking (Letter-spacing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 755,
+  "name": "Leading",
+  "full": "Leading (Line-spacing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 756,
+  "name": "Baseline Shift",
+  "full": "Baseline Shift",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 757,
+  "name": "Ligatures / Stylistic Alternates",
+  "full": "Ligatures / Stylistic Alternates",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 758,
+  "name": "Vector Paths",
+  "full": "Vector Paths (Bézier curves, anchor points, control handles)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 759,
+  "name": "Rasterization",
+  "full": "Rasterization (Converting vector typography/shapes to raster pixels)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 760,
+  "name": "Non-Destructive Live Type",
+  "full": "Non-Destructive Live Type",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 761,
+  "name": "Text Along Path",
+  "full": "Text Along Path (Text wrapped along curved contours)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 762,
+  "name": "Glyph Mapping",
+  "full": "Glyph Mapping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 763,
+  "name": "Paragraph Styles / Character Styles",
+  "full": "Paragraph Styles / Character Styles",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 764,
+  "name": "Clipping Path",
+  "full": "Clipping Path (Vector silhouetting for editorial product dropouts)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 765,
+  "name": "Compound Paths",
+  "full": "Compound Paths",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 766,
+  "name": "Raster Anti-Aliasing Engines",
+  "full": "Raster Anti-Aliasing Engines (Subpixel, Crisp, Strong, Smooth)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 767,
+  "name": "Smart Typography",
+  "full": "Smart Typography (Curly quotes vs straight quotes, en-dash, em-dash)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 768,
+  "name": "Enterprise Digital Asset Management",
+  "full": "Enterprise Digital Asset Management (DAM) & High-Volume Operations",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 769,
+  "name": "Ingest / Offloading",
+  "full": "Ingest / Offloading",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 770,
+  "name": "Checksum Verification on Ingest",
+  "full": "Checksum Verification on Ingest (XXHash, SHA-1, MD5 verified transfer)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 771,
+  "name": "Metadata Taxonomy",
+  "full": "Metadata Taxonomy (Hierarchical controlled vocabularies)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 772,
+  "name": "Controlled Vocabulary",
+  "full": "Controlled Vocabulary (CV) Keyword Indexing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 773,
+  "name": "Sidecar Synchronization",
+  "full": "Sidecar Synchronization (.xmp writeback vs internal database storage)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 774,
+  "name": "Non-Destructive Parametric Recipe",
+  "full": "Non-Destructive Parametric Recipe (.cos, .drx, .pp3 metadata instructions)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 775,
+  "name": "Keywording",
+  "full": "Keywording: Descriptive, Thematic, Structural",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 776,
+  "name": "Star Ratings",
+  "full": "Star Ratings (1–5) vs Color Labels (Red, Yellow, Green, Blue, Purple)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 777,
+  "name": "Cull / Flagging",
+  "full": "Cull / Flagging (Pick, Reject, Unflagged)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 778,
+  "name": "Duplicate Detection",
+  "full": "Duplicate Detection (Perceptual hash collision identification)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 779,
+  "name": "Contact Sheet Generation",
+  "full": "Contact Sheet Generation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 780,
+  "name": "PDF Proofing Sheet / Client Web Gallery Generation",
+  "full": "PDF Proofing Sheet / Client Web Gallery Generation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 781,
+  "name": "Watermark Scaling",
+  "full": "Watermark Scaling: Proportional vs Fixed Pixel Dimension",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 782,
+  "name": "Asset Relinking / Missing File Reconnection",
+  "full": "Asset Relinking / Missing File Reconnection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 783,
+  "name": "Proxy Editing Workflow",
+  "full": "Proxy Editing Workflow (Low-res offline workflow for NAS/SAN servers)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 784,
+  "name": "Hot Folder Automation",
+  "full": "Hot Folder Automation (Watched folder auto-processing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 785,
+  "name": "CLI Batch Processing",
+  "full": "CLI Batch Processing (ImageMagick, GraphicsMagick, ExifTool automation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 786,
+  "name": "Scientific, Medical & Multispectral Post-Processing",
+  "full": "Scientific, Medical & Multispectral Post-Processing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 787,
+  "name": "Focus Stacking Scale Normalization",
+  "full": "Focus Stacking Scale Normalization (Compensating optical magnification drift)",
+  "status": "unsupported",
+  "impl": null,
+  "note": "Needs several aligned frames merged together. Lumen edits one photo at a time."
+ },
+ {
+  "id": 788,
+  "name": "Extended Depth of Field",
+  "full": "Extended Depth of Field (EDOF computation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 789,
+  "name": "Multi-Spectral Composite",
+  "full": "Multi-Spectral Composite (Ultraviolet + Visible + Near-Infrared layers)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 790,
+  "name": "Photometric Stereo",
+  "full": "Photometric Stereo (3D surface normal recovery from multi-light captures)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 791,
+  "name": "Reflectance Transformation Imaging",
+  "full": "Reflectance Transformation Imaging (RTI — interactive surface raking light)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 792,
+  "name": "False Color Elevation Mapping",
+  "full": "False Color Elevation Mapping",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 793,
+  "name": "Radiometric Calibration",
+  "full": "Radiometric Calibration (Absolute pixel-to-luminance energy mapping)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 794,
+  "name": "Background Subtraction",
+  "full": "Background Subtraction (Flat baseline reference removal)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 795,
+  "name": "Ratio Imaging",
+  "full": "Ratio Imaging (Dividing one spectral band by another)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 796,
+  "name": "Pixel Binning",
+  "full": "Pixel Binning (Hardware or software 2\\times2, 3\\times3, 4\\times4 SNR aggregation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 797,
+  "name": "High-Content Analysis Thresholding",
+  "full": "High-Content Analysis Thresholding",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 798,
+  "name": "Deconvolution Microscopy Sharpening",
+  "full": "Deconvolution Microscopy Sharpening",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 799,
+  "name": "Pseudocolor / Heatmap LUT Mapping",
+  "full": "Pseudocolor / Heatmap LUT Mapping (Thermal, turbo, viridis, magma palettes)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 800,
+  "name": "Flat-Bed Scanner Calibration",
+  "full": "Flat-Bed Scanner Calibration (IT8.7/2 reflective & IT8.7/1 transmissive targets)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 801,
+  "name": "Optical Density",
+  "full": "Optical Density (OD = \\log_{10}(1/T) transmission calibration)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 802,
+  "name": "Modern Display Standards, HDR Mastering & Brightness Encodings",
+  "full": "Modern Display Standards, HDR Mastering & Brightness Encodings",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 803,
+  "name": "Maximum Content Light Level",
+  "full": "Maximum Content Light Level (MaxCLL)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 804,
+  "name": "Maximum Frame-Average Light Level",
+  "full": "Maximum Frame-Average Light Level (MaxFALL)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 805,
+  "name": "Ultra HDR Image Format",
+  "full": "Ultra HDR Image Format (.jpg with embedded ISO 21496-1 gain map)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 806,
+  "name": "Apple ProRAW Local Tone Map",
+  "full": "Apple ProRAW Local Tone Map (LTM) Gain Map",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 807,
+  "name": "Target Display Peak Brightness",
+  "full": "Target Display Peak Brightness (Nits / \\text{cd/m}^2)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 808,
+  "name": "Extended Dynamic Range",
+  "full": "Extended Dynamic Range (EDR Headroom / EDR Factor)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 809,
+  "name": "BT.1886 Reference Gamma Curve",
+  "full": "BT.1886 Reference Gamma Curve",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 810,
+  "name": "Perceptual Quantizer",
+  "full": "Perceptual Quantizer (SMPTE ST 2084 / PQ EOTF)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 811,
+  "name": "Hybrid Log-Gamma",
+  "full": "Hybrid Log-Gamma (ARIB STD-B67 / HLG OETF)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 812,
+  "name": "Reference Viewing Environment",
+  "full": "Reference Viewing Environment (e.g., 5-nit dark room vs 100-nit office)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 813,
+  "name": "Ambient Light Sensor Compensation",
+  "full": "Ambient Light Sensor Compensation (Apple True Tone / Auto-calibrated white point)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 814,
+  "name": "Sub-pixel Rendering Layout",
+  "full": "Sub-pixel Rendering Layout (RGB Stripe, BGR, Pentile OLED, QD-OLED triangular layout)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 815,
+  "name": "Spatial Uniformity Correction",
+  "full": "Spatial Uniformity Correction (Panel luminance/chrominance grid compensation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 816,
+  "name": "Pulse-Width Modulation",
+  "full": "Pulse-Width Modulation (PWM) Flicker vs DC Dimming Display Artifacts",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 817,
+  "name": "Machine Learning Training, Latents & Diffusion Architecture",
+  "full": "Machine Learning Training, Latents & Diffusion Architecture",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 818,
+  "name": "Latent Space Inversion",
+  "full": "Latent Space Inversion (DDIM / Null-text inversion for editing)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 819,
+  "name": "ControlNet Conditioning Passes",
+  "full": "ControlNet Conditioning Passes:",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 820,
+  "name": "Canny Edge Guidance",
+  "full": "Canny Edge Guidance",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 821,
+  "name": "M-LSD Line Segment Detection",
+  "full": "M-LSD Line Segment Detection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 822,
+  "name": "HED / SoftEdge Boundary Detection",
+  "full": "HED / SoftEdge Boundary Detection",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 823,
+  "name": "OpenPose Skeleton Extraction",
+  "full": "OpenPose Skeleton Extraction",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 824,
+  "name": "MiDaS / ZoeDepth Depth Conditioning",
+  "full": "MiDaS / ZoeDepth Depth Conditioning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 825,
+  "name": "NormalBae Surface Normal Conditioning",
+  "full": "NormalBae Surface Normal Conditioning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 826,
+  "name": "Lineart / Anime Line Guidance",
+  "full": "Lineart / Anime Line Guidance",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 827,
+  "name": "Content Shuffle / T2I-Adapter",
+  "full": "Content Shuffle / T2I-Adapter",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 828,
+  "name": "IP-Adapter",
+  "full": "IP-Adapter (Image Prompt Style & Identity Injection)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 829,
+  "name": "LoRA",
+  "full": "LoRA (Low-Rank Adaptation weights for custom style or subject fidelity)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 830,
+  "name": "Denoising Strength / Img2Img Variance Control",
+  "full": "Denoising Strength / Img2Img Variance Control",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 831,
+  "name": "Classifier-Free Guidance",
+  "full": "Classifier-Free Guidance (CFG Scale)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 832,
+  "name": "Latent Upscaling / Hi-Res Fix",
+  "full": "Latent Upscaling / Hi-Res Fix",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 833,
+  "name": "Cross-Attention Map Editing",
+  "full": "Cross-Attention Map Editing (Prompt-to-prompt feature manipulation)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 834,
+  "name": "VAE",
+  "full": "VAE (Variational Autoencoder) Encoding / Decoding Artifacts",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 835,
+  "name": "Clip Skip / Text Encoder Layer Truncation",
+  "full": "Clip Skip / Text Encoder Layer Truncation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 836,
+  "name": "Low-Level Image Compression & Codec Artifacts",
+  "full": "Low-Level Image Compression & Codec Artifacts",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 837,
+  "name": "Discrete Wavelet Sub-bands",
+  "full": "Discrete Wavelet Sub-bands (LL, LH, HL, HH bands in JPEG 2000)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 838,
+  "name": "Macroblock / Coding Tree Unit",
+  "full": "Macroblock / Coding Tree Unit (CTU) Boundary Mismatch",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 839,
+  "name": "Gibbs Phenomenon",
+  "full": "Gibbs Phenomenon (Ringing artifacts along sharp contrast boundaries)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 840,
+  "name": "Color Bleeding",
+  "full": "Color Bleeding (High-frequency chroma detail loss due to subsampling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 841,
+  "name": "Staircasing Artifacts",
+  "full": "Staircasing Artifacts (Aliasing along non-horizontal/vertical contrast edges)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 842,
+  "name": "Inter-frame Prediction Artifacts",
+  "full": "Inter-frame Prediction Artifacts (P-frame / B-frame bleed in burst extraction)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 843,
+  "name": "Lossless Run-Length Encoding",
+  "full": "Lossless Run-Length Encoding (RLE in mask channels)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 844,
+  "name": "LZW Compression",
+  "full": "LZW Compression (TIFF / GIF dictionary compression)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 845,
+  "name": "Deflate / zlib Compression",
+  "full": "Deflate / zlib Compression (PNG raster encoding)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 846,
+  "name": "Floyd–Steinberg Dithering",
+  "full": "Floyd–Steinberg Dithering",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 847,
+  "name": "Ordered Dithering",
+  "full": "Ordered Dithering (Bayer matrix dithering)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 848,
+  "name": "Blue Noise Dithering vs White Noise Dithering",
+  "full": "Blue Noise Dithering vs White Noise Dithering",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 849,
+  "name": "Archival Preservation, Conservation & Film Scanning",
+  "full": "Archival Preservation, Conservation & Film Scanning",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 850,
+  "name": "Digital ICE",
+  "full": "Digital ICE (Infrared Clean Effects for dust/scratch hardware detection)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 851,
+  "name": "Wet-Mount Scanning",
+  "full": "Wet-Mount Scanning (Fluid mounting with optical immersion oil)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 852,
+  "name": "Newton Ring Suppression",
+  "full": "Newton Ring Suppression (Anti-Newton Glass / AN-Glass)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 853,
+  "name": "Density Dynamic Range",
+  "full": "Density Dynamic Range (D_{\\text{max}} - D_{\\text{min}} / Optical Density Scope)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 854,
+  "name": "Multi-Exposure Scanning",
+  "full": "Multi-Exposure Scanning (Hardware dual-pass scanner dynamic range expansion)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 855,
+  "name": "Color Fading Restoration",
+  "full": "Color Fading Restoration (Dye density curve reconstitution)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 856,
+  "name": "Vinegar Syndrome Detection",
+  "full": "Vinegar Syndrome Detection (Cellulose acetate film degradation profiling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 857,
+  "name": "Silver Mirroring Neutralization",
+  "full": "Silver Mirroring Neutralization",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 858,
+  "name": "Emulsion Reticulation",
+  "full": "Emulsion Reticulation (Micro-cracking due to sudden thermal shock)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 859,
+  "name": "Sprocket Hole Bleed Removal",
+  "full": "Sprocket Hole Bleed Removal (Overscanned 35mm / 120 film border handling)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 860,
+  "name": "Base Fog Density Offsetting",
+  "full": "Base Fog Density Offsetting",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 861,
+  "name": "Advanced Hardware Interface & Studio Automation",
+  "full": "Advanced Hardware Interface & Studio Automation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 862,
+  "name": "Capture One AppleScript / JavaScript API Automation",
+  "full": "Capture One AppleScript / JavaScript API Automation",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 863,
+  "name": "Adobe ExtendScript / UXP",
+  "full": "Adobe ExtendScript / UXP (Unified Extensibility Platform) Scripts",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 864,
+  "name": "Hot-Folder Auto-Ingest",
+  "full": "Hot-Folder Auto-Ingest",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 865,
+  "name": "Live Tethered Session Token Parsing",
+  "full": "Live Tethered Session Token Parsing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 866,
+  "name": "LUT Box Calibration",
+  "full": "LUT Box Calibration (Hardware EEPROM 3D LUT injection)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 867,
+  "name": "SDI / HDMI Raw Feed Metadata Parsing",
+  "full": "SDI / HDMI Raw Feed Metadata Parsing",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 868,
+  "name": "Colorimeter Integration",
+  "full": "Colorimeter Integration:",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 869,
+  "name": "ColorMunki / i1Display Calibration",
+  "full": "ColorMunki / i1Display Calibration",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 870,
+  "name": "Spectroradiometer Target Validation",
+  "full": "Spectroradiometer Target Validation (e.g., Konica Minolta / Photo Research)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 871,
+  "name": "CalMAN / DisplayCAL Calibration Report Verification",
+  "full": "CalMAN / DisplayCAL Calibration Report Verification",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ },
+ {
+  "id": 872,
+  "name": "Target Illuminance Matching",
+  "full": "Target Illuminance Matching (Lux reading at print viewing station)",
+  "status": "unsupported",
+  "impl": null,
+  "note": ""
+ }
+]

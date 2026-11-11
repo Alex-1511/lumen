@@ -1,0 +1,22 @@
+"use client";
+// EXPERIMENTAL generative edits (remove or move people, change clothing, relight, extend, smooth skin...). Done by Gemini's image model on the server.
+// Never replaces your photo: the result is a separate project you accept or discard, and it is clearly labelled as AI generated.
+import { useState } from "react";
+const PRESETS = ["Remove the people in the background", "Remove the person on the left", "Smooth the skin naturally, keep pores and texture", "Change the jacket to a plain navy blazer", "Relight the scene with warm golden-hour light", "Extend the scene wider on both sides", "Make the pose more relaxed with arms down", "Replace the sky with a soft sunset sky"];
+async function toJpegB64(src: ImageBitmap | HTMLCanvasElement, edge = 1536): Promise<string> { const s = Math.min(1, edge / Math.max(src.width, src.height)); const c = document.createElement("canvas"); c.width = Math.round(src.width * s); c.height = Math.round(src.height * s); c.getContext("2d")!.drawImage(src, 0, 0, c.width, c.height); return c.toDataURL("image/jpeg", 0.9).split(",")[1]; }
+export default function AiEditPanel({ getSource, onAccept }: { getSource: () => ImageBitmap | HTMLCanvasElement | null; onAccept: (file: File) => void }) {
+  const [text, setText] = useState(""); const [busy, setBusy] = useState(false); const [err, setErr] = useState(""); const [res, setRes] = useState<{ url: string; blob: Blob; caveat: string; note: string; w: number; h: number } | null>(null);
+  const run = async () => { const src = getSource(); if (!src || text.trim().length < 3) return; setBusy(true); setErr(""); setRes(null);
+    try { const r = await fetch("/api/generative-edit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ image: await toJpegB64(src), instruction: text }) }); const j = await r.json().catch(() => ({})); if (!r.ok) { setErr(j.error ?? `Request failed (${r.status}).`); }
+      else { const bytes = Uint8Array.from(atob(j.image), (c) => c.charCodeAt(0)); const blob = new Blob([bytes], { type: j.mime }); const bm = await createImageBitmap(blob); setRes({ url: URL.createObjectURL(blob), blob, caveat: j.caveat, note: j.note, w: bm.width, h: bm.height }); } } catch (e: any) { setErr("Could not reach the server: " + (e?.message ?? e)); } setBusy(false); };
+  return <div data-testid="ai-edit" className="mt-4 rounded border border-line p-2.5">
+    <div className="mb-1 flex items-center gap-2"><span className="text-[13px] font-semibold">AI edit</span><span className="rounded bg-warn/20 px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-warn">experimental</span></div>
+    <p className="mb-2 text-[11px] leading-relaxed text-mute">Describe a bigger change: remove or move people, smooth skin, change clothes or pose, relight, extend the scene. An AI image model redraws the photo, so it can alter faces and details and returns a smaller image than your original. You get a separate copy to compare, your original stays untouched.</p>
+    <textarea data-testid="ai-edit-text" value={text} onChange={(e) => setText(e.target.value)} maxLength={500} rows={3} placeholder="e.g. Remove the man in the red jacket" className="w-full resize-none rounded border border-line bg-[#101010] p-2 text-[12px] outline-none" />
+    <div className="my-2 flex flex-wrap gap-1">{PRESETS.map((p) => <button key={p} onClick={() => setText(p)} className="rounded-full border border-line px-2 py-0.5 text-[10px] text-mute hover:border-acc hover:text-ink">{p}</button>)}</div>
+    <button data-testid="ai-edit-run" disabled={busy || text.trim().length < 3} onClick={run} className="btn btn-primary w-full px-3 py-1.5">{busy ? "Generating… (up to a minute)" : "Generate edit"}</button>
+    {err && <p data-testid="ai-edit-error" className="mt-2 text-[11px] text-bad">{err}</p>}
+    {res && <div data-testid="ai-edit-result" className="mt-3"><img alt="AI edit result" src={res.url} className="w-full rounded border border-line" /><p className="mt-1 text-[10px] text-mute">{res.w} x {res.h} px. {res.caveat}{res.note ? ` Model note: ${res.note}` : ""}</p>
+      <div className="mt-2 flex gap-2"><button data-testid="ai-edit-accept" onClick={() => { onAccept(new File([res.blob], "ai-edit.png", { type: res.blob.type })); setRes(null); }} className="btn btn-primary px-3 py-1.5">Keep as new project</button><button onClick={() => setRes(null)} className="btn px-3 py-1.5">Discard</button></div></div>}
+  </div>;
+}
